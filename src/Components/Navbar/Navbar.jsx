@@ -1,16 +1,38 @@
 import React from 'react'
 import logo from '../../assets/spend-smart-logo.png'
 import { IoLogIn } from 'react-icons/io5'
+import { TypeAnimation } from 'react-type-animation'
+import { Link } from 'react-router-dom'
 
 const Navbar = () => {
   return (
     <div className='w-full h-[14vh] bg-gradient-to-r from-[#30e4ba]  via-white to-[#30e4ba] flex items-center'>
       <div className='w-[1000px] mx-auto flex justify-between items-center'>
-        <div className='w-[33%] flex justify-start'>
-          <h1 className='text-[#02101c] font-black text-[16px] text-center italic'>SpendSmart <br />Smarter Choices - Bigger Savings</h1>
+        <div className='w-[33%] flex flex-col items-center text-center'>
+          <h1 className='text-[#02101c] font-black text-[16px] italic'>
+            SpendSmart
+          </h1>
+          <TypeAnimation
+            sequence={[
+              'Make Every Penny Count',
+              1000,
+              'Smarter Choices, Bigger Savings',
+              1000,
+              'Spend Wisely, Live Freely',
+              1000,
+              'Budget Better, Live Smarter',
+              1000
+            ]}
+            speed={50}
+            className='text-[#02101c] font-black italic text-[16px]'
+            repeat={Infinity}
+          />
         </div>
+
         <div className='w-[33%] flex justify-center'>
-          <img className='w-[120px]' src={logo} alt='' />
+          <Link to={"/"}>
+          <img className='w-[120px] cursor-pointer' src={logo} alt='' />
+          </Link>
         </div>
         <div className='w-[33%] flex justify-end'>
           <div class='flex items-center justify-center h-screen'>
@@ -23,7 +45,7 @@ const Navbar = () => {
                     <span class='transition-all duration-500 group-hover:translate-x-1'>
                       Login
                     </span>
-                    <IoLogIn className='w-6 h-6 transition-transform duration-500 group-hover:translate-x-1'/>
+                    <IoLogIn className='w-6 h-6 transition-transform duration-500 group-hover:translate-x-1' />
                   </div>
                 </span>
               </button>
