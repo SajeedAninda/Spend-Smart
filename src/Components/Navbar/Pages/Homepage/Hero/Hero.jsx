@@ -11,7 +11,7 @@ const Hero = () => {
         <div class='w-[1000px] mx-auto'>
           <div class=' flex-col items-center'>
             <div class='z-10 items-center text-center'>
-              <h1 class='mb-8 text-[#02101c] text-pretty text-4xl font-semibold lg:text-8xl'>
+              <h1 class='mb-8 text-[#02101c] text-pretty text-4xl font-semibold lg:text-7xl'>
                 Track, Save, and Grow with SpendSmart
               </h1>
               <p class='mx-auto max-w-screen-md text-zinc-600 lg:text-xl'>
