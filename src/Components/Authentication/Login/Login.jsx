@@ -1,12 +1,12 @@
 import React from 'react'
 import { FaGoogle } from 'react-icons/fa'
 import { LuLogIn } from 'react-icons/lu'
-import { SiKnowledgebase } from 'react-icons/si'
+import loginImg from "../../../assets/loginImg.jpg";
 
 const Login = () => {
   return (
     <div className='w-full h-screen flex'>
-      <div className='loginDiv w-[35%] py-12 px-20'>
+      <div className='loginDiv w-[40%] py-12 px-20'>
         <h3 className='font-bold text-[18px] text-[#30e4ba]'>Spend Smart</h3>
         <h1 className='font-bold text-[32px] text-[#02101c] mt-3'>Sign In.</h1>
         <form className='mt-6'>
@@ -69,7 +69,9 @@ const Login = () => {
           </button>
         </div>
       </div>
-      <div className='imgDiv'></div>
+      <div className='imgDiv w-[60%]'>
+        <img className='object-cover w-full h-full' src={loginImg} alt="" />
+      </div>
     </div>
   )
 }
