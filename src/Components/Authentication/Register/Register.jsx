@@ -1,7 +1,7 @@
 import React from 'react'
 import { FaGoogle, FaUpload } from 'react-icons/fa'
 import { LuLogIn } from 'react-icons/lu'
-import loginImg from '../../../assets/loginImg.jpg'
+import registerImg from '../../../assets/registerImg.jpg'
 import useAuth from '../../Hooks/useAuth'
 import toast from 'react-hot-toast'
 import { Link, useNavigate } from 'react-router-dom'
@@ -115,7 +115,7 @@ const Register = () => {
         </div>
       </div>
       <div className='imgDiv flex-1'>
-        <img className='object-cover w-full h-full' src={loginImg} alt='' />
+        <img className='object-cover w-full h-full' src={registerImg} alt='' />
       </div>
     </div>
   )
