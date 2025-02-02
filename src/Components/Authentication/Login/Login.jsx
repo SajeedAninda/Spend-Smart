@@ -1,15 +1,22 @@
 import React from 'react'
 import { FaGoogle } from 'react-icons/fa'
 import { LuLogIn } from 'react-icons/lu'
-import loginImg from "../../../assets/loginImg.jpg";
+import loginImg from '../../../assets/loginImg.jpg'
 
 const Login = () => {
+  let handleLogin = e => {
+    e.preventDefault()
+    let email = e.target.email.value
+    let password = e.target.password.value
+    console.log(email, password)
+  }
+
   return (
     <div className='w-full h-screen flex'>
-      <div className='loginDiv w-[40%] py-12 px-20'>
+      <div className='loginDiv w-[530px] py-12 px-20'>
         <h3 className='font-bold text-[18px] text-[#30e4ba]'>Spend Smart</h3>
         <h1 className='font-bold text-[32px] text-[#02101c] mt-3'>Sign In.</h1>
-        <form className='mt-6'>
+        <form onSubmit={handleLogin} className='mt-6'>
           <div>
             <label htmlFor='email' className='text-[#02101c] font-semibold'>
               Email
@@ -35,7 +42,10 @@ const Login = () => {
             />
           </div>
           <div className='relative group mt-4 w-full'>
-            <button class='relative w-full flex justify-center p-px font-semibold leading-6 text-white bg-[#02101c] shadow-md cursor-pointer rounded-xl shadow-zinc-900 transition-transform duration-300 ease-in-out hover:scale-105 active:scale-95'>
+            <button
+              type='submit'
+              class='relative w-full flex justify-center p-px font-semibold leading-6 text-white bg-[#02101c] shadow-md cursor-pointer rounded-xl shadow-zinc-900 transition-transform duration-300 ease-in-out hover:scale-105 active:scale-95'
+            >
               <span class='relative z-10 block px-6 py-3 rounded-xl bg-[#02101c] '>
                 <div class='relative z-10 flex items-center space-x-2'>
                   <span class='transition-all duration-500 group-hover:translate-x-1'>
@@ -69,8 +79,8 @@ const Login = () => {
           </button>
         </div>
       </div>
-      <div className='imgDiv w-[60%]'>
-        <img className='object-cover w-full h-full' src={loginImg} alt="" />
+      <div className='imgDiv flex-1'>
+        <img className='object-cover w-full h-full' src={loginImg} alt='' />
       </div>
     </div>
   )
