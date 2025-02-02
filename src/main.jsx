@@ -6,6 +6,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import Login from './Components/Authentication/Login/Login.jsx'
 import AuthProvider from './Components/Authentication/AuthenticationProvider/AuthProvider.jsx'
 import { Toaster } from 'react-hot-toast'
+import Register from './Components/Authentication/Register/Register.jsx'
 
 const router = createBrowserRouter([
   {
@@ -15,6 +16,10 @@ const router = createBrowserRouter([
   {
     path: '/login',
     element: <Login></Login>
+  },
+  {
+    path: '/register',
+    element: <Register></Register>
   }
 ])
 

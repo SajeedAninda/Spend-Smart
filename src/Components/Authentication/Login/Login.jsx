@@ -4,13 +4,13 @@ import { LuLogIn } from 'react-icons/lu'
 import loginImg from '../../../assets/loginImg.jpg'
 import useAuth from '../../Hooks/useAuth'
 import toast from 'react-hot-toast'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 const Login = () => {
   let { signIn, googleLogin } = useAuth()
   let navigate = useNavigate()
 
-  
+
   let handleLogin = e => {
     e.preventDefault()
     let email = e.target.email.value
@@ -100,6 +100,10 @@ const Login = () => {
               </div>
             </span>
           </button>
+        </div>
+
+        <div className='mt-8'>
+            <p className='text-[18px] text-center font-semibold text-[#02101c]'>Don't Have an Account? <Link className='font-bold text-[#30e4ba] hover:underline' to={"/register"}>Register</Link></p>
         </div>
       </div>
       <div className='imgDiv flex-1'>
