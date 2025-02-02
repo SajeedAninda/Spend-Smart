@@ -7,15 +7,44 @@ import toast from 'react-hot-toast'
 import { Link, useNavigate } from 'react-router-dom'
 
 const Register = () => {
-    let { signIn, googleLogin } = useAuth()
-    let navigate = useNavigate()
+  let {signUp,googleLogin } = useAuth()
+  let navigate = useNavigate()
 
   let handleRegister = e => {
     e.preventDefault()
     let fullName = e.target.name.value
     let email = e.target.email.value
     let password = e.target.password.value
-    console.log(fullName, email, password)
+    if (password.length < 5) {
+      return toast.error('Password Length should atleast be 5 Characters!')
+    }
+
+    if (!/[A-Z]/.test(password)) {
+      return toast.error('Password should contain at least one capital letter!')
+    }
+    if (!/[!@#$%^&*(),.?":{}|<>]/.test(password)) {
+      return toast.error(
+        'Password should contain at least one special character!'
+      )
+    }
+    let loadingToast = toast.loading('Registering...')
+
+    signUp(email, password)
+      .then(userCredential => {
+        let user = userCredential.user
+        console.log(user)
+        toast.dismiss(loadingToast)
+        toast.success('Registration Successful. Please Login')
+        navigate('/login')
+      })
+      .catch(error => {
+        let errorCode = error.code
+        console.log(errorCode)
+        if (errorCode === 'auth/email-already-in-use') {
+          toast.dismiss(loadingToast)
+          return toast.error('Email is already being used')
+        }
+      })
   }
 
   return (
@@ -34,6 +63,7 @@ const Register = () => {
               id='name'
               type='text'
               placeholder='Type Your Full Name'
+              required
             />
           </div>
           <div className='mt-3'>
@@ -46,6 +76,7 @@ const Register = () => {
               id='email'
               type='email'
               placeholder='Type Your Email Address'
+              required
             />
           </div>
           <div className='mt-3'>
@@ -58,6 +89,7 @@ const Register = () => {
               id='password'
               type='password'
               placeholder='Enter Your Password'
+              required
             />
           </div>
 
