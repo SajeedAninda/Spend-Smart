@@ -40,11 +40,13 @@ const Navbar = () => {
 
         {/* Buttons */}
         <div className='w-[33%] flex justify-end space-x-4'>
-          <MainButton
-            text='Login'
-            icon={IoLogIn}
-            onClick={() => console.log('Login Clicked')}
-          />
+          <Link to={"/login"}>
+            <MainButton
+              text='Login'
+              icon={IoLogIn}
+              onClick={() => console.log('Login Clicked')}
+            />
+          </Link>
         </div>
       </div>
     </div>
