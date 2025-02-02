@@ -7,12 +7,23 @@ import toast from 'react-hot-toast'
 import { Link, useNavigate } from 'react-router-dom'
 
 const Register = () => {
+    let { signIn, googleLogin } = useAuth()
+    let navigate = useNavigate()
+
+  let handleRegister = e => {
+    e.preventDefault()
+    let fullName = e.target.name.value
+    let email = e.target.email.value
+    let password = e.target.password.value
+    console.log(fullName, email, password)
+  }
+
   return (
     <div className='w-full h-fit flex'>
       <div className='loginDiv w-[600px] py-12 px-20'>
         <h3 className='font-bold text-[18px] text-[#30e4ba]'>Spend Smart</h3>
         <h1 className='font-bold text-[32px] text-[#02101c] mt-3'>Register.</h1>
-        <form className='mt-6'>
+        <form onSubmit={handleRegister} className='mt-6'>
           <div>
             <label htmlFor='name' className='text-[#02101c] font-semibold'>
               Full Name

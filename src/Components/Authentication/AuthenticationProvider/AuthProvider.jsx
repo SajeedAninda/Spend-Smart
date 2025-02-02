@@ -1,6 +1,7 @@
 import React, { createContext, useEffect, useState } from 'react'
 import { app } from '../firebase.config'
 import {
+    createUserWithEmailAndPassword,
   getAuth,
   GoogleAuthProvider,
   onAuthStateChanged,
@@ -16,6 +17,11 @@ const auth = getAuth(app)
 const AuthProvider = ({ children }) => {
   let [loading, setLoading] = useState(true)
   let [loggedInUser, setLoggedInUser] = useState(null)
+
+  let signUp = (email, password) => {
+    setLoading(true);
+    return createUserWithEmailAndPassword(auth, email, password)
+}
 
   let signIn = (email, password) => {
     setLoading(true)
