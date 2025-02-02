@@ -2,13 +2,36 @@ import React from 'react'
 import { FaGoogle } from 'react-icons/fa'
 import { LuLogIn } from 'react-icons/lu'
 import loginImg from '../../../assets/loginImg.jpg'
+import useAuth from '../../Hooks/useAuth'
+import toast from 'react-hot-toast'
+import { useNavigate } from 'react-router-dom'
 
 const Login = () => {
+  let { signIn, googleLogin } = useAuth()
+  let navigate = useNavigate()
+
+  
   let handleLogin = e => {
     e.preventDefault()
     let email = e.target.email.value
     let password = e.target.password.value
-    let loadingToast = toast.loading('Logging In...');
+    let loadingToast = toast.loading('Logging In...')
+    signIn(email, password)
+      .then(userCredential => {
+        const user = userCredential.user
+        console.log(user)
+        toast.dismiss(loadingToast)
+        toast.success('Logged In Successfully!')
+        navigate('/')
+      })
+      .catch(error => {
+        let errorCode = error.code
+        console.log(errorCode)
+        if (errorCode === 'auth/invalid-credential') {
+          toast.dismiss(loadingToast)
+          return toast.error('Invalid Username or Password')
+        }
+      })
   }
 
   return (
