@@ -7,15 +7,16 @@ import toast from 'react-hot-toast'
 import { Link, useNavigate } from 'react-router-dom'
 import useAxiosInstance from '../../Hooks/useAxiosInstance'
 import axios from 'axios'
+import SocialLogin from '../SocialLogin'
 
 const Register = () => {
   let axiosInstance = useAxiosInstance()
-  let { signUp, googleLogin } = useAuth()
+  let { signUp } = useAuth()
   let navigate = useNavigate()
   const [selectedImage, setSelectedImage] = useState(null)
   const [preview, setPreview] = useState(null)
 
-  const handleImageChange = (e) => {
+  const handleImageChange = e => {
     const file = e.target.files[0]
     if (file && file.type.startsWith('image/')) {
       setSelectedImage(file)
@@ -27,7 +28,7 @@ const Register = () => {
     }
   }
 
-  let handleRegister = async (e) => {
+  let handleRegister = async e => {
     e.preventDefault()
     let fullName = e.target.name.value
     let email = e.target.email.value
@@ -44,7 +45,9 @@ const Register = () => {
       return toast.error('Password must contain at least one capital letter!')
     }
     if (!/[!@#$%^&*(),.?":{}|<>]/.test(password)) {
-      return toast.error('Password must contain at least one special character!')
+      return toast.error(
+        'Password must contain at least one special character!'
+      )
     }
 
     let loadingToast = toast.loading('Registering...')
@@ -61,7 +64,7 @@ const Register = () => {
       let userCredential = await signUp(email, password)
       let user = userCredential.user
 
-      let userDetails = { name: fullName, email, imageUrl}
+      let userDetails = { name: fullName, email, imageUrl }
       let res = await axiosInstance.post('/userRegister', userDetails)
 
       if (res.data.insertedId) {
@@ -127,14 +130,26 @@ const Register = () => {
 
           {/* Image Upload Section */}
           <div className='mt-6'>
-            <input type='file' id='fileInput' className='hidden' accept='image/*' onChange={handleImageChange} />
+            <input
+              type='file'
+              id='fileInput'
+              className='hidden'
+              accept='image/*'
+              onChange={handleImageChange}
+            />
             <label htmlFor='fileInput' className='cursor-pointer'>
               <div className='w-full border-2 border-dotted border-gray-400 p-10 rounded-lg flex flex-col justify-center items-center gap-3 hover:bg-gray-200 transition-all duration-200'>
                 {preview ? (
-                  <img src={preview} alt='Preview' className='w-20 h-20 object-cover rounded-full' />
+                  <img
+                    src={preview}
+                    alt='Preview'
+                    className='w-20 h-20 object-cover rounded-full'
+                  />
                 ) : (
                   <>
-                    <p className='text-gray-500 font-semibold'>Upload Your Photo</p>
+                    <p className='text-gray-500 font-semibold'>
+                      Upload Your Photo
+                    </p>
                     <FaUpload className='text-gray-500' />
                   </>
                 )}
@@ -143,10 +158,15 @@ const Register = () => {
           </div>
 
           <div className='relative group mt-4 w-full'>
-            <button type='submit' className='relative w-full flex justify-center p-px font-semibold leading-6 text-white bg-[#02101c] shadow-md cursor-pointer rounded-xl shadow-zinc-900 transition-transform duration-300 ease-in-out hover:scale-105 active:scale-95'>
+            <button
+              type='submit'
+              className='relative w-full flex justify-center p-px font-semibold leading-6 text-white bg-[#02101c] shadow-md cursor-pointer rounded-xl shadow-zinc-900 transition-transform duration-300 ease-in-out hover:scale-105 active:scale-95'
+            >
               <span className='relative z-10 block px-6 py-3 rounded-xl bg-[#02101c]'>
                 <div className='relative z-10 flex items-center space-x-2'>
-                  <span className='transition-all duration-500 group-hover:translate-x-1'>Register</span>
+                  <span className='transition-all duration-500 group-hover:translate-x-1'>
+                    Register
+                  </span>
                   <LuLogIn className='w-6 h-6 transition-transform duration-500 group-hover:translate-x-1' />
                 </div>
               </span>
@@ -159,19 +179,25 @@ const Register = () => {
             <div className='w-full border-t border-gray-300'></div>
           </div>
           <div className='relative flex justify-center text-sm'>
-            <span className='px-2 bg-white text-gray-600'> Or Register with </span>
+            <span className='px-2 bg-white text-gray-600'>
+              {' '}
+              Or Register with{' '}
+            </span>
           </div>
         </div>
 
-        <div className='relative group mt-4 w-full'>
-          <button className='relative w-full flex justify-center p-px font-semibold leading-6 text-[#02101c] bg-[#30e4ba] shadow-md cursor-pointer rounded-xl shadow-zinc-900 transition-transform duration-300 ease-in-out hover:scale-105 active:scale-95'>
-            <span className='relative z-10 block px-6 py-3 rounded-xl bg-[#30e4ba]'>
-              <div className='relative z-10 flex items-center space-x-2'>
-                <FaGoogle className='w-6 h-6 transition-transform duration-500 group-hover:translate-x-1' />
-                <span className='transition-all duration-500 group-hover:translate-x-1'>Register with Google</span>
-              </div>
-            </span>
-          </button>
+        <SocialLogin></SocialLogin>
+
+        <div className='mt-8'>
+          <p className='text-[18px] text-center font-semibold text-[#02101c]'>
+            Already Have an Account?{' '}
+            <Link
+              className='font-bold text-[#30e4ba] hover:underline'
+              to={'/login'}
+            >
+              Login
+            </Link>
+          </p>
         </div>
       </div>
 
