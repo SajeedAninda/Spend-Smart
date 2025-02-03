@@ -113,7 +113,7 @@ const Register = () => {
             />
           </div>
 
-          {/* <div className='mt-6'>
+          <div className='mt-6'>
             <input
               type='file'
               id='fileInput'
@@ -126,7 +126,7 @@ const Register = () => {
                 <FaUpload className='text-gray-500' />
               </>
             </div>
-          </div> */}
+          </div>
           <div className='relative group mt-4 w-full'>
             <button
               type='submit'
