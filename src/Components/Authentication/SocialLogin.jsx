@@ -1,7 +1,7 @@
 import React from 'react'
 import useAuth from '../Hooks/useAuth'
 import useAxiosInstance from '../Hooks/useAxiosInstance'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useLocation } from 'react-router-dom'
 import { FaGoogle } from 'react-icons/fa'
 import toast from 'react-hot-toast'
 
@@ -9,6 +9,7 @@ const SocialLogin = () => {
   let { googleLogin } = useAuth()
   let axiosInstance = useAxiosInstance()
   let navigate = useNavigate()
+  let location = useLocation()
 
   let handleGoogleLogin = () => {
     googleLogin()
@@ -36,6 +37,9 @@ const SocialLogin = () => {
       })
   }
 
+  const isLoginPage = location.pathname.endsWith('/login')
+  const buttonText = isLoginPage ? 'Login with Google' : 'Register with Google'
+
   return (
     <div className='relative group mt-4 w-full'>
       <button onClick={handleGoogleLogin} className='relative w-full flex justify-center p-px font-semibold leading-6 text-[#02101c] bg-[#30e4ba] shadow-md cursor-pointer rounded-xl shadow-zinc-900 transition-transform duration-300 ease-in-out hover:scale-105 active:scale-95'>
@@ -43,7 +47,7 @@ const SocialLogin = () => {
           <div className='relative z-10 flex items-center space-x-2'>
             <FaGoogle className='w-6 h-6 transition-transform duration-500 group-hover:translate-x-1' />
             <span className='transition-all duration-500 group-hover:translate-x-1'>
-              Register with Google
+              {buttonText}
             </span>
           </div>
         </span>
