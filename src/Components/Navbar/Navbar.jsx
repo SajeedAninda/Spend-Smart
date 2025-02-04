@@ -5,10 +5,15 @@ import { TypeAnimation } from 'react-type-animation'
 import { Link } from 'react-router-dom'
 import MainButton from '../Shared/MainButton'
 import useCurrentUserData from '../Hooks/useCurrentUserData'
+import useAuth from '../Hooks/useAuth'
 
 const Navbar = () => {
   let { userData, isUserLoading } = useCurrentUserData()
-  
+  let { logOut } = useAuth()
+
+  let handleLogout = () => {
+    logOut().then('Logged Out Succesfully')
+  }
 
   return (
     <div className='w-full h-[14vh] bg-gradient-to-r from-[#30e4ba] via-white to-[#30e4ba] flex items-center'>
@@ -48,7 +53,7 @@ const Navbar = () => {
             <MainButton
               text='Logout'
               icon={IoLogIn}
-              onClick={() => console.log('Login Clicked')}
+              onClick={handleLogout}
             />
           ) : (
             <Link to={'/login'}>
