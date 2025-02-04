@@ -6,15 +6,30 @@ import { Link } from 'react-router-dom'
 import MainButton from '../Shared/MainButton'
 import useCurrentUserData from '../Hooks/useCurrentUserData'
 import useAuth from '../Hooks/useAuth'
-import { IoMdLogOut } from "react-icons/io";
-
+import { IoMdLogOut } from 'react-icons/io'
+import Swal from 'sweetalert2'
+import toast from 'react-hot-toast'
 
 const Navbar = () => {
   let { userData, isUserLoading } = useCurrentUserData()
   let { logOut } = useAuth()
 
+  console.log(userData)
+
   let handleLogout = () => {
-    logOut().then('Logged Out Succesfully')
+    Swal.fire({
+      title: 'Are you to Logout?',
+      text: 'Click Yes if You want to Log out of the website!',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, Log Out!'
+    }).then(result => {
+      if (result.isConfirmed) {
+        logOut().then(toast.success('Logged Out of the account'))
+      }
+    })
   }
 
   return (
@@ -50,7 +65,12 @@ const Navbar = () => {
         </div>
 
         {/* Buttons */}
-        <div className='w-[33%] flex justify-end space-x-4'>
+        <div className='w-[33%] flex items-center justify-end space-x-4'>
+          {userData && (
+            <div>
+              <img className='w-[50px] h-[50px] rounded-full border-2 object-cover border-[#02101c]' src={userData?.imageUrl} alt='' />
+            </div>
+          )}
           {userData ? (
             <MainButton
               text='Logout'
