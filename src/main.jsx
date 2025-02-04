@@ -7,6 +7,12 @@ import Login from './Components/Authentication/Login/Login.jsx'
 import AuthProvider from './Components/Authentication/AuthenticationProvider/AuthProvider.jsx'
 import { Toaster } from 'react-hot-toast'
 import Register from './Components/Authentication/Register/Register.jsx'
+import {
+  QueryClient,
+  QueryClientProvider
+} from '@tanstack/react-query'
+
+const queryClient = new QueryClient()
 
 const router = createBrowserRouter([
   {
@@ -26,8 +32,10 @@ const router = createBrowserRouter([
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <Toaster />
-    <AuthProvider>
-      <RouterProvider router={router} />
-    </AuthProvider>
+    <QueryClientProvider client={queryClient}>
+      <AuthProvider>
+        <RouterProvider router={router} />
+      </AuthProvider>
+    </QueryClientProvider>
   </StrictMode>
 )
