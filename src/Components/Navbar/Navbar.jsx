@@ -4,8 +4,12 @@ import { IoLogIn } from 'react-icons/io5'
 import { TypeAnimation } from 'react-type-animation'
 import { Link } from 'react-router-dom'
 import MainButton from '../Shared/MainButton'
+import useCurrentUserData from '../Hooks/useCurrentUserData'
 
 const Navbar = () => {
+  let { userData, isUserLoading } = useCurrentUserData()
+  
+
   return (
     <div className='w-full h-[14vh] bg-gradient-to-r from-[#30e4ba] via-white to-[#30e4ba] flex items-center'>
       <div className='w-[1000px] mx-auto flex justify-between items-center'>
@@ -40,13 +44,21 @@ const Navbar = () => {
 
         {/* Buttons */}
         <div className='w-[33%] flex justify-end space-x-4'>
-          <Link to={"/login"}>
+          {userData ? (
             <MainButton
-              text='Login'
+              text='Logout'
               icon={IoLogIn}
               onClick={() => console.log('Login Clicked')}
             />
-          </Link>
+          ) : (
+            <Link to={'/login'}>
+              <MainButton
+                text='Login'
+                icon={IoLogIn}
+                onClick={() => console.log('Login Clicked')}
+              />
+            </Link>
+          )}
         </div>
       </div>
     </div>
