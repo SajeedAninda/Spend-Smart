@@ -6,6 +6,8 @@ import { Link } from 'react-router-dom'
 import MainButton from '../Shared/MainButton'
 import useCurrentUserData from '../Hooks/useCurrentUserData'
 import useAuth from '../Hooks/useAuth'
+import { IoMdLogOut } from "react-icons/io";
+
 
 const Navbar = () => {
   let { userData, isUserLoading } = useCurrentUserData()
@@ -52,7 +54,7 @@ const Navbar = () => {
           {userData ? (
             <MainButton
               text='Logout'
-              icon={IoLogIn}
+              icon={IoMdLogOut}
               onClick={handleLogout}
             />
           ) : (
