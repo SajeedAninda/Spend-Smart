@@ -1,7 +1,9 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { IoClose } from 'react-icons/io5'
 
 const TransactionModal = ({ isOpen, onClose, onSubmit }) => {
+  let [transactionNameText, setTransactionNameText] = useState(0)
+
   if (!isOpen) return null
 
   return (
@@ -10,10 +12,9 @@ const TransactionModal = ({ isOpen, onClose, onSubmit }) => {
       onClick={onClose}
     >
       <div
-        className='bg-white w-[400px] p-6 rounded-lg shadow-lg relative'
+        className='bg-white w-[40%] p-6 rounded-lg shadow-lg relative'
         onClick={e => e.stopPropagation()}
       >
-        {/* Close button */}
         <button
           className='absolute top-3 right-3 text-gray-600 hover:text-black'
           onClick={onClose}
@@ -22,31 +23,32 @@ const TransactionModal = ({ isOpen, onClose, onSubmit }) => {
         </button>
 
         {/* Modal Content */}
-        <h2 className='text-xl font-bold mb-4'>Add New Transaction</h2>
-        <p className='text-sm text-gray-600 mb-4'>
-          Fill in the details below to add a new transaction.
-        </p>
-
-        <form onSubmit={onSubmit}>
-          <input
-            className='w-full p-3 border-2 rounded-md mb-4 border-gray-300'
-            type='text'
-            name='transactionName'
-            placeholder='Transaction Name'
-          />
-          <input
-            className='w-full p-3 border-2 rounded-md mb-4 border-gray-300'
-            type='number'
-            name='amount'
-            placeholder='Amount'
-          />
-          <button
-            className='w-full bg-[#02101c] text-white py-2 rounded-md hover:bg-[#023a6b]'
-            type='submit'
-          >
-            Add Transaction
-          </button>
-        </form>
+        <div>
+          <h1 className='text-[20px] text-[#02101c] font-bold'>
+            Add New Transaction
+          </h1>
+          <form className='mt-4'>
+            <div>
+              <label className='text-[14px]' htmlFor='transactionName'>
+                Transaction Name
+              </label>
+              <input
+                onChange={e => {
+                  setTransactionNameText(e.target.value.length)
+                }}
+                className='w-full py-3 px-4 rounded-lg border mt-2 placeholder:text-[14px] placeholder:text-gray-500 border-[#02101c]'
+                placeholder='e.g: Paid for Cat Food'
+                type='text'
+                name='transactionName'
+                id='transactionName'
+                maxLength={30}
+              />
+            </div>
+            <p className='mt-2 text-right'>
+              {30 - transactionNameText} characters left
+            </p>
+          </form>
+        </div>
       </div>
     </div>
   )
