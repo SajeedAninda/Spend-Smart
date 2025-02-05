@@ -1,8 +1,25 @@
 import React, { useState } from 'react'
 import { IoClose } from 'react-icons/io5'
+import { addDays, format } from 'date-fns'
+import { CalendarIcon } from 'lucide-react'
+
+import { cn } from '../../../lib/utils'
+import { Button } from '../../ui/button'
+import { Calendar } from '../../ui/calendar'
+import { Popover, PopoverContent, PopoverTrigger } from '../../ui/popover'
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue
+} from '../../ui/select'
 
 const TransactionModal = ({ isOpen, onClose, onSubmit }) => {
+  const [date, setDate] = useState(new Date())
   let [transactionNameText, setTransactionNameText] = useState(0)
+
+  console.log(transactionNameText, date)
 
   if (!isOpen) return null
 
@@ -28,6 +45,7 @@ const TransactionModal = ({ isOpen, onClose, onSubmit }) => {
             Add New Transaction
           </h1>
           <form className='mt-4'>
+            {/* TRANSACTION TEXT  */}
             <div>
               <label className='text-[14px]' htmlFor='transactionName'>
                 Transaction Name
@@ -43,10 +61,58 @@ const TransactionModal = ({ isOpen, onClose, onSubmit }) => {
                 id='transactionName'
                 maxLength={30}
               />
+              <p className='mt-2 text-[14px] text-right'>
+                {30 - transactionNameText} characters left
+              </p>
             </div>
-            <p className='mt-2 text-right'>
-              {30 - transactionNameText} characters left
-            </p>
+            {/* TRANSACTION DATE  */}
+            <div>
+              <label className='text-[14px]' htmlFor='transactionName'>
+                Transaction Date
+              </label>
+              <br />
+              <Popover>
+                <PopoverTrigger asChild>
+                  <Button
+                    variant={'outline'}
+                    className={cn(
+                      'w-full mt-3 border border-[#02101c] hover:bg-[#cbfdf2] h-[40px] justify-center text-center py-3 font-normal',
+                      !date && 'text-muted-foreground'
+                    )}
+                  >
+                    <CalendarIcon />
+                    {date ? format(date, 'PPP') : <span>Pick a date</span>}
+                  </Button>
+                </PopoverTrigger>
+                <PopoverContent
+                  align='start'
+                  className='flex w-auto flex-col space-y-2 p-2'
+                >
+                  <Select
+                    onValueChange={value =>
+                      setDate(addDays(new Date(), parseInt(value)))
+                    }
+                  >
+                    <SelectTrigger>
+                      <SelectValue placeholder='Select' />
+                    </SelectTrigger>
+                    <SelectContent position='popper'>
+                      <SelectItem value='0'>Today</SelectItem>
+                      <SelectItem value='1'>Tomorrow</SelectItem>
+                      <SelectItem value='3'>In 3 days</SelectItem>
+                      <SelectItem value='7'>In a week</SelectItem>
+                    </SelectContent>
+                  </Select>
+                  <div className='rounded-md border'>
+                    <Calendar
+                      mode='single'
+                      selected={date}
+                      onSelect={setDate}
+                    />
+                  </div>
+                </PopoverContent>
+              </Popover>
+            </div>
           </form>
         </div>
       </div>
