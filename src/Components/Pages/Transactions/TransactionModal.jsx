@@ -17,7 +17,8 @@ import {
 
 const TransactionModal = ({ isOpen, onClose, onSubmit }) => {
   const [date, setDate] = useState(new Date())
-  let [transactionNameText, setTransactionNameText] = useState(0)
+  const [transactionNameText, setTransactionNameText] = useState(0)
+  const [selectedCategoryValue, setSelectedCategoryValue] = useState('general')
 
   console.log(transactionNameText, date)
 
@@ -60,6 +61,7 @@ const TransactionModal = ({ isOpen, onClose, onSubmit }) => {
                 name='transactionName'
                 id='transactionName'
                 maxLength={30}
+                required
               />
               <p className='mt-2 text-[14px] text-right'>
                 {30 - transactionNameText} characters left
@@ -112,6 +114,77 @@ const TransactionModal = ({ isOpen, onClose, onSubmit }) => {
                   </div>
                 </PopoverContent>
               </Popover>
+            </div>
+            {/* CATEGORY  */}
+            <div className='mt-3'>
+              <label className='text-[14px]' htmlFor='transactionName'>
+                Category
+              </label>
+              <div className='category mt-2'>
+                <Select
+                  value={selectedCategoryValue}
+                  onValueChange={setSelectedCategoryValue}
+                >
+                  <SelectTrigger className='w-full h-[40px] border text-center flex justify-center gap-2 border-[#02101c]'>
+                    <SelectValue placeholder='Select an option' />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value='general'>General</SelectItem>
+                    <SelectItem value='education'>Education</SelectItem>
+                    <SelectItem value='shopping'>Shopping</SelectItem>
+                    <SelectItem value='bills'>Bills</SelectItem>
+                    <SelectItem value='groceries'>Groceries</SelectItem>
+                    <SelectItem value='transportation'>
+                      Transportation
+                    </SelectItem>
+                    <SelectItem value='dining_out'>Dining Out</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+            </div>
+
+            {/* AMOUNT  */}
+            <div className=' mt-3'>
+              <label className='text-[14px]' htmlFor='amount'>
+                Amount
+              </label>
+              <input
+                className='w-full py-3 px-4 rounded-lg border mt-2 placeholder:text-[14px] placeholder:text-gray-500 border-[#02101c]'
+                placeholder='e.g: $180'
+                type='number'
+                name='amount'
+                id='amount'
+                required
+              />
+            </div>
+
+            {/* SPEND / EARNED  */}
+            {/* CATEGORY  */}
+            <div className='mt-3'>
+              <label className='text-[14px]' htmlFor='spentOrEarned'>
+                SPENT / EARNED
+              </label>
+              <div className='category mt-2'>
+                <Select
+                  value={selectedCategoryValue}
+                  onValueChange={setSelectedCategoryValue}
+                >
+                  <SelectTrigger className='w-full h-[40px] border text-center flex justify-center gap-2 border-[#02101c]'>
+                    <SelectValue placeholder='Select an option' />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value='general'>General</SelectItem>
+                    <SelectItem value='education'>Education</SelectItem>
+                    <SelectItem value='shopping'>Shopping</SelectItem>
+                    <SelectItem value='bills'>Bills</SelectItem>
+                    <SelectItem value='groceries'>Groceries</SelectItem>
+                    <SelectItem value='transportation'>
+                      Transportation
+                    </SelectItem>
+                    <SelectItem value='dining_out'>Dining Out</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
             </div>
           </form>
         </div>
