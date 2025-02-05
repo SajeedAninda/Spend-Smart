@@ -1,8 +1,17 @@
-import React from 'react'
-import { SiKnowledgebase } from 'react-icons/si'
+import React, { useState } from 'react'
 import { TbTransactionDollar } from 'react-icons/tb'
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue
+} from '../../ui/select'
 
 const Transactions = () => {
+  const [selectedFilterValue, setSelectedFilterValue] = useState('latest')
+  const [selectedCategoryValue, setSelectedCategoryValue] = useState('general')
+
   return (
     <div>
       <div className='w-[1150px] mx-auto py-8'>
@@ -26,14 +35,51 @@ const Transactions = () => {
 
         <div className='lowerDiv bg-[#cbfdf2] rounded-lg w-full p-8 mt-10'>
           <div className='queryDiv flex justify-between items-center'>
-            <div className='searchField w-[50%]'>
-              <input className='w-[70%] py-3 px-4 rounded-lg border-2 placeholder:text-[14px] border-[#02101c]' placeholder='Search Transaction By Name' type='text' />
+            <div className='searchField w-[40%]'>
+              <input
+                className='w-[80%] py-3 px-4 rounded-lg border-2 placeholder:text-[14px] border-[#02101c]'
+                placeholder='Search Transaction By Name'
+                type='text'
+              />
             </div>
 
-            <div className='filterField w-[50%]'>
-                <div className='flex'>
-                    <p className='text-[14px] font-semibold text-[#02101c]'>Sort By</p>
-                </div>
+            <div className='filterField w-[60%] flex gap-4 justify-between items-center'>
+              <div className='sortingField flex items-center gap-4'>
+                <p className='text-[14px] font-semibold text-[#02101c]'>
+                  Sort By
+                </p>
+                <Select value={selectedFilterValue} onValueChange={setSelectedFilterValue}>
+                  <SelectTrigger className='w-[180px] border-2 border-[#02101c]'>
+                    <SelectValue placeholder='Select an option' />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value='latest'>Latest</SelectItem>
+                    <SelectItem value='oldest'>Oldest</SelectItem>
+                    <SelectItem value='highest'>Highest</SelectItem>
+                    <SelectItem value='lowest'>Lowest</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+
+              <div className='filterField flex items-center gap-4'>
+                <p className='text-[14px] font-semibold text-[#02101c]'>
+                  Filter By Category
+                </p>
+                <Select value={selectedCategoryValue} onValueChange={setSelectedCategoryValue}>
+                  <SelectTrigger className='w-[180px] border-2 border-[#02101c]'>
+                    <SelectValue placeholder='Select an option' />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value='general'>General</SelectItem>
+                    <SelectItem value='education'>Education</SelectItem>
+                    <SelectItem value='shopping'>Shopping</SelectItem>
+                    <SelectItem value='bills'>Bills</SelectItem>
+                    <SelectItem value='groceries'>Groceries</SelectItem>
+                    <SelectItem value='transportation'>Transportation</SelectItem>
+                    <SelectItem value='dining_out'>Dining Out</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
             </div>
           </div>
         </div>
