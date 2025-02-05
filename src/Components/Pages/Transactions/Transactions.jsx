@@ -7,6 +7,7 @@ import {
   SelectTrigger,
   SelectValue
 } from '../../ui/select'
+import TransactionTable from './TransactionTable'
 
 const Transactions = () => {
   const [selectedFilterValue, setSelectedFilterValue] = useState('latest')
@@ -48,7 +49,10 @@ const Transactions = () => {
                 <p className='text-[14px] font-semibold text-[#02101c]'>
                   Sort By
                 </p>
-                <Select value={selectedFilterValue} onValueChange={setSelectedFilterValue}>
+                <Select
+                  value={selectedFilterValue}
+                  onValueChange={setSelectedFilterValue}
+                >
                   <SelectTrigger className='w-[180px] border-2 border-[#02101c]'>
                     <SelectValue placeholder='Select an option' />
                   </SelectTrigger>
@@ -65,7 +69,10 @@ const Transactions = () => {
                 <p className='text-[14px] font-semibold text-[#02101c]'>
                   Filter By Category
                 </p>
-                <Select value={selectedCategoryValue} onValueChange={setSelectedCategoryValue}>
+                <Select
+                  value={selectedCategoryValue}
+                  onValueChange={setSelectedCategoryValue}
+                >
                   <SelectTrigger className='w-[180px] border-2 border-[#02101c]'>
                     <SelectValue placeholder='Select an option' />
                   </SelectTrigger>
@@ -75,13 +82,16 @@ const Transactions = () => {
                     <SelectItem value='shopping'>Shopping</SelectItem>
                     <SelectItem value='bills'>Bills</SelectItem>
                     <SelectItem value='groceries'>Groceries</SelectItem>
-                    <SelectItem value='transportation'>Transportation</SelectItem>
+                    <SelectItem value='transportation'>
+                      Transportation
+                    </SelectItem>
                     <SelectItem value='dining_out'>Dining Out</SelectItem>
                   </SelectContent>
                 </Select>
               </div>
             </div>
           </div>
+          <TransactionTable></TransactionTable>
         </div>
       </div>
     </div>
