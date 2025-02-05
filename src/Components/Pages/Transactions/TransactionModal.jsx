@@ -14,15 +14,31 @@ import {
   SelectTrigger,
   SelectValue
 } from '../../ui/select'
+import { FaBookmark } from 'react-icons/fa'
 
-const TransactionModal = ({ isOpen, onClose, onSubmit }) => {
+const TransactionModal = ({ isOpen, onClose }) => {
   const [date, setDate] = useState(new Date())
   const [transactionNameText, setTransactionNameText] = useState(0)
   const [selectedCategoryValue, setSelectedCategoryValue] = useState('general')
-
-  console.log(transactionNameText, date)
+  const [selectedTransactionType, setSelectedTransactionType] = useState('')
+  const [amount, setAmount] = useState('')
 
   if (!isOpen) return null
+
+  const handleSubmit = e => {
+    e.preventDefault()
+    let name = e.target.transactionName.value
+    const transactionDetails = {
+      transactionName: name,
+      transactionDate: date,
+      category: selectedCategoryValue,
+      amount,
+      transactionType: selectedTransactionType
+    }
+
+    console.log(transactionDetails)
+    onClose()
+  }
 
   return (
     <div
@@ -45,7 +61,7 @@ const TransactionModal = ({ isOpen, onClose, onSubmit }) => {
           <h1 className='text-[20px] text-[#02101c] font-bold'>
             Add New Transaction
           </h1>
-          <form className='mt-4'>
+          <form className='mt-4' onSubmit={handleSubmit}>
             {/* TRANSACTION TEXT  */}
             <div>
               <label className='text-[14px]' htmlFor='transactionName'>
@@ -67,9 +83,10 @@ const TransactionModal = ({ isOpen, onClose, onSubmit }) => {
                 {30 - transactionNameText} characters left
               </p>
             </div>
+
             {/* TRANSACTION DATE  */}
             <div>
-              <label className='text-[14px]' htmlFor='transactionName'>
+              <label className='text-[14px]' htmlFor='transactionDate'>
                 Transaction Date
               </label>
               <br />
@@ -115,9 +132,10 @@ const TransactionModal = ({ isOpen, onClose, onSubmit }) => {
                 </PopoverContent>
               </Popover>
             </div>
+
             {/* CATEGORY  */}
             <div className='mt-3'>
-              <label className='text-[14px]' htmlFor='transactionName'>
+              <label className='text-[14px]' htmlFor='category'>
                 Category
               </label>
               <div className='category mt-2'>
@@ -155,37 +173,55 @@ const TransactionModal = ({ isOpen, onClose, onSubmit }) => {
                 name='amount'
                 id='amount'
                 required
+                value={amount}
+                onChange={e => setAmount(e.target.value)}
               />
             </div>
 
             {/* SPEND / EARNED  */}
-            {/* CATEGORY  */}
             <div className='mt-3'>
               <label className='text-[14px]' htmlFor='spentOrEarned'>
                 SPENT / EARNED
               </label>
-              <div className='category mt-2'>
+              <div
+                className={`category mt-2 rounded-lg ${
+                  selectedTransactionType === 'earned'
+                    ? 'bg-green-500'
+                    : selectedTransactionType === 'spent'
+                    ? 'bg-red-500'
+                    : 'bg-white'
+                }`}
+              >
                 <Select
-                  value={selectedCategoryValue}
-                  onValueChange={setSelectedCategoryValue}
+                  value={selectedTransactionType}
+                  onValueChange={setSelectedTransactionType}
                 >
                   <SelectTrigger className='w-full h-[40px] border text-center flex justify-center gap-2 border-[#02101c]'>
                     <SelectValue placeholder='Select an option' />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value='general'>General</SelectItem>
-                    <SelectItem value='education'>Education</SelectItem>
-                    <SelectItem value='shopping'>Shopping</SelectItem>
-                    <SelectItem value='bills'>Bills</SelectItem>
-                    <SelectItem value='groceries'>Groceries</SelectItem>
-                    <SelectItem value='transportation'>
-                      Transportation
-                    </SelectItem>
-                    <SelectItem value='dining_out'>Dining Out</SelectItem>
+                    <SelectItem value='earned'>Earned</SelectItem>
+                    <SelectItem value='spent'>Spent</SelectItem>
                   </SelectContent>
                 </Select>
               </div>
             </div>
+
+            <button
+              type='submit'
+              className='relative mt-4 w-full flex justify-center p-px font-semibold leading-6 text-white bg-[#02101c] shadow-lg cursor-pointer rounded-xl shadow-zinc-900 transition-transform duration-300 ease-in-out hover:scale-105 active:scale-95'
+            >
+              <span className='absolute inset-0 rounded-xl bg-gradient-to-r from-[#02101c] via-[#023a6b] to-white p-[2px] opacity-0 transition-opacity duration-500 group-hover:opacity-100'></span>
+
+              <span className='relative z-10 block px-6 py-3 rounded-xl bg-[#02101c] '>
+                <div className='relative z-10 flex items-center space-x-2'>
+                  <span className='transition-all duration-500 group-hover:translate-x-1'>
+                    Submit
+                  </span>
+                  <FaBookmark className='w-6 h-6 transition-transform duration-500 group-hover:translate-x-1' />
+                </div>
+              </span>
+            </button>
           </form>
         </div>
       </div>
