@@ -7,17 +7,26 @@ import Login from './Components/Authentication/Login/Login.jsx'
 import AuthProvider from './Components/Authentication/AuthenticationProvider/AuthProvider.jsx'
 import { Toaster } from 'react-hot-toast'
 import Register from './Components/Authentication/Register/Register.jsx'
-import {
-  QueryClient,
-  QueryClientProvider
-} from '@tanstack/react-query'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import Homepage from './Components/Navbar/Pages/Homepage/Homepage.jsx'
+import Transactions from './Components/Pages/Transactions/Transactions.jsx'
 
 const queryClient = new QueryClient()
 
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <App></App>
+    element: <App></App>,
+    children: [
+      {
+        path: '/',
+        element: <Homepage></Homepage>
+      },
+      {
+        path: '/transactions',
+        element: <Transactions></Transactions>
+      }
+    ]
   },
   {
     path: '/login',

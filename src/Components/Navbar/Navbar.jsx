@@ -2,7 +2,7 @@ import React from 'react'
 import logo from '../../assets/spend-smart-logo.png'
 import { IoLogIn } from 'react-icons/io5'
 import { TypeAnimation } from 'react-type-animation'
-import { Link } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 import MainButton from '../Shared/MainButton'
 import useCurrentUserData from '../Hooks/useCurrentUserData'
 import useAuth from '../Hooks/useAuth'
@@ -39,9 +39,9 @@ const Navbar = () => {
         <div className='w-[33%]'>
           {userData ? (
             <div className='flex justify-between items-center '>
-              <li className='text-[#02101c] font-bold hover:opacity-50 transition-all duration-150 hover:underline cursor-pointer text-[16px] list-none'>
+              <NavLink to={"/transactions"} className='text-[#02101c] font-bold hover:opacity-50 transition-all duration-150 hover:underline cursor-pointer text-[16px] list-none'>
                 Transactions
-              </li>
+              </NavLink>
               <li className='text-[#02101c] font-bold hover:opacity-50 transition-all duration-150 hover:underline cursor-pointer text-[16px] list-none'>
                 Budgets
               </li>
