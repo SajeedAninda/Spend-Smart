@@ -19,7 +19,7 @@ import useAxiosInstance from '../../Hooks/useAxiosInstance'
 import useAuth from '../../Hooks/useAuth'
 import toast from 'react-hot-toast'
 
-const TransactionModal = ({ isOpen, onClose }) => {
+const TransactionModal = ({ isOpen, onClose, refetch }) => {
   const [date, setDate] = useState(new Date())
   const [transactionNameText, setTransactionNameText] = useState(0)
   const [selectedCategoryValue, setSelectedCategoryValue] = useState('general')
@@ -63,8 +63,9 @@ const TransactionModal = ({ isOpen, onClose }) => {
         setSelectedTransactionType('')
         e.target.reset()
         toast.dismiss(loadingToast)
-        setAmount('') 
+        setAmount('')
         onClose()
+        refetch()
       }
     } catch (error) {
       toast.error('Failed to add transaction!')
