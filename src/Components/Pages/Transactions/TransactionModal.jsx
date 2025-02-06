@@ -15,6 +15,9 @@ import {
   SelectValue
 } from '../../ui/select'
 import { FaBookmark } from 'react-icons/fa'
+import useAxiosInstance from '../../Hooks/useAxiosInstance'
+import useAuth from '../../Hooks/useAuth'
+import toast from 'react-hot-toast'
 
 const TransactionModal = ({ isOpen, onClose }) => {
   const [date, setDate] = useState(new Date())
@@ -23,21 +26,49 @@ const TransactionModal = ({ isOpen, onClose }) => {
   const [selectedTransactionType, setSelectedTransactionType] = useState('')
   const [amount, setAmount] = useState('')
 
+  let axiosInstance = useAxiosInstance()
+  let { loggedInUser } = useAuth()
+  let currentUserEmail = loggedInUser?.email
+
   if (!isOpen) return null
 
-  const handleSubmit = e => {
+  const handleSubmit = async e => {
     e.preventDefault()
+
     let name = e.target.transactionName.value
+    let amount = e.target.amount.value
+
     const transactionDetails = {
       transactionName: name,
       transactionDate: date,
       category: selectedCategoryValue,
       amount,
-      transactionType: selectedTransactionType
+      transactionType: selectedTransactionType,
+      userEmail: currentUserEmail
     }
 
-    console.log(transactionDetails)
-    onClose()
+    let loadingToast = toast.loading('Add Transaction...')
+
+    try {
+      const { data } = await axiosInstance.post(
+        '/addTransaction',
+        transactionDetails
+      )
+
+      if (data.insertedId) {
+        toast.success('Transaction added successfully!')
+        setTransactionNameText(0)
+        setDate(new Date())
+        setSelectedCategoryValue('general')
+        setSelectedTransactionType('')
+        e.target.reset()
+        toast.dismiss(loadingToast)
+        setAmount('') 
+        onClose()
+      }
+    } catch (error) {
+      toast.error('Failed to add transaction!')
+    }
   }
 
   return (
