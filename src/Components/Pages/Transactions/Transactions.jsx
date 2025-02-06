@@ -137,7 +137,7 @@ const Transactions = () => {
       </div>
 
       {/* Transaction Modal */}
-      <TransactionModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
+      <TransactionModal isOpen={isModalOpen} refetch={refetch} onClose={() => setIsModalOpen(false)} />
     </div>
   )
 }
