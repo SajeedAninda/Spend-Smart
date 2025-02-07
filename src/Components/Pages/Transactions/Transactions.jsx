@@ -16,15 +16,25 @@ import useAxiosInstance from '../../Hooks/useAxiosInstance'
 const Transactions = () => {
   const { loggedInUser } = useAuth()
   const currentUserEmail = loggedInUser?.email
-  let axiosInstance = useAxiosInstance();
+  let axiosInstance = useAxiosInstance()
 
   const [searchTerm, setSearchTerm] = useState('')
   const [selectedFilterValue, setSelectedFilterValue] = useState('latest')
   const [selectedCategoryValue, setSelectedCategoryValue] = useState('general')
   const [isModalOpen, setIsModalOpen] = useState(false)
 
-  const { data: transactions, refetch, isLoading } = useQuery({
-    queryKey: ['transactions', currentUserEmail, searchTerm, selectedFilterValue, selectedCategoryValue],
+  const {
+    data: transactions,
+    refetch,
+    isLoading
+  } = useQuery({
+    queryKey: [
+      'transactions',
+      currentUserEmail,
+      searchTerm,
+      selectedFilterValue,
+      selectedCategoryValue
+    ],
     queryFn: async () => {
       const { data } = await axiosInstance.get('/transactions', {
         params: {
@@ -65,6 +75,35 @@ const Transactions = () => {
           </div>
         </div>
 
+        <div className='middleDiv w-full mt-10 grid grid-cols-3 gap-6 items-center'>
+          <div className='bg-gradient-to-r from-[#30e4ba]  to-[#1b4f80] py-6 px-10 rounded-lg'>
+            <h4 className='text-[16px] font-bold text-[#02101c]'>
+              Total Transactions
+            </h4>
+            <p className='text-[33px] font-bold text-[#02101c]'>
+              $ 100,000
+            </p>
+          </div>
+
+          <div className='bg-gradient-to-r from-[#30e4ba]  to-green-600 py-6 px-10 rounded-lg'>
+            <h4 className='text-[16px] font-bold text-[#02101c]'>
+              Total Earned
+            </h4>
+            <p className='text-[33px] font-bold text-[#02101c]'>
+              $ 100,000
+            </p>
+          </div>
+
+          <div className='bg-gradient-to-r from-[#30e4ba]  to-red-600 py-6 px-10 rounded-lg'>
+            <h4 className='text-[16px] font-bold text-[#02101c]'>
+              Total Spent
+            </h4>
+            <p className='text-[33px] font-bold text-[#02101c]'>
+              $ 100,000
+            </p>
+          </div>
+        </div>
+
         <div className='lowerDiv bg-[#cbfdf2] rounded-lg w-full p-8 mt-10'>
           <div className='queryDiv flex justify-between items-center'>
             {/* Search Input */}
@@ -74,7 +113,7 @@ const Transactions = () => {
                 placeholder='Search Transaction By Name'
                 type='text'
                 value={searchTerm}
-                onChange={(e) => {
+                onChange={e => {
                   setSearchTerm(e.target.value)
                   refetch()
                 }}
@@ -85,10 +124,12 @@ const Transactions = () => {
             <div className='filterField w-[60%] flex gap-4 justify-between items-center'>
               {/* Sort By */}
               <div className='sortingField flex items-center gap-4'>
-                <p className='text-[14px] font-semibold text-[#02101c]'>Sort By</p>
+                <p className='text-[14px] font-semibold text-[#02101c]'>
+                  Sort By
+                </p>
                 <Select
                   value={selectedFilterValue}
-                  onValueChange={(value) => {
+                  onValueChange={value => {
                     setSelectedFilterValue(value)
                     refetch()
                   }}
@@ -107,10 +148,12 @@ const Transactions = () => {
 
               {/* Filter By Category */}
               <div className='filterField flex items-center gap-4'>
-                <p className='text-[14px] font-semibold text-[#02101c]'>Filter By Category</p>
+                <p className='text-[14px] font-semibold text-[#02101c]'>
+                  Filter By Category
+                </p>
                 <Select
                   value={selectedCategoryValue}
-                  onValueChange={(value) => {
+                  onValueChange={value => {
                     setSelectedCategoryValue(value)
                     refetch()
                   }}
@@ -124,7 +167,9 @@ const Transactions = () => {
                     <SelectItem value='shopping'>Shopping</SelectItem>
                     <SelectItem value='bills'>Bills</SelectItem>
                     <SelectItem value='groceries'>Groceries</SelectItem>
-                    <SelectItem value='transportation'>Transportation</SelectItem>
+                    <SelectItem value='transportation'>
+                      Transportation
+                    </SelectItem>
                     <SelectItem value='dining_out'>Dining Out</SelectItem>
                   </SelectContent>
                 </Select>
@@ -132,12 +177,20 @@ const Transactions = () => {
             </div>
           </div>
 
-          {isLoading ? <p>Loading transactions...</p> : <TransactionTable transactions={transactions} />}
+          {isLoading ? (
+            <p>Loading transactions...</p>
+          ) : (
+            <TransactionTable transactions={transactions} />
+          )}
         </div>
       </div>
 
       {/* Transaction Modal */}
-      <TransactionModal isOpen={isModalOpen} refetch={refetch} onClose={() => setIsModalOpen(false)} />
+      <TransactionModal
+        isOpen={isModalOpen}
+        refetch={refetch}
+        onClose={() => setIsModalOpen(false)}
+      />
     </div>
   )
 }

@@ -34,7 +34,7 @@ const TransactionTable = ({ transactions }) => {
           const formattedAmount = isSpent 
             ? `- ${formatAmount(transaction?.amount)}` 
             : `+ ${formatAmount(transaction?.amount)}`;
-          const amountClass = isSpent ? 'text-red-500' : 'text-green-500';
+          const amountClass = isSpent ? 'text-red-600' : 'text-green-600';
 
           return (
             <div key={transaction._id} className='tableRow grid grid-cols-12 items-center'>
