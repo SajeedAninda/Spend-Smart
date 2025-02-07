@@ -51,6 +51,20 @@ const Transactions = () => {
 
   console.log(transactions)
 
+  const totalTransactions = transactions
+    .reduce((acc, txn) => acc + parseFloat(txn.amount), 0)
+    .toFixed(2)
+
+  const totalEarned = transactions
+    .filter(txn => txn.transactionType === 'earned')
+    .reduce((acc, txn) => acc + parseFloat(txn.amount), 0)
+    .toFixed(2)
+
+  const totalSpent = transactions
+    .filter(txn => txn.transactionType === 'spent')
+    .reduce((acc, txn) => acc + parseFloat(txn.amount), 0)
+    .toFixed(2)
+
   return (
     <div>
       <div className='w-[1150px] mx-auto py-8'>
@@ -76,30 +90,30 @@ const Transactions = () => {
         </div>
 
         <div className='middleDiv w-full mt-10 grid grid-cols-3 gap-6 items-center'>
-          <div className='bg-gradient-to-r from-[#30e4ba]  to-[#1b4f80] py-6 px-10 rounded-lg'>
+          <div className='bg-gradient-to-r from-[#30e4ba] to-[#1b4f80] py-6 px-10 rounded-lg'>
             <h4 className='text-[16px] font-bold text-[#02101c]'>
               Total Transactions
             </h4>
             <p className='text-[33px] font-bold text-[#02101c]'>
-              $ 100,000
+              $ {totalTransactions}
             </p>
           </div>
 
-          <div className='bg-gradient-to-r from-[#30e4ba]  to-green-600 py-6 px-10 rounded-lg'>
+          <div className='bg-gradient-to-r from-[#30e4ba] to-green-600 py-6 px-10 rounded-lg'>
             <h4 className='text-[16px] font-bold text-[#02101c]'>
               Total Earned
             </h4>
             <p className='text-[33px] font-bold text-[#02101c]'>
-              $ 100,000
+              $ {totalEarned}
             </p>
           </div>
 
-          <div className='bg-gradient-to-r from-[#30e4ba]  to-red-600 py-6 px-10 rounded-lg'>
+          <div className='bg-gradient-to-r from-[#30e4ba] to-red-600 py-6 px-10 rounded-lg'>
             <h4 className='text-[16px] font-bold text-[#02101c]'>
               Total Spent
             </h4>
             <p className='text-[33px] font-bold text-[#02101c]'>
-              $ 100,000
+              $ {totalSpent}
             </p>
           </div>
         </div>
