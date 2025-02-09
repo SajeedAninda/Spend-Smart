@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
-import { RiMoneyDollarBoxFill } from "react-icons/ri";
-
+import { RiMoneyDollarBoxFill } from 'react-icons/ri'
+import BudgetModal from './BudgetModal'
 
 const Budget = () => {
-      const [isModalOpen, setIsModalOpen] = useState(false)
-    
+  const [isModalOpen, setIsModalOpen] = useState(false)
+
   return (
     <div className='w-[1150px] mx-auto py-8'>
       <div className='upperDiv flex justify-between items-center'>
@@ -21,13 +21,16 @@ const Budget = () => {
                 <span className='transition-all duration-500 group-hover:translate-x-1'>
                   Add a Budget
                 </span>
-                <RiMoneyDollarBoxFill
-                 className='w-6 h-6 transition-transform duration-500 group-hover:translate-x-1' />
+                <RiMoneyDollarBoxFill className='w-6 h-6 transition-transform duration-500 group-hover:translate-x-1' />
               </div>
             </span>
           </button>
         </div>
       </div>
+      <BudgetModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+      ></BudgetModal>
     </div>
   )
 }
