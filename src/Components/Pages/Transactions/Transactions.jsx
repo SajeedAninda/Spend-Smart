@@ -51,17 +51,13 @@ const Transactions = () => {
 
   console.log(transactions)
 
-  const totalTransactions = transactions
-    .reduce((acc, txn) => acc + parseFloat(txn.amount), 0)
+  const totalTransactions = transactions?.reduce((acc, txn) => acc + parseFloat(txn.amount), 0)
     .toFixed(2)
 
-  const totalEarned = transactions
-    .filter(txn => txn.transactionType === 'earned')
-    .reduce((acc, txn) => acc + parseFloat(txn.amount), 0)
+  const totalEarned = transactions?.reduce((acc, txn) => acc + parseFloat(txn.amount), 0)
     .toFixed(2)
 
-  const totalSpent = transactions
-    .filter(txn => txn.transactionType === 'spent')
+  const totalSpent = transactions?.filter(txn => txn.transactionType === 'spent')
     .reduce((acc, txn) => acc + parseFloat(txn.amount), 0)
     .toFixed(2)
 

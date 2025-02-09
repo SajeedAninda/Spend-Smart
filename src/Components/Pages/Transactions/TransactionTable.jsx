@@ -28,7 +28,7 @@ const TransactionTable = ({ transactions }) => {
           </div>
         </div>
 
-        {transactions.map(transaction => {
+        {transactions?.map(transaction => {
           const transactionDate = formatDate(transaction?.transactionDate);
           const isSpent = transaction?.transactionType === 'spent';
           const formattedAmount = isSpent 
