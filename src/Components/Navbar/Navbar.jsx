@@ -42,9 +42,9 @@ const Navbar = () => {
               <NavLink to={"/transactions"} className='text-[#02101c] font-bold hover:opacity-50 transition-all duration-150 hover:underline cursor-pointer text-[16px] list-none'>
                 Transactions
               </NavLink>
-              <li className='text-[#02101c] font-bold hover:opacity-50 transition-all duration-150 hover:underline cursor-pointer text-[16px] list-none'>
+              <NavLink to={"/budget"} className='text-[#02101c] font-bold hover:opacity-50 transition-all duration-150 hover:underline cursor-pointer text-[16px] list-none'>
                 Budgets
-              </li>
+              </NavLink>
               <li className='text-[#02101c] font-bold hover:opacity-50 transition-all duration-150 hover:underline cursor-pointer text-[16px] list-none'>
                 Piggy Bank
               </li>

@@ -10,6 +10,7 @@ import Register from './Components/Authentication/Register/Register.jsx'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import Homepage from './Components/Navbar/Pages/Homepage/Homepage.jsx'
 import Transactions from './Components/Pages/Transactions/Transactions.jsx'
+import Budget from './Components/Pages/Budget/Budget'
 
 const queryClient = new QueryClient()
 
@@ -25,6 +26,10 @@ const router = createBrowserRouter([
       {
         path: '/transactions',
         element: <Transactions></Transactions>
+      },
+      {
+        path: '/budget',
+        element: <Budget></Budget>
       }
     ]
   },
