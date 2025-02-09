@@ -12,6 +12,7 @@ import {
 import TransactionTable from './TransactionTable'
 import TransactionModal from './TransactionModal'
 import useAxiosInstance from '../../Hooks/useAxiosInstance'
+import { InfinitySpin } from 'react-loader-spinner'
 
 const Transactions = () => {
   const { loggedInUser } = useAuth()
@@ -51,13 +52,16 @@ const Transactions = () => {
 
   console.log(transactions)
 
-  const totalTransactions = transactions?.reduce((acc, txn) => acc + parseFloat(txn.amount), 0)
+  const totalTransactions = transactions
+    ?.reduce((acc, txn) => acc + parseFloat(txn.amount), 0)
     .toFixed(2)
 
-  const totalEarned = transactions?.reduce((acc, txn) => acc + parseFloat(txn.amount), 0)
+  const totalEarned = transactions
+    ?.reduce((acc, txn) => acc + parseFloat(txn.amount), 0)
     .toFixed(2)
 
-  const totalSpent = transactions?.filter(txn => txn.transactionType === 'spent')
+  const totalSpent = transactions
+    ?.filter(txn => txn.transactionType === 'spent')
     .reduce((acc, txn) => acc + parseFloat(txn.amount), 0)
     .toFixed(2)
 
@@ -188,7 +192,14 @@ const Transactions = () => {
           </div>
 
           {isLoading ? (
-            <p>Loading transactions...</p>
+            <div className='h-screen w-full flex mx-auto justify-center text-center'>
+              <InfinitySpin
+                visible={true}
+                width='200'
+                color='#30e4ba'
+                ariaLabel='infinity-spin-loading'
+              />
+            </div>
           ) : (
             <TransactionTable transactions={transactions} />
           )}
