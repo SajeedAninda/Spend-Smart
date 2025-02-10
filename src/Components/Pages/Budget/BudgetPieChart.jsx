@@ -15,15 +15,16 @@ import {
   ChartTooltipContent
 } from '../../ui/chart'
 
-const BudgetPieChart = ({ budgetData }) => {
+const BudgetPieChart = ({ transactionData, budgetData }) => {
+  console.log(transactionData)
   const totalSpend = React.useMemo(() => {
-    return budgetData.reduce(
+    return budgetData?.reduce(
       (acc, curr) => acc + parseFloat(curr.maxSpendAmount),
       0
     )
   }, [budgetData])
 
-  const chartData = budgetData.map(budget => ({
+  const chartData = budgetData?.map(budget => ({
     category: budget.category,
     amount: parseFloat(budget.maxSpendAmount),
     fill: budget.colorTheme
@@ -73,7 +74,7 @@ const BudgetPieChart = ({ budgetData }) => {
                         y={viewBox.cy + 24}
                         className='fill-muted-foreground'
                       >
-                        Total Spend
+                        Total Limit
                       </tspan>
                     </text>
                   )

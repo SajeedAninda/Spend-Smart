@@ -29,7 +29,24 @@ const Budget = () => {
     enabled: !!currentUserEmail
   })
 
-  // console.log(budgets)
+  const {
+      data: transactions
+    } = useQuery({
+      queryKey: [
+        'transactions',
+        currentUserEmail
+      ],
+      queryFn: async () => {
+        const { data } = await axiosInstance.get('/getTransactions', {
+          params: {
+            email: currentUserEmail
+          }
+        })
+        return data
+      },
+      enabled: !!currentUserEmail
+    })
+
 
   return (
     <div className='w-[1150px] mx-auto py-8'>
@@ -56,7 +73,7 @@ const Budget = () => {
 
       <div className='summaryDiv flex w-full justify-between gap-10 mt-10'>
         <div className='spendingSummary w-[35%] bg-[#cbfdf2] '>
-          <BudgetPieChart budgetData={budgets}></BudgetPieChart>
+          <BudgetPieChart transactionData={transactions} budgetData={budgets}></BudgetPieChart>
         </div>
       </div>
       <BudgetModal
