@@ -50,10 +50,12 @@ const chartConfig = {
   }
 }
 
-const BudgetPieChart = () => {
+const BudgetPieChart = ({ budgetData }) => {
   const totalVisitors = React.useMemo(() => {
     return chartData.reduce((acc, curr) => acc + curr.visitors, 0)
   }, [])
+
+  console.log(budgetData)
 
   return (
     <Card className='flex flex-col'>

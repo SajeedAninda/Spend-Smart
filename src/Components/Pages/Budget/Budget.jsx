@@ -2,9 +2,34 @@ import React, { useState } from 'react'
 import { RiMoneyDollarBoxFill } from 'react-icons/ri'
 import BudgetModal from './BudgetModal'
 import BudgetPieChart from './BudgetPieChart'
+import { useQuery } from '@tanstack/react-query'
+import useAxiosInstance from '../../Hooks/useAxiosInstance'
+import useAuth from '../../Hooks/useAuth'
 
 const Budget = () => {
   const [isModalOpen, setIsModalOpen] = useState(false)
+  let axiosInstance = useAxiosInstance()
+  const { loggedInUser } = useAuth()
+  const currentUserEmail = loggedInUser?.email
+
+  const {
+    data: budgets,
+    refetch,
+    isLoading
+  } = useQuery({
+    queryKey: ['budgets', currentUserEmail],
+    queryFn: async () => {
+      const { data } = await axiosInstance.get('/budgets', {
+        params: {
+          email: currentUserEmail
+        }
+      })
+      return data
+    },
+    enabled: !!currentUserEmail
+  })
+
+  // console.log(budgets)
 
   return (
     <div className='w-[1150px] mx-auto py-8'>
@@ -31,7 +56,7 @@ const Budget = () => {
 
       <div className='summaryDiv flex w-full justify-between gap-10 mt-10'>
         <div className='spendingSummary w-[35%] bg-[#cbfdf2] '>
-          <BudgetPieChart></BudgetPieChart>
+          <BudgetPieChart budgetData={budgets}></BudgetPieChart>
         </div>
       </div>
       <BudgetModal
