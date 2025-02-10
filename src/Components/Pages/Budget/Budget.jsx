@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { RiMoneyDollarBoxFill } from 'react-icons/ri'
 import BudgetModal from './BudgetModal'
+import BudgetPieChart from './BudgetPieChart'
 
 const Budget = () => {
   const [isModalOpen, setIsModalOpen] = useState(false)
@@ -25,6 +26,12 @@ const Budget = () => {
               </div>
             </span>
           </button>
+        </div>
+      </div>
+
+      <div className='summaryDiv flex w-full justify-between gap-10 mt-10'>
+        <div className='spendingSummary w-[35%] bg-[#cbfdf2] '>
+          <BudgetPieChart></BudgetPieChart>
         </div>
       </div>
       <BudgetModal
