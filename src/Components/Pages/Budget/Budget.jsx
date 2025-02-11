@@ -6,6 +6,7 @@ import { useQuery } from '@tanstack/react-query'
 import useAxiosInstance from '../../Hooks/useAxiosInstance'
 import useAuth from '../../Hooks/useAuth'
 import SpendingSummary from './SpendingSummary'
+import BudgetSummary from './BudgetSummary'
 
 const Budget = () => {
   const [isModalOpen, setIsModalOpen] = useState(false)
@@ -30,24 +31,18 @@ const Budget = () => {
     enabled: !!currentUserEmail
   })
 
-  const {
-      data: transactions
-    } = useQuery({
-      queryKey: [
-        'transactions',
-        currentUserEmail
-      ],
-      queryFn: async () => {
-        const { data } = await axiosInstance.get('/getTransactions', {
-          params: {
-            email: currentUserEmail
-          }
-        })
-        return data
-      },
-      enabled: !!currentUserEmail
-    })
-
+  const { data: transactions } = useQuery({
+    queryKey: ['transactions', currentUserEmail],
+    queryFn: async () => {
+      const { data } = await axiosInstance.get('/getTransactions', {
+        params: {
+          email: currentUserEmail
+        }
+      })
+      return data
+    },
+    enabled: !!currentUserEmail
+  })
 
   return (
     <div className='w-[1150px] mx-auto py-8'>
@@ -74,8 +69,19 @@ const Budget = () => {
 
       <div className='summaryDiv flex w-full justify-between gap-10 mt-10'>
         <div className='spendingSummary w-[35%] bg-[#cbfdf2] rounded-lg'>
-          <BudgetPieChart transactionData={transactions} budgetData={budgets}></BudgetPieChart>
-          <SpendingSummary transactionData={transactions} budgetData={budgets}></SpendingSummary>
+          <BudgetPieChart
+            transactionData={transactions}
+            budgetData={budgets}
+          ></BudgetPieChart>
+          <SpendingSummary
+            transactionData={transactions}
+            budgetData={budgets}
+          ></SpendingSummary>
+        </div>
+
+        <div className='w-[65%]'>
+          <BudgetSummary  transactionData={transactions}
+            budgetData={budgets}></BudgetSummary>
         </div>
       </div>
       <BudgetModal
