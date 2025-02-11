@@ -5,6 +5,7 @@ import BudgetPieChart from './BudgetPieChart'
 import { useQuery } from '@tanstack/react-query'
 import useAxiosInstance from '../../Hooks/useAxiosInstance'
 import useAuth from '../../Hooks/useAuth'
+import SpendingSummary from './SpendingSummary'
 
 const Budget = () => {
   const [isModalOpen, setIsModalOpen] = useState(false)
@@ -72,8 +73,9 @@ const Budget = () => {
       </div>
 
       <div className='summaryDiv flex w-full justify-between gap-10 mt-10'>
-        <div className='spendingSummary w-[35%] bg-[#cbfdf2] '>
+        <div className='spendingSummary w-[35%] bg-[#cbfdf2] rounded-lg'>
           <BudgetPieChart transactionData={transactions} budgetData={budgets}></BudgetPieChart>
+          <SpendingSummary transactionData={transactions} budgetData={budgets}></SpendingSummary>
         </div>
       </div>
       <BudgetModal
