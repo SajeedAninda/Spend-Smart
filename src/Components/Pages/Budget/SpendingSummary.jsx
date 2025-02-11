@@ -5,16 +5,29 @@ const SpendingSummary = ({ transactionData, budgetData }) => {
     <div className='p-6'>
       <h3 className='text-[#02101c] font-bold text-[20px]'>Spending Summary</h3>
 
-      <div className='spendingSummaries flex justify-between items-center mt-5'>
-        <div className='flex items-center'>
-          <div className='w-1 h-6 rounded-lg bg-[#717192]'> </div>
-          <p className='text-[#02101c] font-medium text-[16px] pl-4'>
-            Dining Out
-          </p>
-        </div>
-        <div className='text-[#02101c]'>
-            <span className='font-bold text-[18px]'>$ 540.00</span>  of  <span className='font-semibold '>$850</span>
-        </div>
+      <div className='mt-6 space-y-4'>
+        {budgetData?.map(budget => {
+          const totalSpent = transactionData
+            ?.filter(transaction => transaction.category === budget.category)
+            .reduce((acc, transaction) => acc + parseFloat(transaction.amount), 0)
+
+          return (
+            <div key={budget.category} className='flex justify-between items-center pb-4 border-b border-gray-400'>
+              <div className='flex items-center'>
+                <div className={`w-1 h-6 rounded-lg`} style={{ backgroundColor: budget.colorTheme }}></div>
+                <p className='text-[#02101c] font-semibold text-[16px] pl-4 capitalize'>
+                  {budget.category}
+                </p>
+              </div>
+              <div className='text-[#02101c]'>
+                <span className='font-bold text-[16px] pr-1'>
+                  ${totalSpent.toFixed(2)}
+                </span>{' '}
+                of <span className='font-black pl-1' style={{ color: budget.colorTheme }}>${budget.maxSpendAmount}</span>
+              </div>
+            </div>
+          )
+        })}
       </div>
     </div>
   )
