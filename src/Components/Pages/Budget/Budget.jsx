@@ -68,7 +68,7 @@ const Budget = () => {
       </div>
 
       <div className='summaryDiv flex w-full justify-between gap-10 mt-10'>
-        <div className='spendingSummary w-[35%] bg-[#cbfdf2] rounded-lg'>
+        <div className='spendingSummary w-[35%] h-fit pb-6 bg-[#cbfdf2] rounded-lg'>
           <BudgetPieChart
             transactionData={transactions}
             budgetData={budgets}
