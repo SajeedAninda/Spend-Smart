@@ -1,6 +1,8 @@
 import React from 'react'
+import { IoIosArrowRoundForward } from 'react-icons/io'
 import { MdEditSquare } from 'react-icons/md'
 import { RiDeleteBin7Fill } from 'react-icons/ri'
+import { Link } from 'react-router-dom'
 
 const BudgetSummary = ({ transactionData, budgetData }) => {
   return (
@@ -43,6 +45,46 @@ const BudgetSummary = ({ transactionData, budgetData }) => {
             </p>
           </div>
         </div>
+      </div>
+
+      <div className='latestSpending bg-white p-6 rounded-lg mt-4'>
+        <div className='flex justify-between items-center'>
+          <h3 className='text-[#02101c] font-semibold text-[18px]'>
+            Latest Spending
+          </h3>
+          <Link
+            to={'/transactions'}
+            className='flex gap-1 items-center hover:underline text-[15px]'
+          >
+            All Transactions{' '}
+            <IoIosArrowRoundForward className='text-[#02101c] font-bold text-[25px]' />
+          </Link>
+        </div>
+
+        <Link
+          to={'/transactions'}
+          className='flex p-2 rounded-lg cursor-pointer mt-5 justify-between items-center hover:bg-slate-200'
+        >
+          <p className='text-[#02101c] font-semibold text-[16px]'>
+            Transaction Name
+          </p>
+          <div className='flex flex-col items-center'>
+            <p className='text-green-600 font-semibold text-[16px]'>+222.00</p>
+            <p className='text-gray font-semibold text-[12px]'>2/3/2025</p>
+          </div>
+        </Link>
+        <Link
+          to={'/transactions'}
+          className='flex p-2 rounded-lg cursor-pointer mt-5 justify-between items-center hover:bg-slate-200'
+        >
+          <p className='text-[#02101c] font-semibold text-[16px]'>
+            Transaction Name
+          </p>
+          <div className='flex flex-col items-center'>
+            <p className='text-red-600 font-semibold text-[16px]'>-112.00</p>
+            <p className='text-gray font-semibold text-[12px]'>4/3/2025</p>
+          </div>
+        </Link>
       </div>
     </div>
   )
