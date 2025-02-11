@@ -1,28 +1,24 @@
 import React from 'react'
-import { TrendingUp } from 'lucide-react'
-import { Label, Pie, PieChart } from 'recharts'
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle
-} from '../../ui/card'
-import {
-  ChartContainer,
-  ChartTooltip,
-  ChartTooltipContent
-} from '../../ui/chart'
+import { Pie, PieChart, Label } from 'recharts'
+import { Card, CardContent, CardHeader } from '../../ui/card'
+import { ChartContainer, ChartTooltip, ChartTooltipContent } from '../../ui/chart'
 
 const BudgetPieChart = ({ transactionData, budgetData }) => {
   console.log(transactionData)
-  const totalSpend = React.useMemo(() => {
-    return budgetData?.reduce(
-      (acc, curr) => acc + parseFloat(curr.maxSpendAmount),
-      0
-    )
-  }, [budgetData])
+
+  let totalBudget = 0
+  if (budgetData) {
+    totalBudget = budgetData.reduce((acc, curr) => acc + parseFloat(curr.maxSpendAmount), 0)
+  }
+
+  const budgetCategories = new Set(budgetData?.map(budget => budget.category))
+
+  let totalSpent = 0
+  if (transactionData) {
+    totalSpent = transactionData
+      .filter(transaction => budgetCategories.has(transaction.category))
+      .reduce((acc, transaction) => acc + parseFloat(transaction.amount), 0)
+  }
 
   const chartData = budgetData?.map(budget => ({
     category: budget.category,
@@ -55,6 +51,7 @@ const BudgetPieChart = ({ transactionData, budgetData }) => {
                   if (!viewBox || !('cx' in viewBox) || !('cy' in viewBox)) {
                     return null
                   }
+
                   return (
                     <text
                       x={viewBox.cx}
@@ -67,14 +64,14 @@ const BudgetPieChart = ({ transactionData, budgetData }) => {
                         y={viewBox.cy}
                         className='fill-foreground text-3xl font-bold'
                       >
-                        {totalSpend.toLocaleString()}
+                       ${totalSpent}
                       </tspan>
                       <tspan
                         x={viewBox.cx}
                         y={viewBox.cy + 24}
-                        className='fill-muted-foreground'
+                        className='fill-muted-foreground text-gray-500'
                       >
-                        Total Limit
+                       of ${totalBudget} limit
                       </tspan>
                     </text>
                   )
