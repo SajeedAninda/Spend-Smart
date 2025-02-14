@@ -87,6 +87,7 @@ const Budget = () => {
       <BudgetModal
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
+        refetch={refetch}
       ></BudgetModal>
     </div>
   )

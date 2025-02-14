@@ -11,12 +11,12 @@ import useAxiosInstance from '../../Hooks/useAxiosInstance'
 import useAuth from '../../Hooks/useAuth'
 import toast from 'react-hot-toast'
 
-const BudgetModal = ({ isOpen, onClose }) => {
+const BudgetModal = ({ isOpen, onClose, refetch }) => {
   const [selectedCategoryValue, setSelectedCategoryValue] = useState('general')
   const [maxSpend, setMaxSpend] = useState('')
   const [colors, setColors] = useState('')
 
-  let axiosInstance = useAxiosInstance();
+  let axiosInstance = useAxiosInstance()
   let { loggedInUser } = useAuth()
   let currentUserEmail = loggedInUser?.email
 
@@ -37,8 +37,9 @@ const BudgetModal = ({ isOpen, onClose }) => {
 
   const handleSubmit = async e => {
     e.preventDefault()
-    if (!colors) {
-      return toast.error('Please Select a color')
+
+    if (!selectedCategoryValue || !maxSpend || !colors) {
+      return toast.error('Please fill all fields!')
     }
 
     let budgetOption = {
@@ -50,24 +51,24 @@ const BudgetModal = ({ isOpen, onClose }) => {
 
     let loadingToast = toast.loading('Adding Budget...')
 
-    try {
-      const { data } = await axiosInstance.post(
-        '/addBudget',
-        budgetOption
-      )
+    const { data } = await axiosInstance.post('/addBudget', budgetOption)
 
-      if (data.insertedId) {
-        toast.success('Budget added successfully!')
-        setSelectedCategoryValue('general')
-        setMaxSpend('')
-        setColors('')
-        e.target.reset()
-        toast.dismiss(loadingToast)
-        onClose()
-      }
-    } catch (error) {
-      toast.error('Failed to add transaction!')
+    if (data.exists) {
+      toast.dismiss(loadingToast)
+      return toast.error('Budget of same category already exists')
     }
+
+    if (data.insertedId) {
+      toast.success('Budget added successfully!')
+      setSelectedCategoryValue('general')
+      setMaxSpend('')
+      setColors('')
+      e.target.reset()
+      refetch()
+      onClose()
+    }
+
+    toast.dismiss(loadingToast)
   }
 
   return (
