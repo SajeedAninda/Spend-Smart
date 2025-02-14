@@ -8,13 +8,15 @@ const SpendingSummary = ({ transactionData, budgetData }) => {
       <div className='mt-6 space-y-4'>
         {budgetData?.map(budget => {
           const totalSpent = transactionData
-            ?.filter(transaction => transaction.category === budget.category)
-            .reduce((acc, transaction) => acc + parseFloat(transaction.amount), 0)
+            ?.filter(transaction => 
+              transaction.category === budget.category && transaction.transactionType === 'spent'
+            )
+            .reduce((acc, transaction) => acc + parseFloat(transaction.amount || 0), 0)
 
           return (
             <div key={budget.category} className='flex justify-between items-center pb-4 border-b border-gray-400'>
               <div className='flex items-center'>
-                <div className={`w-1 h-6 rounded-lg`} style={{ backgroundColor: budget.colorTheme }}></div>
+                <div className='w-1 h-6 rounded-lg' style={{ backgroundColor: budget.colorTheme }}></div>
                 <p className='text-[#02101c] font-semibold text-[16px] pl-4 capitalize'>
                   {budget.category}
                 </p>
@@ -22,8 +24,10 @@ const SpendingSummary = ({ transactionData, budgetData }) => {
               <div className='text-[#02101c]'>
                 <span className='font-bold text-[16px] pr-1'>
                   ${totalSpent.toFixed(2)}
-                </span>{' '}
-                of <span className='font-black pl-1' style={{ color: budget.colorTheme }}>${budget.maxSpendAmount}</span>
+                </span>
+                of <span className='font-black pl-1' style={{ color: budget.colorTheme }}>
+                  ${budget.maxSpendAmount}
+                </span>
               </div>
             </div>
           )
