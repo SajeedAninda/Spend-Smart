@@ -13,7 +13,7 @@ import toast from 'react-hot-toast'
 const UpdateBudgetModal = ({ budget, onClose, refetch }) => {
   const [maxSpendAmount, setMaxSpendAmount] = useState(budget?.maxSpendAmount)
   const [colorTheme, setColorTheme] = useState(budget?.colorTheme)
-  let axiosInstance = useAxiosInstance()
+  const axiosInstance = useAxiosInstance()
 
   const colorOptions = [
     { name: 'Dark Yellow', code: '#B8860B' },
@@ -28,8 +28,33 @@ const UpdateBudgetModal = ({ budget, onClose, refetch }) => {
     { name: 'Dark Turquoise', code: '#008B8B' }
   ]
 
-  let handleSubmit = e =>{
+  const handleSubmit = async e => {
+    e.preventDefault()
+    if (!maxSpendAmount || !colorTheme) {
+      return toast.error('Please fill all fields!')
+    }
+    let loadingToast = toast.loading('Updating Budget...')
 
+    try {
+      const { data } = await axiosInstance.patch(
+        `/budgetUpdate/${budget?._id}`,
+        {
+          maxSpendAmount,
+          colorTheme
+        }
+      )
+
+      if (data.modifiedCount > 0) {
+        toast.success('Budget updated successfully!')
+        refetch()
+        onClose()
+      } else {
+        toast.error('No changes made or update failed.')
+      }
+    } catch (error) {
+      toast.error('Error updating budget!')
+    }
+    toast.dismiss(loadingToast)
   }
 
   return (
@@ -50,8 +75,14 @@ const UpdateBudgetModal = ({ budget, onClose, refetch }) => {
 
         {/* Modal Content */}
         <div>
-          <h1 className='text-[20px] text-[#02101c] font-bold'>
-            Update Budget - <span className={`capitalize font-black text-${budget?.colorTheme}`}>{budget?.category} Category</span>
+          <h1 className='text-[20px] text-[#02101c] font-bold flex items-center gap-2'>
+            Update Budget -
+            <span
+              className='capitalize font-black'
+              style={{ color: colorTheme }}
+            >
+              {budget?.category} Category
+            </span>
           </h1>
 
           <h3 className='text-[14px] mt-2 text-[#5b5d5f] font-semibold'>
@@ -59,8 +90,8 @@ const UpdateBudgetModal = ({ budget, onClose, refetch }) => {
             help you monitor spending.
           </h3>
           <form className='mt-4' onSubmit={handleSubmit}>
-            {/* MAXIMUM SPEND  */}
-            <div className=' mt-3'>
+            {/* MAXIMUM SPEND */}
+            <div className='mt-3'>
               <label className='text-[14px]' htmlFor='max_spend'>
                 Maximum Spend
               </label>
@@ -76,7 +107,7 @@ const UpdateBudgetModal = ({ budget, onClose, refetch }) => {
               />
             </div>
 
-            {/* COLORS  */}
+            {/* COLORS */}
             <div className='mt-3'>
               <label className='text-[14px]' htmlFor='colors'>
                 Choose a Color Theme
@@ -105,17 +136,13 @@ const UpdateBudgetModal = ({ budget, onClose, refetch }) => {
 
             <button
               type='submit'
-              className='relative mt-4 w-full flex justify-center p-px font-semibold leading-6 text-white bg-[#02101c] shadow-lg cursor-pointer rounded-xl shadow-zinc-900 transition-transform duration-300 ease-in-out hover:scale-105 active:scale-95'
+              className='relative mt-4 w-full flex justify-center p-3 font-semibold text-white bg-[#02101c] shadow-lg cursor-pointer rounded-xl transition-transform duration-300 hover:scale-105 active:scale-95'
             >
-              <span className='absolute inset-0 rounded-xl bg-gradient-to-r from-[#02101c] via-[#023a6b] to-white p-[2px] opacity-0 transition-opacity duration-500 group-hover:opacity-100'></span>
-
-              <span className='relative z-10 block px-6 py-3 rounded-xl bg-[#02101c] '>
-                <div className='relative z-10 flex items-center space-x-2'>
-                  <span className='transition-all duration-500 group-hover:translate-x-1'>
-                    Submit
-                  </span>
-                  <IoCheckmarkDoneCircle className='w-6 h-6 transition-transform duration-500 group-hover:translate-x-1' />
-                </div>
+              <span className='relative z-10 flex items-center space-x-2'>
+                <span className='transition-all duration-500 group-hover:translate-x-1'>
+                  Submit
+                </span>
+                <IoCheckmarkDoneCircle className='w-6 h-6 transition-transform duration-500 group-hover:translate-x-1' />
               </span>
             </button>
           </form>
