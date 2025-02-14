@@ -49,11 +49,11 @@ const BudgetSummary = ({ transactionData, budgetData, refetch }) => {
   return (
     <div className='w-full bg-[#cbfdf2] rounded-lg p-8'>
       {budgetData?.map(budget => {
-        const totalSpent = transactionData?.reduce((acc, transaction) => {
-          return transaction?.category === budget?.category
-            ? acc + parseFloat(transaction?.amount || 0)
-            : acc
-        }, 0)
+          const totalSpent = transactionData
+            ?.filter(transaction => 
+              transaction.category === budget.category && transaction.transactionType === 'spent'
+            )
+            .reduce((acc, transaction) => acc + parseFloat(transaction.amount || 0), 0)
 
         const latestTransactions = transactionData
           ?.filter(t => t?.category === budget?.category)
