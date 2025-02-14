@@ -56,8 +56,9 @@ const Transactions = () => {
     ?.reduce((acc, txn) => acc + parseFloat(txn.amount), 0)
     .toFixed(2)
 
-  const totalEarned = transactions
-    ?.reduce((acc, txn) => acc + parseFloat(txn.amount), 0)
+    const totalEarned = transactions
+    ?.filter(txn => txn.transactionType === 'earned')
+    .reduce((acc, txn) => acc + parseFloat(txn.amount), 0)
     .toFixed(2)
 
   const totalSpent = transactions
