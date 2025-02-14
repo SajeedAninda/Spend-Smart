@@ -4,7 +4,6 @@ import { Card, CardContent, CardHeader } from '../../ui/card'
 import { ChartContainer, ChartTooltip, ChartTooltipContent } from '../../ui/chart'
 
 const BudgetPieChart = ({ transactionData, budgetData }) => {
-  console.log(transactionData)
 
   let totalBudget = 0
   if (budgetData) {

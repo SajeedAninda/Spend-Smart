@@ -1,11 +1,12 @@
 import useAxiosInstance from '../../Hooks/useAxiosInstance'
-import React from 'react'
+import React, { useState } from 'react'
 import toast from 'react-hot-toast'
 import { IoIosArrowRoundForward } from 'react-icons/io'
 import { MdEditSquare } from 'react-icons/md'
 import { RiDeleteBin7Fill } from 'react-icons/ri'
 import { Link } from 'react-router-dom'
 import Swal from 'sweetalert2'
+import UpdateBudgetModal from './UpdateBudgetModal'
 
 const formatDate = dateString => {
   const date = new Date(dateString)
@@ -15,6 +16,8 @@ const formatDate = dateString => {
 
 const BudgetSummary = ({ transactionData, budgetData, refetch }) => {
   let axiosInstance = useAxiosInstance()
+  const [isModalOpen, setIsModalOpen] = useState(false)
+  const [selectedBudget, setSelectedBudget] = useState(null)
 
   let handleBudgetDelete = async id => {
     Swal.fire({
@@ -36,6 +39,11 @@ const BudgetSummary = ({ transactionData, budgetData, refetch }) => {
         }
       }
     })
+  }
+
+  let handleBudgetUpdate = budget => {
+    setSelectedBudget(budget)
+    setIsModalOpen(true)
   }
 
   return (
@@ -71,7 +79,11 @@ const BudgetSummary = ({ transactionData, budgetData, refetch }) => {
               </div>
 
               <div className='flex gap-4 items-center'>
-                <div>
+                <div
+                  onClick={() => {
+                    handleBudgetUpdate(budget)
+                  }}
+                >
                   <MdEditSquare className='text-[26px] cursor-pointer hover:opacity-50 transition duration-150 font-bold text-[#02101c]' />
                 </div>
                 <div
@@ -162,6 +174,14 @@ const BudgetSummary = ({ transactionData, budgetData, refetch }) => {
           </div>
         )
       })}
+
+      {isModalOpen && (
+        <UpdateBudgetModal
+          budget={selectedBudget}
+          onClose={() => setIsModalOpen(false)}
+          refetch={refetch}
+        />
+      )}
     </div>
   )
 }
