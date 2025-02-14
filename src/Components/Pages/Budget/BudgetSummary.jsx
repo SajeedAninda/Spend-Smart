@@ -50,15 +50,15 @@ const BudgetSummary = ({ transactionData, budgetData, refetch }) => {
     <div className='w-full bg-[#cbfdf2] rounded-lg p-8'>
       {budgetData?.map(budget => {
         const totalSpent = transactionData?.reduce((acc, transaction) => {
-          return transaction?.category === budget?.category &&
-            transaction?.transactionType === 'spent'
+          return transaction?.category === budget?.category
             ? acc + parseFloat(transaction?.amount || 0)
             : acc
         }, 0)
 
         const latestTransactions = transactionData
           ?.filter(t => t?.category === budget?.category)
-          ?.slice(0, 2)
+          ?.sort((a, b) => new Date(b.transactionDate) - new Date(a.transactionDate))
+          ?.slice(0, 3)
 
         return (
           <div key={budget?.category} className='mb-6'>
