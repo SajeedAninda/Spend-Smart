@@ -86,8 +86,7 @@ const UpdateBudgetModal = ({ budget, onClose, refetch }) => {
           </h1>
 
           <h3 className='text-[14px] mt-2 text-[#5b5d5f] font-semibold'>
-            Choose a category to set a spending budget. These categories can
-            help you monitor spending.
+          Adjust your spending budget for this category to better track and manage your expenses
           </h3>
           <form className='mt-4' onSubmit={handleSubmit}>
             {/* MAXIMUM SPEND */}
