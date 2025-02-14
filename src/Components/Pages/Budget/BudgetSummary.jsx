@@ -1,8 +1,11 @@
+import useAxiosInstance from '../../Hooks/useAxiosInstance'
 import React from 'react'
+import toast from 'react-hot-toast'
 import { IoIosArrowRoundForward } from 'react-icons/io'
 import { MdEditSquare } from 'react-icons/md'
 import { RiDeleteBin7Fill } from 'react-icons/ri'
 import { Link } from 'react-router-dom'
+import Swal from 'sweetalert2'
 
 const formatDate = dateString => {
   const date = new Date(dateString)
@@ -10,7 +13,31 @@ const formatDate = dateString => {
   return date.toLocaleDateString('en-GB', options).replace(',', '')
 }
 
-const BudgetSummary = ({ transactionData, budgetData }) => {
+const BudgetSummary = ({ transactionData, budgetData, refetch }) => {
+  let axiosInstance = useAxiosInstance()
+
+  let handleBudgetDelete = async id => {
+    Swal.fire({
+      title: 'Do you want to delete this budget?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#02101c',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!'
+    }).then(async result => {
+      if (result.isConfirmed) {
+        const { data } = await axiosInstance.delete(`/budgetDelete/${id}`)
+        if (data.deletedCount > 0) {
+          refetch()
+          toast.success('Deleted!', 'Your budget has been deleted.')
+        } else {
+          toast.error('Error!', 'Failed to delete budget.')
+        }
+      }
+    })
+  }
+
   return (
     <div className='w-full bg-[#cbfdf2] rounded-lg p-8'>
       {budgetData?.map(budget => {
@@ -44,8 +71,16 @@ const BudgetSummary = ({ transactionData, budgetData }) => {
               </div>
 
               <div className='flex gap-4 items-center'>
-                <MdEditSquare className='text-[26px] cursor-pointer hover:opacity-50 transition duration-150 font-bold text-[#02101c]' />
-                <RiDeleteBin7Fill className='text-[26px] cursor-pointer hover:opacity-50 transition duration-150 font-bold text-red-600' />
+                <div>
+                  <MdEditSquare className='text-[26px] cursor-pointer hover:opacity-50 transition duration-150 font-bold text-[#02101c]' />
+                </div>
+                <div
+                  onClick={() => {
+                    handleBudgetDelete(budget?._id)
+                  }}
+                >
+                  <RiDeleteBin7Fill className='text-[26px] cursor-pointer hover:opacity-50 transition duration-150 font-bold text-red-600' />
+                </div>
               </div>
             </div>
 

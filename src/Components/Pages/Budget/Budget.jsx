@@ -80,8 +80,11 @@ const Budget = () => {
         </div>
 
         <div className='w-[65%]'>
-          <BudgetSummary  transactionData={transactions}
-            budgetData={budgets}></BudgetSummary>
+          <BudgetSummary
+            transactionData={transactions}
+            budgetData={budgets}
+            refetch={refetch}
+          ></BudgetSummary>
         </div>
       </div>
       <BudgetModal
