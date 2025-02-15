@@ -11,7 +11,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import Homepage from './Components/Navbar/Pages/Homepage/Homepage.jsx'
 import Transactions from './Components/Pages/Transactions/Transactions.jsx'
 import Budget from './Components/Pages/Budget/Budget'
-import { PiggyBank } from 'lucide-react'
+import PiggyBank from './Components/Pages/PiggyBank/PiggyBank'
 
 const queryClient = new QueryClient()
 

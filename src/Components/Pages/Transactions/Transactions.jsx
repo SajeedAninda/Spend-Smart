@@ -50,7 +50,6 @@ const Transactions = () => {
     enabled: !!currentUserEmail
   })
 
-  console.log(transactions)
 
   const totalTransactions = transactions
     ?.reduce((acc, txn) => acc + parseFloat(txn.amount), 0)
