@@ -1,8 +1,12 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { PiPiggyBankBold } from "react-icons/pi";
+import PiggyModal from './PiggyModal';
 
 
 const PiggyBank = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false)
+
+    
   return (
     <div className='w-[1150px] mx-auto py-8'>
       <div className='upperDiv flex justify-between items-center'>
@@ -25,6 +29,11 @@ const PiggyBank = () => {
           </button>
         </div>
       </div>
+
+      <PiggyModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+      ></PiggyModal>
     </div>
   )
 }
