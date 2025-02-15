@@ -23,7 +23,7 @@ const SpendingSummary = ({ transactionData, budgetData }) => {
               </div>
               <div className='text-[#02101c]'>
                 <span className='font-bold text-[16px] pr-1'>
-                  ${totalSpent.toFixed(2)}
+                  ${totalSpent?.toFixed(2)}
                 </span>
                 of <span className='font-black pl-1' style={{ color: budget.colorTheme }}>
                   ${budget.maxSpendAmount}
