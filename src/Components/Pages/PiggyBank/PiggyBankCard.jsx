@@ -1,7 +1,8 @@
 import React from 'react'
 import { PiHandWithdrawBold } from 'react-icons/pi'
-import { BiMoneyWithdraw } from "react-icons/bi";
-
+import { BiMoneyWithdraw } from 'react-icons/bi'
+import { MdEditSquare } from 'react-icons/md'
+import { RiDeleteBin7Fill } from 'react-icons/ri'
 
 const PiggyBankCard = ({ piggyBankData }) => {
   console.log(piggyBankData)
@@ -14,21 +15,33 @@ const PiggyBankCard = ({ piggyBankData }) => {
             key={bank._id}
             className='space-y-4 px-8 py-7 bg-[#cbfdf2] rounded-xl shadow-md '
           >
-            <div className='flex items-center gap-2'>
-              <span
-                className='w-4 h-4 rounded-full'
-                style={{ backgroundColor: bank.colorTheme }}
-              ></span>
-              <h3 className='text-lg font-semibold [#02101c]'>
-                {bank.piggyBankName}
-              </h3>
-            </div>
+            <div className='flex justify-between items-center pb-3'>
+              <div className='flex items-center gap-2'>
+                <span
+                  className='w-4 h-4 rounded-full'
+                  style={{ backgroundColor: bank.colorTheme }}
+                ></span>
+                <h3 className='text-lg font-bold [#02101c]'>
+                  {bank.piggyBankName}
+                </h3>
+              </div>
 
+              <div className='flex gap-4 items-center'>
+                <div>
+                  <MdEditSquare className='text-[26px] cursor-pointer hover:opacity-50 transition duration-150 font-bold text-[#02101c]' />
+                </div>
+                <div>
+                  <RiDeleteBin7Fill className='text-[26px] cursor-pointer hover:opacity-50 transition duration-150 font-bold text-red-600' />
+                </div>
+              </div>
+            </div>
 
             <div>
               <div className='flex justify-between items-center'>
                 <p className='text-[#02101c] text-sm '>Total Saved</p>
-                <h2 className='text-3xl font-bold text-[#02101c]'>
+                <h2 style={{
+                    color: bank.colorTheme
+                  }} className='text-3xl font-bold '>
                   ${bank.availableBalance.toFixed(2)}
                 </h2>
               </div>
@@ -47,7 +60,6 @@ const PiggyBankCard = ({ piggyBankData }) => {
                 <span>Target of ${bank.targetSpend}</span>
               </div>
             </div>
-
 
             <div className='flex mt-10 items-center gap-4 w-full'>
               <div className='relative group w-full'>
