@@ -1,12 +1,35 @@
 import React, { useState } from 'react'
-import { PiPiggyBankBold } from "react-icons/pi";
-import PiggyModal from './PiggyModal';
-
+import { PiPiggyBankBold } from 'react-icons/pi'
+import PiggyModal from './PiggyModal'
+import useAxiosInstance from '../../Hooks/useAxiosInstance'
+import useAuth from '../../Hooks/useAuth'
+import { useQuery } from '@tanstack/react-query'
 
 const PiggyBank = () => {
   const [isModalOpen, setIsModalOpen] = useState(false)
+  let axiosInstance = useAxiosInstance()
+  const { loggedInUser } = useAuth()
+  const currentUserEmail = loggedInUser?.email
 
-    
+  const {
+    data: piggyBankData,
+    refetch,
+    isLoading
+  } = useQuery({
+    queryKey: ['piggyData', currentUserEmail],
+    queryFn: async () => {
+      const { data } = await axiosInstance.get('/getPiggyBank', {
+        params: {
+          email: currentUserEmail
+        }
+      })
+      return data
+    },
+    enabled: !!currentUserEmail
+  })
+
+  console.log(piggyBankData)
+
   return (
     <div className='w-[1150px] mx-auto py-8'>
       <div className='upperDiv flex justify-between items-center'>
