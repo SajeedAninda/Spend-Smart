@@ -7,11 +7,18 @@ import {
   SelectTrigger,
   SelectValue
 } from '../../ui/select'
+import useAxiosInstance from '../../Hooks/useAxiosInstance'
+import useAuth from '../../Hooks/useAuth'
+import toast from 'react-hot-toast'
 
 const PiggyModal = ({ isOpen, onClose }) => {
   const [piggyBankName, setPiggyBankName] = useState(0)
   const [targetSpend, setTargetSpend] = useState('')
   const [colors, setColors] = useState('')
+
+  let axiosInstance = useAxiosInstance()
+  let { loggedInUser } = useAuth()
+  let currentUserEmail = loggedInUser?.email
 
   if (!isOpen) return null
 
@@ -28,9 +35,33 @@ const PiggyModal = ({ isOpen, onClose }) => {
     { name: 'Dark Turquoise', code: '#008B8B' }
   ]
 
-  let handleSubmit = e => {
+  let handleSubmit = async e => {
     e.preventDefault()
-    console.log(piggyBankName, targetSpend, colors)
+    if (!piggyBankName || !targetSpend || !colors) {
+      return toast.error('Please fill all fields!')
+    }
+
+    let piggyBank = {
+      piggyBankName,
+      targetSpend,
+      colcolorTheme: colors,
+      userEmail: currentUserEmail
+    }
+
+    let loadingToast = toast.loading('Adding Piggy Bank...')
+
+    const { data } = await axiosInstance.post('/addPiggyBank', piggyBank)
+
+    if (data.insertedId) {
+      toast.success('Piggy Bank added successfully!')
+      setPiggyBankName(0)
+      setTargetSpend('')
+      setColors('')
+      e.target.reset()
+      onClose()
+    }
+
+    toast.dismiss(loadingToast)
   }
 
   return (
