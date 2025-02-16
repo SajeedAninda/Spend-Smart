@@ -41,11 +41,14 @@ const PiggyModal = ({ isOpen, onClose }) => {
       return toast.error('Please fill all fields!')
     }
 
+    let availableBalance = 0
+
     let piggyBank = {
       piggyBankName,
       targetSpend,
       colcolorTheme: colors,
-      userEmail: currentUserEmail
+      userEmail: currentUserEmail,
+      availableBalance
     }
 
     let loadingToast = toast.loading('Adding Piggy Bank...')
