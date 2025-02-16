@@ -1,9 +1,12 @@
 import React from 'react'
+import { PiHandWithdrawBold } from 'react-icons/pi'
+import { BiMoneyWithdraw } from "react-icons/bi";
+
 
 const PiggyBankCard = ({ piggyBankData }) => {
   console.log(piggyBankData)
   return (
-    <div className='grid grid-cols-3 gap-6'>
+    <div className='grid grid-cols-2 gap-6'>
       {piggyBankData?.map(bank => {
         const progress = (bank.availableBalance / bank.targetSpend) * 100
         return (
@@ -20,6 +23,8 @@ const PiggyBankCard = ({ piggyBankData }) => {
                 {bank.piggyBankName}
               </h3>
             </div>
+
+
             <div>
               <div className='flex justify-between items-center'>
                 <p className='text-[#02101c] text-sm '>Total Saved</p>
@@ -42,13 +47,38 @@ const PiggyBankCard = ({ piggyBankData }) => {
                 <span>Target of ${bank.targetSpend}</span>
               </div>
             </div>
-            <div className='flex gap-2'>
-              <button className='px-4 py-2 rounded-lg bg-gray-100 text-[#02101c] text-sm font-medium'>
-                + Add Money
-              </button>
-              <button className='px-4 py-2 border rounded-lg text-sm font-medium'>
-                Withdraw
-              </button>
+
+
+            <div className='flex mt-10 items-center gap-4 w-full'>
+              <div className='relative group w-full'>
+                <button class='relative w-full inline-block p-px font-semibold leading-6 text-[#02101c] bg-[#30e4ba]  shadow-lg cursor-pointer rounded-xl shadow-zinc-900 transition-transform duration-300 ease-in-out hover:scale-105 active:scale-95'>
+                  <span class='absolute inset-0 rounded-xl bg-gradient-to-r from-[#02101c] via-[#023a6b] to-white p-[2px] opacity-0 transition-opacity duration-500 group-hover:opacity-100'></span>
+
+                  <span class='relative z-10 block px-4 py-2 rounded-xl bg-[#30e4ba] '>
+                    <div class='relative z-10 flex justify-center items-center space-x-2'>
+                      <span class='transition-all duration-500 group-hover:translate-x-1'>
+                        Add
+                      </span>
+                      <BiMoneyWithdraw className='w-6 h-6 transition-transform duration-500 group-hover:translate-x-1' />
+                    </div>
+                  </span>
+                </button>
+              </div>
+
+              <div className='relative group w-full'>
+                <button class='relative w-full inline-block p-px font-semibold leading-6 text-[#02101c] bg-[#30e4ba]  shadow-lg cursor-pointer rounded-xl shadow-zinc-900 transition-transform duration-300 ease-in-out hover:scale-105 active:scale-95'>
+                  <span class='absolute inset-0 rounded-xl bg-gradient-to-r from-[#02101c] via-[#023a6b] to-white p-[2px] opacity-0 transition-opacity duration-500 group-hover:opacity-100'></span>
+
+                  <span class='relative z-10 block px-4 py-2 rounded-xl bg-[#30e4ba] '>
+                    <div class='relative z-10 flex justify-center items-center space-x-2'>
+                      <span class='transition-all duration-500 group-hover:translate-x-1'>
+                        Withdraw
+                      </span>
+                      <PiHandWithdrawBold className='w-6 h-6 transition-transform duration-500 group-hover:translate-x-1' />
+                    </div>
+                  </span>
+                </button>
+              </div>
             </div>
           </div>
         )
