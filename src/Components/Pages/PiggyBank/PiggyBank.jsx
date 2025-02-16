@@ -4,6 +4,7 @@ import PiggyModal from './PiggyModal'
 import useAxiosInstance from '../../Hooks/useAxiosInstance'
 import useAuth from '../../Hooks/useAuth'
 import { useQuery } from '@tanstack/react-query'
+import PiggyBankCard from './PiggyBankCard'
 
 const PiggyBank = () => {
   const [isModalOpen, setIsModalOpen] = useState(false)
@@ -28,7 +29,6 @@ const PiggyBank = () => {
     enabled: !!currentUserEmail
   })
 
-  console.log(piggyBankData)
 
   return (
     <div className='w-[1150px] mx-auto py-8'>
@@ -53,10 +53,14 @@ const PiggyBank = () => {
         </div>
       </div>
 
+      <div className='mt-10'>
+        <PiggyBankCard piggyBankData={piggyBankData}></PiggyBankCard>
+      </div>
+
       <PiggyModal
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
-        refetch = {refetch}
+        refetch={refetch}
       ></PiggyModal>
     </div>
   )

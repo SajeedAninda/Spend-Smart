@@ -46,7 +46,7 @@ const PiggyModal = ({ isOpen, onClose, refetch }) => {
     let piggyBank = {
       piggyBankName,
       targetSpend,
-      colcolorTheme: colors,
+      colorTheme: colors,
       userEmail: currentUserEmail,
       availableBalance
     }
