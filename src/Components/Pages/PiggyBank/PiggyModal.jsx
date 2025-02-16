@@ -11,7 +11,7 @@ import useAxiosInstance from '../../Hooks/useAxiosInstance'
 import useAuth from '../../Hooks/useAuth'
 import toast from 'react-hot-toast'
 
-const PiggyModal = ({ isOpen, onClose }) => {
+const PiggyModal = ({ isOpen, onClose, refetch }) => {
   const [piggyBankName, setPiggyBankName] = useState(0)
   const [targetSpend, setTargetSpend] = useState('')
   const [colors, setColors] = useState('')
@@ -61,6 +61,7 @@ const PiggyModal = ({ isOpen, onClose }) => {
       setTargetSpend('')
       setColors('')
       e.target.reset()
+      refetch()
       onClose()
     }
 

@@ -56,6 +56,7 @@ const PiggyBank = () => {
       <PiggyModal
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
+        refetch = {refetch}
       ></PiggyModal>
     </div>
   )
