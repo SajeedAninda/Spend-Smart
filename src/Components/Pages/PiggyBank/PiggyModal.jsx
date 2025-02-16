@@ -1,16 +1,15 @@
 import React, { useState } from 'react'
 import { IoCheckmarkDoneCircle, IoClose } from 'react-icons/io5'
 import {
-    Select,
-    SelectContent,
-    SelectItem,
-    SelectTrigger,
-    SelectValue
-  } from '../../ui/select'
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue
+} from '../../ui/select'
 
 const PiggyModal = ({ isOpen, onClose }) => {
-  const [selectedCategoryValue, setSelectedCategoryValue] = useState('general')
-    const [piggyBankName, setPiggyBankName] = useState(0)
+  const [piggyBankName, setPiggyBankName] = useState(0)
   const [targetSpend, setTargetSpend] = useState('')
   const [colors, setColors] = useState('')
 
@@ -29,7 +28,10 @@ const PiggyModal = ({ isOpen, onClose }) => {
     { name: 'Dark Turquoise', code: '#008B8B' }
   ]
 
-  let handleSubmit = e => {}
+  let handleSubmit = e => {
+    e.preventDefault()
+    console.log(piggyBankName, targetSpend, colors)
+  }
 
   return (
     <div
@@ -65,7 +67,7 @@ const PiggyModal = ({ isOpen, onClose }) => {
               </label>
               <input
                 onChange={e => {
-                  setPiggyBankName(e.target.value.length)
+                  setPiggyBankName(e.target.value)
                 }}
                 className='w-full py-3 px-4 rounded-lg border mt-2 placeholder:text-[14px] placeholder:text-gray-500 border-[#02101c]'
                 placeholder='e.g: Trip to Europe'
@@ -76,7 +78,7 @@ const PiggyModal = ({ isOpen, onClose }) => {
                 required
               />
               <p className='mt-2 text-[14px] text-right'>
-                {30 - piggyBankName} characters left
+                {30 - piggyBankName?.length} characters left
               </p>
             </div>
 
