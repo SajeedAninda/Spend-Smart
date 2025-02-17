@@ -12,9 +12,9 @@ import {
 import { IoCheckmarkDoneCircle, IoClose } from 'react-icons/io5'
 
 const PiggyUpdateModal = ({ piggyBank, onClose, refetch }) => {
-  const [piggyBankName, setPiggyBankName] = useState(0)
-  const [targetSpend, setTargetSpend] = useState('')
-  const [colors, setColors] = useState('')
+  const [piggyBankName, setPiggyBankName] = useState(piggyBank?.piggyBankName)
+  const [targetSpend, setTargetSpend] = useState(piggyBank?.targetSpend)
+  const [colors, setColors] = useState(piggyBank?.colorTheme)
 
   let axiosInstance = useAxiosInstance()
   let { loggedInUser } = useAuth()
@@ -33,7 +33,31 @@ const PiggyUpdateModal = ({ piggyBank, onClose, refetch }) => {
     { name: 'Dark Turquoise', code: '#008B8B' }
   ]
 
-  const handleUpdatePiggyBank = e => {}
+  const handleUpdatePiggyBank = async e => {
+    e.preventDefault()
+    if (!piggyBankName || !targetSpend || !colors) {
+      return toast.error('Please fill all fields!')
+    }
+    let loadingToast = toast.loading('Updating Piggy Bank...')
+
+    try {
+      const { data } = await axiosInstance.patch(
+        `/piggyBankUpdate/${piggyBank?._id}`,
+        { piggyBankName, targetSpend, colorTheme: colors }
+      )
+
+      if (data.modifiedCount > 0) {
+        toast.success('Piggy Bank updated successfully!')
+        refetch()
+        onClose()
+      } else {
+        toast.error('No changes made or update failed.')
+      }
+    } catch (error) {
+      toast.error('Error updating Piggy Bank!')
+    }
+    toast.dismiss(loadingToast)
+  }
 
   return (
     <div
@@ -68,15 +92,16 @@ const PiggyUpdateModal = ({ piggyBank, onClose, refetch }) => {
                 Piggy Bank Name
               </label>
               <input
+                value={piggyBankName}
+                placeholder='e.g: Trip to Europe'
+                maxLength={30}
                 onChange={e => {
                   setPiggyBankName(e.target.value)
                 }}
                 className='w-full py-3 px-4 rounded-lg border mt-2 placeholder:text-[14px] placeholder:text-gray-500 border-[#02101c]'
-                placeholder='e.g: Trip to Europe'
                 type='text'
                 name='transactionName'
                 id='transactionName'
-                maxLength={30}
                 required
               />
               <p className='mt-2 text-[14px] text-right'>
