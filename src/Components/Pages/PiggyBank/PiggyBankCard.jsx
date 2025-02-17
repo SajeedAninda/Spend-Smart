@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { PiHandWithdrawBold } from 'react-icons/pi'
 import { BiMoneyWithdraw } from 'react-icons/bi'
 import { MdEditSquare } from 'react-icons/md'
@@ -9,7 +9,8 @@ import useAxiosInstance from '../../Hooks/useAxiosInstance'
 
 const PiggyBankCard = ({ piggyBankData, refetch }) => {
   let axiosInstance = useAxiosInstance()
-
+  const [isModalOpen, setIsModalOpen] = useState(false)
+    const [selectedPiggyBank, setSelectedPiggyBank] = useState(null)
 
   let handlePiggyBankDelete = async id => {
     Swal.fire({
@@ -32,6 +33,11 @@ const PiggyBankCard = ({ piggyBankData, refetch }) => {
       }
     })
   }
+
+  let handlePiggyBankUpdate = budget => {
+    setSelectedBudget(budget)
+    setIsModalOpen(true)
+  }
   return (
     <div className='grid grid-cols-2 gap-6'>
       {piggyBankData?.map(bank => {
@@ -53,7 +59,11 @@ const PiggyBankCard = ({ piggyBankData, refetch }) => {
               </div>
 
               <div className='flex gap-4 items-center'>
-                <div>
+              <div
+                  onClick={() => {
+                    handlePiggyBankUpdate(bank)
+                  }}
+                >
                   <MdEditSquare className='text-[26px] cursor-pointer hover:opacity-50 transition duration-150 font-bold text-[#02101c]' />
                 </div>
                 <div
