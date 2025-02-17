@@ -3,9 +3,35 @@ import { PiHandWithdrawBold } from 'react-icons/pi'
 import { BiMoneyWithdraw } from 'react-icons/bi'
 import { MdEditSquare } from 'react-icons/md'
 import { RiDeleteBin7Fill } from 'react-icons/ri'
+import Swal from 'sweetalert2'
+import toast from 'react-hot-toast'
+import useAxiosInstance from '../../Hooks/useAxiosInstance'
 
-const PiggyBankCard = ({ piggyBankData }) => {
-  console.log(piggyBankData)
+const PiggyBankCard = ({ piggyBankData, refetch }) => {
+  let axiosInstance = useAxiosInstance()
+
+
+  let handlePiggyBankDelete = async id => {
+    Swal.fire({
+      title: 'Do you want to delete this Piggy Bank?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#02101c',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!'
+    }).then(async result => {
+      if (result.isConfirmed) {
+        const { data } = await axiosInstance.delete(`/piggyBankDelete/${id}`)
+        if (data.deletedCount > 0) {
+          refetch()
+          toast.success('Deleted!', 'Your Piggy Bank has been deleted.')
+        } else {
+          toast.error('Error!', 'Failed to delete Piggy Bank.')
+        }
+      }
+    })
+  }
   return (
     <div className='grid grid-cols-2 gap-6'>
       {piggyBankData?.map(bank => {
@@ -30,7 +56,11 @@ const PiggyBankCard = ({ piggyBankData }) => {
                 <div>
                   <MdEditSquare className='text-[26px] cursor-pointer hover:opacity-50 transition duration-150 font-bold text-[#02101c]' />
                 </div>
-                <div>
+                <div
+                  onClick={() => {
+                    handlePiggyBankDelete(bank?._id)
+                  }}
+                >
                   <RiDeleteBin7Fill className='text-[26px] cursor-pointer hover:opacity-50 transition duration-150 font-bold text-red-600' />
                 </div>
               </div>
@@ -39,9 +69,12 @@ const PiggyBankCard = ({ piggyBankData }) => {
             <div>
               <div className='flex justify-between items-center'>
                 <p className='text-[#02101c] text-sm '>Total Saved</p>
-                <h2 style={{
+                <h2
+                  style={{
                     color: bank.colorTheme
-                  }} className='text-3xl font-bold '>
+                  }}
+                  className='text-3xl font-bold '
+                >
                   ${bank.availableBalance.toFixed(2)}
                 </h2>
               </div>

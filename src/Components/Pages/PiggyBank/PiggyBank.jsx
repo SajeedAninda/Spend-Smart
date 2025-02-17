@@ -54,7 +54,7 @@ const PiggyBank = () => {
       </div>
 
       <div className='mt-10'>
-        <PiggyBankCard piggyBankData={piggyBankData}></PiggyBankCard>
+        <PiggyBankCard piggyBankData={piggyBankData} refetch={refetch}></PiggyBankCard>
       </div>
 
       <PiggyModal
