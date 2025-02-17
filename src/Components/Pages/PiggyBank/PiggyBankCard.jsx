@@ -6,11 +6,12 @@ import { RiDeleteBin7Fill } from 'react-icons/ri'
 import Swal from 'sweetalert2'
 import toast from 'react-hot-toast'
 import useAxiosInstance from '../../Hooks/useAxiosInstance'
+import PiggyUpdateModal from './PiggyUpdateModal'
 
 const PiggyBankCard = ({ piggyBankData, refetch }) => {
   let axiosInstance = useAxiosInstance()
   const [isModalOpen, setIsModalOpen] = useState(false)
-    const [selectedPiggyBank, setSelectedPiggyBank] = useState(null)
+  const [selectedPiggyBank, setSelectedPiggyBank] = useState(null)
 
   let handlePiggyBankDelete = async id => {
     Swal.fire({
@@ -34,8 +35,8 @@ const PiggyBankCard = ({ piggyBankData, refetch }) => {
     })
   }
 
-  let handlePiggyBankUpdate = budget => {
-    setSelectedBudget(budget)
+  let handlePiggyBankUpdate = bank => {
+    setSelectedPiggyBank(bank)
     setIsModalOpen(true)
   }
   return (
@@ -59,7 +60,7 @@ const PiggyBankCard = ({ piggyBankData, refetch }) => {
               </div>
 
               <div className='flex gap-4 items-center'>
-              <div
+                <div
                   onClick={() => {
                     handlePiggyBankUpdate(bank)
                   }}
@@ -138,6 +139,14 @@ const PiggyBankCard = ({ piggyBankData, refetch }) => {
           </div>
         )
       })}
+
+      {isModalOpen && (
+        <PiggyUpdateModal
+          piggyBank={selectedPiggyBank}
+          onClose={() => setIsModalOpen(false)}
+          refetch={refetch}
+        />
+      )}
     </div>
   )
 }
