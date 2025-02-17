@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import useAxiosInstance from '../../Hooks/useAxiosInstance'
-import useAuth from '../../Hooks/useAuth'
 import toast from 'react-hot-toast'
 import {
   Select,
@@ -17,8 +16,6 @@ const PiggyUpdateModal = ({ piggyBank, onClose, refetch }) => {
   const [colors, setColors] = useState(piggyBank?.colorTheme)
 
   let axiosInstance = useAxiosInstance()
-  let { loggedInUser } = useAuth()
-  let currentUserEmail = loggedInUser?.email
 
   const colorOptions = [
     { name: 'Dark Yellow', code: '#B8860B' },
