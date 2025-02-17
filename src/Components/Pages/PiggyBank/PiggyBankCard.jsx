@@ -96,7 +96,10 @@ const PiggyBankCard = ({ piggyBankData, refetch }) => {
                   ${bank.availableBalance.toFixed(2)}
                 </h2>
               </div>
-              <div className='relative h-2 w-full my-6 bg-white rounded-lg overflow-hidden'>
+              <div className='relative h-2 w-full my-6 rounded-lg overflow-hidden'
+              style={{
+                backgroundColor: `${bank?.colorTheme}70`
+              }}>
                 <div
                   className='h-full rounded-lg'
                   style={{
