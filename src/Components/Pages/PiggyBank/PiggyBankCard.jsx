@@ -8,11 +8,13 @@ import toast from 'react-hot-toast'
 import useAxiosInstance from '../../Hooks/useAxiosInstance'
 import PiggyUpdateModal from './PiggyUpdateModal'
 import AddMoneyModal from './AddMoneyModal'
+import WithdrawMoneyModal from './WithdrawMoneyModal'
 
 const PiggyBankCard = ({ piggyBankData, refetch }) => {
   let axiosInstance = useAxiosInstance()
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [isAddModalOpen, setIsAddModalOpen] = useState(false)
+  const [isWithdrawModalOpen, setIsWithdrawModalOpen] = useState(false)
   const [selectedPiggyBank, setSelectedPiggyBank] = useState(null)
 
   let handlePiggyBankDelete = async id => {
@@ -45,6 +47,10 @@ const PiggyBankCard = ({ piggyBankData, refetch }) => {
   let handleAddMoney = bank => {
     setSelectedPiggyBank(bank)
     setIsAddModalOpen(true)
+  }
+  let handleWithdrawMoney = bank => {
+    setSelectedPiggyBank(bank)
+    setIsWithdrawModalOpen(true)
   }
   return (
     <div className='grid grid-cols-2 gap-x-6 gap-y-8'>
@@ -96,10 +102,12 @@ const PiggyBankCard = ({ piggyBankData, refetch }) => {
                   ${bank.availableBalance.toFixed(2)}
                 </h2>
               </div>
-              <div className='relative h-2 w-full my-6 rounded-lg overflow-hidden'
-              style={{
-                backgroundColor: `${bank?.colorTheme}70`
-              }}>
+              <div
+                className='relative h-2 w-full my-6 rounded-lg overflow-hidden'
+                style={{
+                  backgroundColor: `${bank?.colorTheme}70`
+                }}
+              >
                 <div
                   className='h-full rounded-lg'
                   style={{
@@ -115,13 +123,13 @@ const PiggyBankCard = ({ piggyBankData, refetch }) => {
               </div>
             </div>
 
-            <div
-              onClick={() => {
-                handleAddMoney(bank)
-              }}
-              className='flex mt-10 items-center gap-4 w-full'
-            >
-              <div className='relative group w-full'>
+            <div className='flex mt-10 items-center gap-4 w-full'>
+              <div
+                onClick={() => {
+                  handleAddMoney(bank)
+                }}
+                className='relative group w-full'
+              >
                 <button class='relative w-full inline-block p-px font-semibold leading-6 text-[#02101c] bg-[#30e4ba]  shadow-lg cursor-pointer rounded-xl shadow-zinc-900 transition-transform duration-300 ease-in-out hover:scale-105 active:scale-95'>
                   <span class='absolute inset-0 rounded-xl bg-gradient-to-r from-[#02101c] via-[#023a6b] to-white p-[2px] opacity-0 transition-opacity duration-500 group-hover:opacity-100'></span>
 
@@ -136,7 +144,12 @@ const PiggyBankCard = ({ piggyBankData, refetch }) => {
                 </button>
               </div>
 
-              <div className='relative group w-full'>
+              <div
+                onClick={() => {
+                  handleWithdrawMoney(bank)
+                }}
+                className='relative group w-full'
+              >
                 <button class='relative w-full inline-block p-px font-semibold leading-6 text-[#02101c] bg-[#30e4ba]  shadow-lg cursor-pointer rounded-xl shadow-zinc-900 transition-transform duration-300 ease-in-out hover:scale-105 active:scale-95'>
                   <span class='absolute inset-0 rounded-xl bg-gradient-to-r from-[#02101c] via-[#023a6b] to-white p-[2px] opacity-0 transition-opacity duration-500 group-hover:opacity-100'></span>
 
@@ -167,6 +180,13 @@ const PiggyBankCard = ({ piggyBankData, refetch }) => {
         <AddMoneyModal
           piggyBank={selectedPiggyBank}
           onClose={() => setIsAddModalOpen(false)}
+          refetch={refetch}
+        />
+      )}
+      {isWithdrawModalOpen && (
+        <WithdrawMoneyModal
+          piggyBank={selectedPiggyBank}
+          onClose={() => setIsWithdrawModalOpen(false)}
           refetch={refetch}
         />
       )}
