@@ -8,15 +8,48 @@ import {
   SelectTrigger,
   SelectValue
 } from '../../ui/select'
+import useAxiosInstance from '../../Hooks/useAxiosInstance'
+import useAuth from '../../Hooks/useAuth'
+import toast from 'react-hot-toast'
 
 const BillModal = ({ isOpen, onClose }) => {
-  const [billNameText, setBillNameText] = useState(0)
+    const [billNameText, setBillNameText] = useState('')
   const [billingAmount, setBillingAmount] = useState('')
-  const [billDueDay, setBillDueDay] = useState('') 
+  const [billDueDay, setBillDueDay] = useState('')
 
-  let handleSubmit = e => {
+  let axiosInstance = useAxiosInstance()
+  let { loggedInUser } = useAuth()
+  let currentUserEmail = loggedInUser?.email
+
+  let handleSubmit = async e => {
     e.preventDefault()
-    console.log({ billDueDay, billingAmount })
+    const billingDetails = {
+      billNameText,
+      billDueDay,
+      billingAmount,
+      currentUserEmail,
+      billStatus: 'unpaid'
+    }
+    let loadingToast = toast.loading('Adding Billing Details...')
+
+    try {
+      const { data } = await axiosInstance.post(
+        '/addRecurringBill',
+        billingDetails
+      )
+
+      if (data.insertedId) {
+        toast.success('Recurring Bill Added successfully!')
+        setBillNameText(0)
+        setBillingAmount('')
+        setBillDueDay('')
+        e.target.reset()
+        toast.dismiss(loadingToast)
+        onClose()
+      }
+    } catch (error) {
+      toast.error('Failed to add Bill!')
+    }
   }
 
   return (
@@ -47,7 +80,7 @@ const BillModal = ({ isOpen, onClose }) => {
                 Bill Name
               </label>
               <input
-                onChange={e => setBillNameText(e.target.value.length)}
+                onChange={e => setBillNameText(e.target.value)}
                 className='w-full py-3 px-4 rounded-lg border mt-2 placeholder:text-[14px] placeholder:text-gray-500 border-[#02101c]'
                 placeholder='e.g: Monthly Internet Bill'
                 type='text'
@@ -57,7 +90,7 @@ const BillModal = ({ isOpen, onClose }) => {
                 required
               />
               <p className='mt-2 text-[14px] text-right'>
-                {30 - billNameText} characters left
+                {30 - billNameText?.length} characters left
               </p>
             </div>
 
