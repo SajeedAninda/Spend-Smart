@@ -48,9 +48,9 @@ const Navbar = () => {
               <NavLink to={"/piggy_bank"} className='text-[#02101c] font-bold hover:opacity-50 transition-all duration-150 hover:underline cursor-pointer text-[16px] list-none'>
                 Piggy Bank
               </NavLink>
-              <li className='text-[#02101c] font-bold hover:opacity-50 transition-all duration-150 hover:underline cursor-pointer text-[16px] list-none'>
+              <NavLink to={"/recurring_bills"} className='text-[#02101c] font-bold hover:opacity-50 transition-all duration-150 hover:underline cursor-pointer text-[16px] list-none'>
                 Bills
-              </li>
+              </NavLink>
             </div>
           ) : (
             <div className='flex flex-col items-center text-center'>

@@ -12,6 +12,7 @@ import Homepage from './Components/Navbar/Pages/Homepage/Homepage.jsx'
 import Transactions from './Components/Pages/Transactions/Transactions.jsx'
 import Budget from './Components/Pages/Budget/Budget'
 import PiggyBank from './Components/Pages/PiggyBank/PiggyBank'
+import Bills from './Components/Pages/Bills/Bills'
 
 const queryClient = new QueryClient()
 
@@ -35,6 +36,10 @@ const router = createBrowserRouter([
       {
         path: '/piggy_bank',
         element: <PiggyBank></PiggyBank>
+      },
+      {
+        path: '/recurring_bills',
+        element: <Bills></Bills>
       }
     ]
   },
