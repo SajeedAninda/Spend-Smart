@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { RiBillFill } from 'react-icons/ri'
+import BillModal from './BillModal'
 
 const Bills = () => {
   const [isModalOpen, setIsModalOpen] = useState(false)
@@ -29,6 +30,10 @@ const Bills = () => {
           </button>
         </div>
       </div>
+      <BillModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+      />
     </div>
   )
 }
