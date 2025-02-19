@@ -30,10 +30,10 @@ const Bills = () => {
           </button>
         </div>
       </div>
-      <BillModal
-        isOpen={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
-      />
+
+      {isModalOpen && (
+        <BillModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
+      )}
     </div>
   )
 }
