@@ -6,12 +6,43 @@ import {
   SelectTrigger,
   SelectValue
 } from '../../ui/select'
+import { useQuery } from '@tanstack/react-query'
+import useAxiosInstance from '../../Hooks/useAxiosInstance'
+import useAuth from '../../Hooks/useAuth'
 
 const BillsTable = () => {
   const [searchTerm, setSearchTerm] = useState('')
   const [selectedFilterValue, setSelectedFilterValue] = useState('latest')
 
-  console.log(searchTerm,selectedFilterValue)
+  const { loggedInUser } = useAuth()
+  const currentUserEmail = loggedInUser?.email
+  let axiosInstance = useAxiosInstance()
+
+  const {
+    data: filteredBills,
+    refetch,
+    isLoading
+  } = useQuery({
+    queryKey: [
+      'filteredBills',
+      currentUserEmail,
+      searchTerm,
+      selectedFilterValue
+    ],
+    queryFn: async () => {
+      const { data } = await axiosInstance.get('/allFilteredBills', {
+        params: {
+          email: currentUserEmail,
+          searchTerm,
+          selectedFilterValue
+        }
+      })
+      return data
+    },
+    enabled: !!currentUserEmail
+  })
+
+  console.log(filteredBills)
 
   return (
     <div>
@@ -25,7 +56,6 @@ const BillsTable = () => {
             value={searchTerm}
             onChange={e => {
               setSearchTerm(e.target.value)
-              refetch()
             }}
           />
         </div>
@@ -38,7 +68,6 @@ const BillsTable = () => {
               value={selectedFilterValue}
               onValueChange={value => {
                 setSelectedFilterValue(value)
-                refetch()
               }}
             >
               <SelectTrigger className='w-[180px] border-2 border-[#02101c]'>
