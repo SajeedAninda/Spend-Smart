@@ -42,8 +42,6 @@ const BillsTable = () => {
     enabled: !!currentUserEmail
   })
 
-  console.log(filteredBills)
-
   return (
     <div>
       <div className='queryDiv flex justify-between items-center'>
@@ -56,6 +54,7 @@ const BillsTable = () => {
             value={searchTerm}
             onChange={e => {
               setSearchTerm(e.target.value)
+              refetch()
             }}
           />
         </div>
@@ -68,6 +67,7 @@ const BillsTable = () => {
               value={selectedFilterValue}
               onValueChange={value => {
                 setSelectedFilterValue(value)
+                refetch()
               }}
             >
               <SelectTrigger className='w-[180px] border-2 border-[#02101c]'>
@@ -82,6 +82,52 @@ const BillsTable = () => {
             </Select>
           </div>
         </div>
+      </div>
+
+      {/* Bills Table */}
+      <div className='w-full mt-10'>
+        <div className='tableHeader grid grid-cols-12 items-center border-b border-gray-400'>
+          <div className='text-[#02101c] text-[16px] font-bold col-span-4 py-3'>
+            Bill Name
+          </div>
+          <div className='text-[#02101c] text-[16px] font-bold col-span-2'>
+            Bill Status
+          </div>
+          <div className='text-[#02101c] text-[16px] font-bold col-span-3 flex justify-center'>
+            Due Date
+          </div>
+          <div className='text-[#02101c] text-[16px] font-bold col-span-3 flex justify-center'>
+            Billing Amount
+          </div>
+        </div>
+
+        {/* Mapping Bills Data */}
+        {filteredBills?.map(bill => {
+          const amountClass =
+            bill.billStatus === 'paid' ? 'text-green-600' : 'text-red-600'
+
+          return (
+            <div
+              key={bill._id}
+              className='tableRow grid grid-cols-12 items-center border-b border-gray-300'
+            >
+              <div className='text-[#02101c] text-[14px] font-bold col-span-4 py-4 pl-4'>
+                {bill.billNameText}
+              </div>
+              <div className='text-[#02101c] text-[14px] font-semibold col-span-2 capitalize'>
+                {bill.billStatus}
+              </div>
+              <div className='text-[#02101c] text-[14px] font-semibold col-span-3 flex justify-center'>
+                {bill.billDueDay}
+              </div>
+              <div
+                className={`text-[#02101c] text-[14px] font-bold col-span-3 flex justify-center ${amountClass}`}
+              >
+                $ {parseFloat(bill.billingAmount).toFixed(2)}
+              </div>
+            </div>
+          )
+        })}
       </div>
     </div>
   )
