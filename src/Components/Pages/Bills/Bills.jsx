@@ -1,9 +1,35 @@
 import React, { useState } from 'react'
 import { RiBillFill } from 'react-icons/ri'
 import BillModal from './BillModal'
+import useAxiosInstance from '../../Hooks/useAxiosInstance'
+import useAuth from '../../Hooks/useAuth'
+import { useQuery } from '@tanstack/react-query'
+import TotalBills from './TotalBills'
 
 const Bills = () => {
   const [isModalOpen, setIsModalOpen] = useState(false)
+
+  const { loggedInUser } = useAuth()
+  const currentUserEmail = loggedInUser?.email
+  let axiosInstance = useAxiosInstance()
+
+  const {
+    data: allBills,
+    refetch,
+    isLoading
+  } = useQuery({
+    queryKey: ['allBills', currentUserEmail],
+    queryFn: async () => {
+      const { data } = await axiosInstance.get('/allBills', {
+        params: {
+          email: currentUserEmail
+        }
+      })
+      return data
+    },
+    enabled: !!currentUserEmail
+  })
+
 
   return (
     <div className='w-[1150px] mx-auto py-8'>
@@ -28,6 +54,12 @@ const Bills = () => {
               </div>
             </span>
           </button>
+        </div>
+      </div>
+
+      <div className='middleDiv flex justify-between items-center'>
+        <div className='w-[50%]'>
+          <TotalBills allBills={allBills}></TotalBills>
         </div>
       </div>
 
