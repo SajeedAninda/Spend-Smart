@@ -5,6 +5,7 @@ import useAxiosInstance from '../../Hooks/useAxiosInstance'
 import useAuth from '../../Hooks/useAuth'
 import { useQuery } from '@tanstack/react-query'
 import TotalBills from './TotalBills'
+import BillSummary from './BillSummary'
 
 const Bills = () => {
   const [isModalOpen, setIsModalOpen] = useState(false)
@@ -29,7 +30,6 @@ const Bills = () => {
     },
     enabled: !!currentUserEmail
   })
-
 
   return (
     <div className='w-[1150px] mx-auto py-8'>
@@ -57,14 +57,21 @@ const Bills = () => {
         </div>
       </div>
 
-      <div className='middleDiv flex justify-between items-center mt-6'>
+      <div className='middleDiv flex justify-between items-center mt-6 gap-8'>
         <div className='w-[50%]'>
           <TotalBills allBills={allBills}></TotalBills>
+        </div>
+        <div className='w-[50%]'>
+          <BillSummary allBills={allBills}></BillSummary>
         </div>
       </div>
 
       {isModalOpen && (
-        <BillModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} refetch={refetch}/>
+        <BillModal
+          isOpen={isModalOpen}
+          onClose={() => setIsModalOpen(false)}
+          refetch={refetch}
+        />
       )}
     </div>
   )
