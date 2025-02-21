@@ -6,6 +6,7 @@ import useAuth from '../../Hooks/useAuth'
 import { useQuery } from '@tanstack/react-query'
 import TotalBills from './TotalBills'
 import BillSummary from './BillSummary'
+import BillsTable from './BillsTable'
 
 const Bills = () => {
   const [isModalOpen, setIsModalOpen] = useState(false)
@@ -64,6 +65,10 @@ const Bills = () => {
         <div className='w-[50%]'>
           <BillSummary allBills={allBills}></BillSummary>
         </div>
+      </div>
+
+      <div className='lowerDiv mt-10'>
+        <BillsTable></BillsTable>
       </div>
 
       {isModalOpen && (
