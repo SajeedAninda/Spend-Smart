@@ -12,7 +12,7 @@ import useAxiosInstance from '../../Hooks/useAxiosInstance'
 import useAuth from '../../Hooks/useAuth'
 import toast from 'react-hot-toast'
 
-const BillModal = ({ isOpen, onClose }) => {
+const BillModal = ({ isOpen, onClose,refetch }) => {
     const [billNameText, setBillNameText] = useState('')
   const [billingAmount, setBillingAmount] = useState('')
   const [billDueDay, setBillDueDay] = useState('')
@@ -45,6 +45,7 @@ const BillModal = ({ isOpen, onClose }) => {
         setBillDueDay('')
         e.target.reset()
         toast.dismiss(loadingToast)
+        refetch()
         onClose()
       }
     } catch (error) {

@@ -57,14 +57,14 @@ const Bills = () => {
         </div>
       </div>
 
-      <div className='middleDiv flex justify-between items-center'>
+      <div className='middleDiv flex justify-between items-center mt-6'>
         <div className='w-[50%]'>
           <TotalBills allBills={allBills}></TotalBills>
         </div>
       </div>
 
       {isModalOpen && (
-        <BillModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
+        <BillModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} refetch={refetch}/>
       )}
     </div>
   )
