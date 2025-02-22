@@ -9,8 +9,10 @@ import {
 import { useQuery } from '@tanstack/react-query'
 import useAxiosInstance from '../../Hooks/useAxiosInstance'
 import useAuth from '../../Hooks/useAuth'
+import Swal from 'sweetalert2'
+import toast from 'react-hot-toast'
 
-const BillsTable = () => {
+const BillsTable = ({refetch}) => {
   const [searchTerm, setSearchTerm] = useState('')
   const [selectedFilterValue, setSelectedFilterValue] = useState('latest')
 
@@ -20,7 +22,7 @@ const BillsTable = () => {
 
   const {
     data: filteredBills,
-    refetch,
+    refetch: dataRefetch,
     isLoading
   } = useQuery({
     queryKey: [
@@ -42,6 +44,39 @@ const BillsTable = () => {
     enabled: !!currentUserEmail
   })
 
+  const handleStatusChange = async bill => {
+    Swal.fire({
+      title: 'Are you sure?',
+      text: `You are about to mark this bill as ${
+        bill.billStatus === 'paid' ? 'Unpaid' : 'Paid'
+      }.`,
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#02101c',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, Change it!'
+    }).then(async result => {
+      if (result.isConfirmed) {
+        try {
+          const newStatus = bill.billStatus === 'paid' ? 'unpaid' : 'paid'
+
+          await axiosInstance.patch(`/updateBillStatus/${bill._id}`, {
+            billStatus: newStatus
+          })
+
+          toast.success(
+            `Bill marked as ${newStatus.toUpperCase()} successfully!`
+          )
+
+          dataRefetch()
+          refetch()
+        } catch (error) {
+          toast.error('Failed to update status. Try again.')
+        }
+      }
+    })
+  }
+
   return (
     <div>
       <div className='queryDiv flex justify-between items-center'>
@@ -54,7 +89,7 @@ const BillsTable = () => {
             value={searchTerm}
             onChange={e => {
               setSearchTerm(e.target.value)
-              refetch()
+              dataRefetch()
             }}
           />
         </div>
@@ -67,7 +102,7 @@ const BillsTable = () => {
               value={selectedFilterValue}
               onValueChange={value => {
                 setSelectedFilterValue(value)
-                refetch()
+                dataRefetch()
               }}
             >
               <SelectTrigger className='w-[180px] border-2 border-[#02101c]'>
@@ -130,7 +165,12 @@ const BillsTable = () => {
                 $ {parseFloat(bill.billingAmount).toFixed(2)}
               </div>
               <div className='col-span-2 flex justify-center'>
-                <button className={`px-4 py-2 capitalize rounded-lg hover:opacity-35 text-[#02101c] font-bold ${bill.billStatus === 'paid' ? 'bg-green-600' : 'bg-red-600'}`}>
+                <button
+                  onClick={() => handleStatusChange(bill)}
+                  className={`px-4 py-2 capitalize rounded-lg hover:opacity-35 text-[#fff] font-bold ${
+                    bill.billStatus === 'paid' ? 'bg-green-600' : 'bg-red-600'
+                  }`}
+                >
                   {bill.billStatus}
                 </button>
               </div>

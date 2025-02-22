@@ -68,7 +68,7 @@ const Bills = () => {
       </div>
 
       <div className='lowerDiv mt-10'>
-        <BillsTable></BillsTable>
+        <BillsTable refetch={refetch}></BillsTable>
       </div>
 
       {isModalOpen && (
