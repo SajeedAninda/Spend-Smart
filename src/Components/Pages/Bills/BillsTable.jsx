@@ -85,9 +85,9 @@ const BillsTable = () => {
       </div>
 
       {/* Bills Table */}
-      <div className='w-full mt-10'>
+      <div className='w-full py-12'>
         <div className='tableHeader grid grid-cols-12 items-center border-b border-gray-400'>
-          <div className='text-[#02101c] text-[16px] font-bold col-span-4 py-3'>
+          <div className='text-[#02101c] text-[16px] font-bold col-span-3 py-3'>
             Bill Name
           </div>
           <div className='text-[#02101c] text-[16px] font-bold col-span-2'>
@@ -96,12 +96,14 @@ const BillsTable = () => {
           <div className='text-[#02101c] text-[16px] font-bold col-span-3 flex justify-center'>
             Due Date
           </div>
-          <div className='text-[#02101c] text-[16px] font-bold col-span-3 flex justify-center'>
+          <div className='text-[#02101c] text-[16px] font-bold col-span-2 flex justify-center'>
             Billing Amount
+          </div>
+          <div className='text-[#02101c] text-[16px] font-bold col-span-2 flex justify-center'>
+            Change Status
           </div>
         </div>
 
-        {/* Mapping Bills Data */}
         {filteredBills?.map(bill => {
           const amountClass =
             bill.billStatus === 'paid' ? 'text-green-600' : 'text-red-600'
@@ -109,21 +111,28 @@ const BillsTable = () => {
           return (
             <div
               key={bill._id}
-              className='tableRow grid grid-cols-12 items-center border-b border-gray-300'
+              className='tableRow grid grid-cols-12 items-center border-b border-gray-300 py-3'
             >
-              <div className='text-[#02101c] text-[14px] font-bold col-span-4 py-4 pl-4'>
+              <div className='text-[#02101c] text-[14px] font-bold col-span-3 py-4 pl-4'>
                 {bill.billNameText}
               </div>
-              <div className='text-[#02101c] text-[14px] font-semibold col-span-2 capitalize'>
+              <div
+                className={`text-[#02101c] capitalize text-[14px] font-bold col-span-2 flex justify-center ${amountClass}`}
+              >
                 {bill.billStatus}
               </div>
               <div className='text-[#02101c] text-[14px] font-semibold col-span-3 flex justify-center'>
-                {bill.billDueDay}
+                {bill.billDueDay}th of this Month
               </div>
               <div
-                className={`text-[#02101c] text-[14px] font-bold col-span-3 flex justify-center ${amountClass}`}
+                className={`text-[#02101c] text-[14px] font-bold col-span-2 flex justify-center ${amountClass}`}
               >
                 $ {parseFloat(bill.billingAmount).toFixed(2)}
+              </div>
+              <div className='col-span-2 flex justify-center'>
+                <button className={`px-4 py-2 capitalize rounded-lg hover:opacity-35 text-[#02101c] font-bold ${bill.billStatus === 'paid' ? 'bg-green-600' : 'bg-red-600'}`}>
+                  {bill.billStatus}
+                </button>
               </div>
             </div>
           )
