@@ -11,8 +11,9 @@ import useAxiosInstance from '../../Hooks/useAxiosInstance'
 import useAuth from '../../Hooks/useAuth'
 import Swal from 'sweetalert2'
 import toast from 'react-hot-toast'
+import { FaTrash } from 'react-icons/fa'
 
-const BillsTable = ({refetch}) => {
+const BillsTable = ({ refetch }) => {
   const [searchTerm, setSearchTerm] = useState('')
   const [selectedFilterValue, setSelectedFilterValue] = useState('latest')
 
@@ -77,6 +78,29 @@ const BillsTable = ({refetch}) => {
     })
   }
 
+  const handleDeleteBill = async bill => {
+    Swal.fire({
+      title: 'Are you sure?',
+      text: `You are about to Delete this Bill`,
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#02101c',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, Change it!'
+    }).then(async result => {
+      if (result.isConfirmed) {
+        try {
+          await axiosInstance.delete(`/deleteBill/${bill._id}`)
+          toast.success(`Bill deleted successfully!`)
+          dataRefetch()
+          refetch()
+        } catch (error) {
+          toast.error('Failed to delete Bill. Try again.')
+        }
+      }
+    })
+  }
+
   return (
     <div>
       <div className='queryDiv flex justify-between items-center'>
@@ -121,14 +145,14 @@ const BillsTable = ({refetch}) => {
 
       {/* Bills Table */}
       <div className='w-full py-12'>
-        <div className='tableHeader grid grid-cols-12 items-center border-b border-gray-400'>
-          <div className='text-[#02101c] text-[16px] font-bold col-span-3 py-3'>
+        <div className='tableHeader grid grid-cols-12 items-center border-b border-gray-400 py-3'>
+          <div className='text-[#02101c] text-[16px] font-bold col-span-3 flex justify-center'>
             Bill Name
           </div>
-          <div className='text-[#02101c] text-[16px] font-bold col-span-2'>
+          <div className='text-[#02101c] text-[16px] font-bold col-span-2 flex justify-center'>
             Bill Status
           </div>
-          <div className='text-[#02101c] text-[16px] font-bold col-span-3 flex justify-center'>
+          <div className='text-[#02101c] text-[16px] font-bold col-span-2 flex justify-center'>
             Due Date
           </div>
           <div className='text-[#02101c] text-[16px] font-bold col-span-2 flex justify-center'>
@@ -136,6 +160,9 @@ const BillsTable = ({refetch}) => {
           </div>
           <div className='text-[#02101c] text-[16px] font-bold col-span-2 flex justify-center'>
             Change Status
+          </div>
+          <div className='text-[#02101c] text-[16px] font-bold col-span-1 flex justify-center'>
+            Delete Bill
           </div>
         </div>
 
@@ -148,7 +175,7 @@ const BillsTable = ({refetch}) => {
               key={bill._id}
               className='tableRow grid grid-cols-12 items-center border-b border-gray-300 py-3'
             >
-              <div className='text-[#02101c] text-[14px] font-bold col-span-3 py-4 pl-4'>
+              <div className='text-[#02101c] text-[14px] font-bold col-span-3 py-4 pl-4 flex justify-center'>
                 {bill.billNameText}
               </div>
               <div
@@ -156,7 +183,7 @@ const BillsTable = ({refetch}) => {
               >
                 {bill.billStatus}
               </div>
-              <div className='text-[#02101c] text-[14px] font-semibold col-span-3 flex justify-center'>
+              <div className='text-[#02101c] text-[14px] font-semibold col-span-2 flex justify-center'>
                 {bill.billDueDay}th of this Month
               </div>
               <div
@@ -172,6 +199,14 @@ const BillsTable = ({refetch}) => {
                   }`}
                 >
                   {bill.billStatus}
+                </button>
+              </div>
+              <div className='col-span-1 flex justify-center'>
+                <button
+                  onClick={() => handleDeleteBill(bill)}
+                  className={`px-4 py-2 capitalize rounded-lg hover:opacity-35 text-[#fff] font-bold bg-red-600`}
+                >
+                  <FaTrash className='text-white font-bold text-[20px]' />
                 </button>
               </div>
             </div>
