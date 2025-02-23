@@ -1,6 +1,11 @@
+import SpendingSummarySkeleton from '../../LoadingSkeletons/SpendingSummarySkeleton'
 import React from 'react'
 
 const SpendingSummary = ({ transactionData, budgetData }) => {
+  if (!transactionData || !budgetData) {
+    return <SpendingSummarySkeleton />
+  }
+
   return (
     <div className='p-6'>
       <h3 className='text-[#02101c] font-bold text-[20px]'>Spending Summary</h3>

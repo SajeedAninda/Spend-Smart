@@ -2,22 +2,19 @@ import React from 'react'
 import { Pie, PieChart, Label } from 'recharts'
 import { Card, CardContent, CardHeader } from '../../ui/card'
 import { ChartContainer, ChartTooltip, ChartTooltipContent } from '../../ui/chart'
+import BudgetChartSkeleton from '../../LoadingSkeletons/BudgetChartSkeleton'
 
 const BudgetPieChart = ({ transactionData, budgetData }) => {
-
-  let totalBudget = 0
-  if (budgetData) {
-    totalBudget = budgetData.reduce((acc, curr) => acc + parseFloat(curr.maxSpendAmount), 0)
+  if (!transactionData || !budgetData) {
+    return <BudgetChartSkeleton/>
   }
 
+  let totalBudget = budgetData.reduce((acc, curr) => acc + parseFloat(curr.maxSpendAmount), 0)
   const budgetCategories = new Set(budgetData?.map(budget => budget.category))
 
-  let totalSpent = 0
-  if (transactionData) {
-    totalSpent = transactionData
-      .filter(transaction => budgetCategories.has(transaction.category))
-      .reduce((acc, transaction) => acc + parseFloat(transaction.amount), 0)
-  }
+  let totalSpent = transactionData
+    .filter(transaction => budgetCategories.has(transaction.category))
+    .reduce((acc, transaction) => acc + parseFloat(transaction.amount), 0)
 
   const chartData = budgetData?.map(budget => ({
     category: budget.category,
@@ -85,3 +82,4 @@ const BudgetPieChart = ({ transactionData, budgetData }) => {
 }
 
 export default BudgetPieChart
+
