@@ -9,6 +9,7 @@ import useAxiosInstance from '../../Hooks/useAxiosInstance'
 import PiggyUpdateModal from './PiggyUpdateModal'
 import AddMoneyModal from './AddMoneyModal'
 import WithdrawMoneyModal from './WithdrawMoneyModal'
+import PiggyBankCardSkeleton from '../../LoadingSkeletons/PiggyBankCardSkeleton'
 
 const PiggyBankCard = ({ piggyBankData, refetch }) => {
   let axiosInstance = useAxiosInstance()
@@ -52,6 +53,11 @@ const PiggyBankCard = ({ piggyBankData, refetch }) => {
     setSelectedPiggyBank(bank)
     setIsWithdrawModalOpen(true)
   }
+
+  if(!piggyBankData){
+    return <PiggyBankCardSkeleton></PiggyBankCardSkeleton>
+  }
+
   return (
     <div className='grid grid-cols-2 gap-x-6 gap-y-8'>
       {piggyBankData?.map(bank => {

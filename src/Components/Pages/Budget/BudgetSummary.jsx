@@ -7,6 +7,7 @@ import { RiDeleteBin7Fill } from 'react-icons/ri'
 import { Link } from 'react-router-dom'
 import Swal from 'sweetalert2'
 import UpdateBudgetModal from './UpdateBudgetModal'
+import BudgetSummarySkeleton from '../../LoadingSkeletons/BudgetSummarySkeleton'
 
 const formatDate = dateString => {
   const date = new Date(dateString)
@@ -44,6 +45,10 @@ const BudgetSummary = ({ transactionData, budgetData, refetch }) => {
   let handleBudgetUpdate = budget => {
     setSelectedBudget(budget)
     setIsModalOpen(true)
+  }
+
+  if (!budgetData || !transactionData) {
+    return <BudgetSummarySkeleton />
   }
 
   return (
