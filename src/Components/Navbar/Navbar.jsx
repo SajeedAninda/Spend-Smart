@@ -38,20 +38,27 @@ const Navbar = () => {
         {/* Brand Name + Tagline or Links*/}
         <div className='w-[33%]'>
           {userData ? (
-            <div className='flex justify-between items-center '>
-              <NavLink to={"/transactions"} className='text-[#02101c] font-bold hover:opacity-50 transition-all duration-150 hover:underline cursor-pointer text-[16px] list-none'>
-                Transactions
+            <div className="flex justify-between items-center">
+            {[
+              { path: "/transactions", label: "Transactions" },
+              { path: "/budget", label: "Budgets" },
+              { path: "/piggy_bank", label: "Piggy Bank" },
+              { path: "/recurring_bills", label: "Bills" },
+            ].map(({ path, label }) => (
+              <NavLink
+                key={path}
+                to={path}
+                className={({ isActive }) =>
+                  `font-bold text-[16px] list-none transition-all duration-150 cursor-pointer ${
+                    isActive ? "text-[#02101c] underline" : "text-[#02101c] hover:opacity-50 hover:underline"
+                  }`
+                }
+              >
+                {label}
               </NavLink>
-              <NavLink to={"/budget"} className='text-[#02101c] font-bold hover:opacity-50 transition-all duration-150 hover:underline cursor-pointer text-[16px] list-none'>
-                Budgets
-              </NavLink>
-              <NavLink to={"/piggy_bank"} className='text-[#02101c] font-bold hover:opacity-50 transition-all duration-150 hover:underline cursor-pointer text-[16px] list-none'>
-                Piggy Bank
-              </NavLink>
-              <NavLink to={"/recurring_bills"} className='text-[#02101c] font-bold hover:opacity-50 transition-all duration-150 hover:underline cursor-pointer text-[16px] list-none'>
-                Bills
-              </NavLink>
-            </div>
+            ))}
+          </div>
+          
           ) : (
             <div className='flex flex-col items-center text-center'>
               <h1 className='text-[#02101c] font-black text-[16px] italic'>
