@@ -1,3 +1,4 @@
+import BillSummarySkeleton from '../../LoadingSkeletons/BillSummarySkeleton';
 import React from 'react';
 
 const BillSummary = ({ allBills }) => {
@@ -12,6 +13,10 @@ const BillSummary = ({ allBills }) => {
 
   const upcomingBills = allBills?.filter(bill => bill.billStatus === 'unpaid' && parseInt(bill.billDueDay) >= today);
   const upcomingTotal = upcomingBills?.reduce((sum, bill) => sum + parseFloat(bill.billingAmount), 0);
+  
+  if(!allBills){
+    return <BillSummarySkeleton />
+  }
 
   return (
     <div className='bg-[#cbfdf2] h-[200px] rounded-lg py-6 px-10'>

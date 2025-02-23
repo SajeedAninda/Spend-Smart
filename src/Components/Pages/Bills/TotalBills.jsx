@@ -1,3 +1,4 @@
+import TotalBillsSkeleton from '../../LoadingSkeletons/TotalBillSkeleton';
 import React from 'react'
 import { FaMoneyBillWheat } from 'react-icons/fa6'
 
@@ -5,6 +6,10 @@ const TotalBills = ({ allBills }) => {
   const totalAmount = (allBills && Array.isArray(allBills)) 
     ? allBills.reduce((sum, bill) => sum + parseFloat(bill.billingAmount || 0), 0) 
     : 0;
+
+    if(!allBills){
+      return <TotalBillsSkeleton />
+    }
 
   return (
     <div className='bg-[#02101c] h-[200px] rounded-lg py-8 px-20 flex justify-between items-center'>

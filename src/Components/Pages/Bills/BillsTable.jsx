@@ -12,6 +12,7 @@ import useAuth from '../../Hooks/useAuth'
 import Swal from 'sweetalert2'
 import toast from 'react-hot-toast'
 import { FaTrash } from 'react-icons/fa'
+import BillsTableSkeleton from '../../LoadingSkeletons/BillsTableSkeleton'
 
 const BillsTable = ({ refetch }) => {
   const [searchTerm, setSearchTerm] = useState('')
@@ -76,6 +77,10 @@ const BillsTable = ({ refetch }) => {
         }
       }
     })
+  }
+ 
+  if(!filteredBills){
+    return <BillsTableSkeleton />
   }
 
   const handleDeleteBill = async bill => {
