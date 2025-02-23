@@ -24,6 +24,17 @@ const Transactions = () => {
   const [selectedCategoryValue, setSelectedCategoryValue] = useState('general')
   const [isModalOpen, setIsModalOpen] = useState(false)
 
+  const { data: allTransactions, isLoading: isTotalLoading } = useQuery({
+    queryKey: ['all-transactions', currentUserEmail],
+    queryFn: async () => {
+      const { data } = await axiosInstance.get('/getTransactions', {
+        params: { email: currentUserEmail }
+      })
+      return data
+    },
+    enabled: !!currentUserEmail
+  })
+
   const {
     data: transactions,
     refetch,
@@ -50,17 +61,16 @@ const Transactions = () => {
     enabled: !!currentUserEmail
   })
 
-
-  const totalTransactions = transactions
+  const totalTransactions = allTransactions
     ?.reduce((acc, txn) => acc + parseFloat(txn.amount), 0)
     .toFixed(2)
 
-    const totalEarned = transactions
+  const totalEarned = allTransactions
     ?.filter(txn => txn.transactionType === 'earned')
     .reduce((acc, txn) => acc + parseFloat(txn.amount), 0)
     .toFixed(2)
 
-  const totalSpent = transactions
+  const totalSpent = allTransactions
     ?.filter(txn => txn.transactionType === 'spent')
     .reduce((acc, txn) => acc + parseFloat(txn.amount), 0)
     .toFixed(2)
