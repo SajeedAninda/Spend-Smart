@@ -13,6 +13,7 @@ import TransactionTable from './TransactionTable'
 import TransactionModal from './TransactionModal'
 import useAxiosInstance from '../../Hooks/useAxiosInstance'
 import { InfinitySpin } from 'react-loader-spinner'
+import TransactionInfoSkeleton from '../../LoadingSkeletons/TransactionInfoSkeleton'
 
 const Transactions = () => {
   const { loggedInUser } = useAuth()
@@ -99,6 +100,8 @@ const Transactions = () => {
           </div>
         </div>
 
+        {
+        allTransactions?
         <div className='middleDiv w-full mt-10 grid grid-cols-3 gap-6 items-center'>
           <div className='bg-gradient-to-r from-[#30e4ba] to-[#1b4f80] py-6 px-10 rounded-lg'>
             <h4 className='text-[16px] font-bold text-[#02101c]'>
@@ -127,6 +130,9 @@ const Transactions = () => {
             </p>
           </div>
         </div>
+        :
+        <TransactionInfoSkeleton></TransactionInfoSkeleton>
+        }
 
         <div className='lowerDiv bg-[#cbfdf2] rounded-lg w-full p-8 mt-10'>
           <div className='queryDiv flex justify-between items-center'>
