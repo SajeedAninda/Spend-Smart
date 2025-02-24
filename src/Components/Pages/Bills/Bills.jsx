@@ -33,8 +33,8 @@ const Bills = () => {
   })
 
   return (
-    <div className='w-[1150px] mx-auto py-8'>
-      <div className='upperDiv flex justify-between items-center'>
+    <div className='w-[100%] lg:w-[1150px] px-8 lg:px-0 mx-auto py-8'>
+      <div className='upperDiv flex gap-8 lg:gap-0 justify-between items-center'>
         <h1 className='text-[32px] font-bold text-[#02101c]'>
           {' '}
           Recurring Bills
@@ -58,11 +58,11 @@ const Bills = () => {
         </div>
       </div>
 
-      <div className='middleDiv flex justify-between items-center mt-6 gap-8'>
-        <div className='w-[50%]'>
+      <div className='middleDiv flex flex-col lg:flex-row justify-between items-center mt-6 gap-8'>
+        <div className='w-full lg:w-[50%]'>
           <TotalBills allBills={allBills}></TotalBills>
         </div>
-        <div className='w-[50%]'>
+        <div className='w-full lg:w-[50%]'>
           <BillSummary allBills={allBills}></BillSummary>
         </div>
       </div>

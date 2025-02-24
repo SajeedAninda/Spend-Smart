@@ -78,8 +78,8 @@ const BillsTable = ({ refetch }) => {
       }
     })
   }
- 
-  if(!filteredBills){
+
+  if (!filteredBills) {
     return <BillsTableSkeleton />
   }
 
@@ -108,11 +108,11 @@ const BillsTable = ({ refetch }) => {
 
   return (
     <div>
-      <div className='queryDiv flex justify-between items-center'>
+      <div className='queryDiv flex flex-col lg:flex-row gap-4 lg:gap-0 justify-between items-center'>
         {/* Search Input */}
-        <div className='searchField w-[60%]'>
+        <div className='searchField w-full lg:w-[60%]'>
           <input
-            className='w-[80%] py-3 px-4 rounded-lg border-2 placeholder:text-[14px] border-[#02101c]'
+            className='w-full lg:w-[80%] py-3 px-4 rounded-lg border-2 placeholder:text-[14px] border-[#02101c]'
             placeholder='Search Bills By Name'
             type='text'
             value={searchTerm}
@@ -124,7 +124,7 @@ const BillsTable = ({ refetch }) => {
         </div>
 
         {/* Sort Options */}
-        <div className='filterField w-[40%] flex gap-4 justify-center items-center'>
+        <div className='filterField w-full lg:w-[40%] flex gap-4 justify-center items-center'>
           <div className='sortingField flex items-center gap-4'>
             <p className='text-[14px] font-semibold text-[#02101c]'>Sort By</p>
             <Select
@@ -150,23 +150,23 @@ const BillsTable = ({ refetch }) => {
 
       {/* Bills Table */}
       <div className='w-full py-12'>
-        <div className='tableHeader grid grid-cols-12 items-center border-b border-gray-400 py-3'>
-          <div className='text-[#02101c] text-[16px] font-bold col-span-3 flex justify-center'>
+        <div className='hidden md:grid grid-cols-12 items-center border-b border-gray-400 py-3'>
+          <div className='text-[#02101c] text-[16px] font-bold col-span-3'>
             Bill Name
           </div>
-          <div className='text-[#02101c] text-[16px] font-bold col-span-2 flex justify-center'>
+          <div className='text-[#02101c] text-[16px] font-bold col-span-2'>
             Bill Status
           </div>
-          <div className='text-[#02101c] text-[16px] font-bold col-span-2 flex justify-center'>
+          <div className='text-[#02101c] text-[16px] font-bold col-span-2'>
             Due Date
           </div>
-          <div className='text-[#02101c] text-[16px] font-bold col-span-2 flex justify-center'>
+          <div className='text-[#02101c] text-[16px] font-bold col-span-2'>
             Billing Amount
           </div>
-          <div className='text-[#02101c] text-[16px] font-bold col-span-2 flex justify-center'>
+          <div className='text-[#02101c] text-[16px] font-bold col-span-2'>
             Change Status
           </div>
-          <div className='text-[#02101c] text-[16px] font-bold col-span-1 flex justify-center'>
+          <div className='text-[#02101c] text-[16px] font-bold col-span-1'>
             Delete Bill
           </div>
         </div>
@@ -178,25 +178,64 @@ const BillsTable = ({ refetch }) => {
           return (
             <div
               key={bill._id}
-              className='tableRow grid grid-cols-12 items-center border-b border-gray-300 py-3'
+              className='grid grid-cols-1 md:grid-cols-12 items-center border-b border-gray-300 py-3'
             >
-              <div className='text-[#02101c] text-[14px] font-bold col-span-3 py-4 pl-4 flex justify-center'>
+              <div className='md:hidden px-4 space-y-2'>
+                <div className='text-[#02101c] text-[14px] font-bold'>
+                  {bill.billNameText}
+                </div>
+                <div
+                  className={`text-[14px] font-bold capitalize ${amountClass}`}
+                >
+                  Status: {bill.billStatus}
+                </div>
+              </div>
+
+              <div className='hidden md:block text-[#02101c] text-[14px] font-bold col-span-3 py-4 pl-4'>
                 {bill.billNameText}
               </div>
-              <div
-                className={`text-[#02101c] capitalize text-[14px] font-bold col-span-2 flex justify-center ${amountClass}`}
-              >
+
+              <div className='hidden md:block text-[14px] font-bold col-span-2 capitalize'>
                 {bill.billStatus}
               </div>
-              <div className='text-[#02101c] text-[14px] font-semibold col-span-2 flex justify-center'>
+
+              <div className='md:hidden px-4 mt-2 space-y-2'>
+                <div className='text-[#02101c] text-[12px] font-semibold'>
+                  Due Date: {bill.billDueDay}th of this Month
+                </div>
+                <div className={`text-[12px] font-bold ${amountClass}`}>
+                  Amount: $ {parseFloat(bill.billingAmount).toFixed(2)}
+                </div>
+              </div>
+
+              <div className='hidden md:block text-[#02101c] text-[14px] font-semibold col-span-2'>
                 {bill.billDueDay}th of this Month
               </div>
+
               <div
-                className={`text-[#02101c] text-[14px] font-bold col-span-2 flex justify-center ${amountClass}`}
+                className={`hidden md:block text-[14px] font-bold col-span-2 ${amountClass}`}
               >
                 $ {parseFloat(bill.billingAmount).toFixed(2)}
               </div>
-              <div className='col-span-2 flex justify-center'>
+
+              <div className='md:hidden px-4 mt-2 flex justify-between'>
+                <button
+                  onClick={() => handleStatusChange(bill)}
+                  className={`px-4 py-2 capitalize rounded-lg hover:opacity-35 text-[#fff] font-bold ${
+                    bill.billStatus === 'paid' ? 'bg-green-600' : 'bg-red-600'
+                  }`}
+                >
+                  {bill.billStatus}
+                </button>
+                <button
+                  onClick={() => handleDeleteBill(bill)}
+                  className={`px-4 py-2 capitalize rounded-lg hover:opacity-35 text-[#fff] font-bold bg-red-600`}
+                >
+                  <FaTrash className='text-white font-bold text-[20px]' />
+                </button>
+              </div>
+
+              <div className='hidden md:block col-span-2'>
                 <button
                   onClick={() => handleStatusChange(bill)}
                   className={`px-4 py-2 capitalize rounded-lg hover:opacity-35 text-[#fff] font-bold ${
@@ -206,7 +245,8 @@ const BillsTable = ({ refetch }) => {
                   {bill.billStatus}
                 </button>
               </div>
-              <div className='col-span-1 flex justify-center'>
+
+              <div className='hidden md:block col-span-1'>
                 <button
                   onClick={() => handleDeleteBill(bill)}
                   className={`px-4 py-2 capitalize rounded-lg hover:opacity-35 text-[#fff] font-bold bg-red-600`}
