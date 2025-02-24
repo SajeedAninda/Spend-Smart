@@ -78,7 +78,7 @@ const Transactions = () => {
 
   return (
     <div>
-      <div className='w-[100%] lg:w-[1000px] px-8 lg:px-0 mx-auto py-8'>
+      <div className='w-[100%] lg:w-[1150px] px-8 lg:px-0 mx-auto py-8'>
         <div className='upperDiv flex justify-between items-center gap-10 lg:gap-0'>
           <h1 className='text-[20px] md:text-[26px] lg:text-[32px] font-bold text-[#02101c]'>Transactions</h1>
           <div className='relative group'>
