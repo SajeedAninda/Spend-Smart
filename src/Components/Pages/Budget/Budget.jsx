@@ -67,8 +67,8 @@ const Budget = () => {
         </div>
       </div>
 
-      <div className='summaryDiv flex w-full justify-between gap-10 mt-10'>
-        <div className='spendingSummary w-[35%] h-fit pb-6 bg-[#cbfdf2] rounded-lg'>
+      <div className='summaryDiv flex flex-col lg:flex-row w-full justify-between gap-10 mt-10'>
+        <div className='spendingSummary w-full lg:w-[35%] h-fit pb-6 bg-[#cbfdf2] rounded-lg'>
           <BudgetPieChart
             transactionData={transactions}
             budgetData={budgets}
@@ -79,7 +79,7 @@ const Budget = () => {
           ></SpendingSummary>
         </div>
 
-        <div className='w-[65%]'>
+        <div className='w-full lg:w-[65%]'>
           <BudgetSummary
             transactionData={transactions}
             budgetData={budgets}

@@ -63,7 +63,7 @@ const UpdateBudgetModal = ({ budget, onClose, refetch }) => {
       onClick={onClose}
     >
       <div
-        className='bg-white w-[40%] p-6 rounded-lg shadow-lg relative'
+        className='bg-white w-[95%] lg:w-[40%] p-6 rounded-lg shadow-lg relative'
         onClick={e => e.stopPropagation()}
       >
         <button
@@ -86,7 +86,8 @@ const UpdateBudgetModal = ({ budget, onClose, refetch }) => {
           </h1>
 
           <h3 className='text-[14px] mt-2 text-[#5b5d5f] font-semibold'>
-          Adjust your spending budget for this category to better track and manage your expenses
+            Adjust your spending budget for this category to better track and
+            manage your expenses
           </h3>
           <form className='mt-4' onSubmit={handleSubmit}>
             {/* MAXIMUM SPEND */}
