@@ -45,7 +45,7 @@ const Budget = () => {
   })
 
   return (
-    <div className='w-[1150px] mx-auto py-8'>
+    <div className='w-[100%] lg:w-[1150px] px-8 lg:px-0 mx-auto py-8'>
       <div className='upperDiv flex justify-between items-center'>
         <h1 className='text-[32px] font-bold text-[#02101c]'>Budgets</h1>
         <div className='relative group'>

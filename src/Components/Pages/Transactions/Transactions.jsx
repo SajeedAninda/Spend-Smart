@@ -153,7 +153,7 @@ const Transactions = () => {
             {/* Sort & Filter Options */}
             <div className='filterField w-full lg:w-[60%] flex flex-col lg:flex-row gap-4 justify-between items-center'>
               {/* Sort By */}
-              <div className='sortingField flex items-center gap-4'>
+              <div className='sortingField w-full flex justify-between lg:justify-center items-center gap-4'>
                 <p className='text-[14px] font-semibold text-[#02101c]'>
                   Sort By
                 </p>

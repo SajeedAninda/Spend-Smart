@@ -78,7 +78,7 @@ const TransactionModal = ({ isOpen, onClose, refetch }) => {
       onClick={onClose}
     >
       <div
-        className='bg-white w-[40%] p-6 rounded-lg shadow-lg relative'
+        className='bg-white w-[90%] lg:w-[40%] p-6 rounded-lg shadow-lg relative'
         onClick={e => e.stopPropagation()}
       >
         <button
