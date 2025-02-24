@@ -78,9 +78,9 @@ const Transactions = () => {
 
   return (
     <div>
-      <div className='w-[1150px] mx-auto py-8'>
-        <div className='upperDiv flex justify-between items-center'>
-          <h1 className='text-[32px] font-bold text-[#02101c]'>Transactions</h1>
+      <div className='w-[100%] lg:w-[1000px] px-8 lg:px-0 mx-auto py-8'>
+        <div className='upperDiv flex justify-between items-center gap-10 lg:gap-0'>
+          <h1 className='text-[20px] md:text-[26px] lg:text-[32px] font-bold text-[#02101c]'>Transactions</h1>
           <div className='relative group'>
             <button
               className='relative inline-block p-px font-semibold leading-6 text-white bg-[#02101c] shadow-lg cursor-pointer rounded-xl shadow-zinc-900 transition-transform duration-300 ease-in-out hover:scale-105 active:scale-95'
@@ -102,7 +102,7 @@ const Transactions = () => {
 
         {
         allTransactions?
-        <div className='middleDiv w-full mt-10 grid grid-cols-3 gap-6 items-center'>
+        <div className='middleDiv w-full mt-10 grid grid-cols-1 lg:grid-cols-3 gap-6 items-center'>
           <div className='bg-gradient-to-r from-[#30e4ba] to-[#1b4f80] py-6 px-10 rounded-lg'>
             <h4 className='text-[16px] font-bold text-[#02101c]'>
               Total Transactions
@@ -135,11 +135,11 @@ const Transactions = () => {
         }
 
         <div className='lowerDiv bg-[#cbfdf2] rounded-lg w-full p-8 mt-10'>
-          <div className='queryDiv flex justify-between items-center'>
+          <div className='queryDiv flex flex-col lg:flex-row gap-6 lg:gap-0 justify-between items-center'>
             {/* Search Input */}
-            <div className='searchField w-[40%]'>
+            <div className='searchField w-full lg:w-[40%]'>
               <input
-                className='w-[80%] py-3 px-4 rounded-lg border-2 placeholder:text-[14px] border-[#02101c]'
+                className='w-full lg:w-[80%] py-3 px-4 rounded-lg border-2 placeholder:text-[14px] border-[#02101c]'
                 placeholder='Search Transaction By Name'
                 type='text'
                 value={searchTerm}
@@ -151,7 +151,7 @@ const Transactions = () => {
             </div>
 
             {/* Sort & Filter Options */}
-            <div className='filterField w-[60%] flex gap-4 justify-between items-center'>
+            <div className='filterField w-full lg:w-[60%] flex flex-col lg:flex-row gap-4 justify-between items-center'>
               {/* Sort By */}
               <div className='sortingField flex items-center gap-4'>
                 <p className='text-[14px] font-semibold text-[#02101c]'>
