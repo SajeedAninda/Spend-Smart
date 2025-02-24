@@ -68,8 +68,8 @@ const Testimonial = () => {
   }
 
   return (
-    <section className='pb-32'>
-      <div className='w-[1000px] mx-auto'>
+    <section className='pb-32 w-[100%] lg:w-[1000px] px-8 lg:px-0 mx-auto'>
+      <div className=''>
         <div className='mb-12 w-[80%] mx-auto'>
           <h2 className='mb-4 text-center text-3xl font-semibold lg:text-5xl'>
             Discover Why People Love Spend Smart

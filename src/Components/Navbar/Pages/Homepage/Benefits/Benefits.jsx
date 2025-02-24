@@ -80,8 +80,8 @@ const Benefits = forwardRef((props, ref) => {
   }, [activeTab, tabs]);
 
   return (
-    <section ref={ref} className='pb-32'> 
-      <div className='w-[1000px] mx-auto flex max-w-screen-md flex-col items-center gap-6'>
+    <section ref={ref} className='pb-32 w-[100%] lg:w-[1000px] px-8 lg:px-0 mx-auto'> 
+      <div className='mx-auto flex max-w-screen-md flex-col items-center gap-6'>
         <h2 className='mb-4 text-center text-3xl font-semibold lg:text-5xl'>
           Benefits of Spend Smart
         </h2>
@@ -93,7 +93,7 @@ const Benefits = forwardRef((props, ref) => {
 
       {/* Tab Buttons */}
       <div className='mt-12 flex justify-center'>
-        <div className='flex flex-wrap gap-2 rounded-lg border-2 border-[#87f5db] p-2'>
+        <div className='flex justify-center flex-wrap gap-2 rounded-lg lg:border-2 lg:border-[#87f5db] p-2'>
           {tabs.map(tab => (
             <button
               key={tab.id}
@@ -118,8 +118,8 @@ const Benefits = forwardRef((props, ref) => {
       </div>
 
       {/* Benefits Content */}
-      <div className='mt-12 max-w-screen-lg mx-auto flex justify-between items-center'>
-        <div className='w-[50%]'>
+      <div className='mt-12 max-w-screen-lg mx-auto flex flex-col lg:flex-row justify-between items-center'>
+        <div className='w-full lg:w-[50%]'>
           <h3 className='mb-8 text-2xl font-semibold md:text-4xl'>
             {benefits[activeTab].title}
           </h3>
@@ -151,7 +151,7 @@ const Benefits = forwardRef((props, ref) => {
         </div>
 
         {/* Lottie Animation */}
-        <div className='w-[50%]'>
+        <div className='w-full lg:w-[50%]'>
           <Lottie animationData={lottieFiles[activeTab]} loop={true} />
         </div>
       </div>
