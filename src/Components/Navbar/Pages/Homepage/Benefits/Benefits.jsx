@@ -1,26 +1,26 @@
-import React, { useState, useEffect } from 'react'
-import trackerLottie from '../../../../../assets/trackerLottie.json'
-import piggyLottie from '../../../../../assets/piggieLottie.json'
-import budgetLottie from '../../../../../assets/budgetLottie.json'
-import billsLottie from '../../../../../assets/billsLottie.json'
-import Lottie from 'lottie-react'
+import React, { useState, useEffect, forwardRef } from 'react';
+import trackerLottie from '../../../../../assets/trackerLottie.json';
+import piggyLottie from '../../../../../assets/piggieLottie.json';
+import budgetLottie from '../../../../../assets/budgetLottie.json';
+import billsLottie from '../../../../../assets/billsLottie.json';
+import Lottie from 'lottie-react';
 
-const Benefits = () => {
-  const [activeTab, setActiveTab] = useState('transactions')
+const Benefits = forwardRef((props, ref) => {
+  const [activeTab, setActiveTab] = useState('transactions');
 
   const tabs = [
     { id: 'transactions', label: 'Transaction Tracking' },
     { id: 'budgeting', label: 'Smart Budgeting' },
     { id: 'piggy-bank', label: 'Piggy Bank & Savings' },
     { id: 'recurring-bills', label: 'Recurring Bills Management' }
-  ]
+  ];
 
   const lottieFiles = {
     transactions: trackerLottie,
     budgeting: budgetLottie,
     'piggy-bank': piggyLottie,
     'recurring-bills': billsLottie
-  }
+  };
 
   const benefits = {
     transactions: {
@@ -67,20 +67,20 @@ const Benefits = () => {
         'Bill payment history and reports'
       ]
     }
-  }
+  };
 
   useEffect(() => {
     const intervalId = setInterval(() => {
-      const currentIndex = tabs.findIndex(tab => tab.id === activeTab)
-      const nextTabIndex = (currentIndex + 1) % tabs.length
-      setActiveTab(tabs[nextTabIndex].id)
-    }, 4000)
+      const currentIndex = tabs.findIndex(tab => tab.id === activeTab);
+      const nextTabIndex = (currentIndex + 1) % tabs.length;
+      setActiveTab(tabs[nextTabIndex].id);
+    }, 4000);
 
-    return () => clearInterval(intervalId)
-  }, [activeTab, tabs])
+    return () => clearInterval(intervalId);
+  }, [activeTab, tabs]);
 
   return (
-    <section className='pb-32'>
+    <section ref={ref} className='pb-32'> 
       <div className='w-[1000px] mx-auto flex max-w-screen-md flex-col items-center gap-6'>
         <h2 className='mb-4 text-center text-3xl font-semibold lg:text-5xl'>
           Benefits of Spend Smart
@@ -156,7 +156,7 @@ const Benefits = () => {
         </div>
       </div>
     </section>
-  )
-}
+  );
+});
 
-export default Benefits
+export default Benefits;
