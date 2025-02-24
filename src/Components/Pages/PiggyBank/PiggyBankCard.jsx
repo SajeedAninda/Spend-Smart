@@ -59,7 +59,7 @@ const PiggyBankCard = ({ piggyBankData, refetch }) => {
   }
 
   return (
-    <div className='grid grid-cols-2 gap-x-6 gap-y-8'>
+    <div className='grid grid-cols-1 lg:grid-cols-2 gap-x-6 gap-y-8'>
       {piggyBankData?.map(bank => {
         const progress = (bank.availableBalance / bank.targetSpend) * 100
         return (
