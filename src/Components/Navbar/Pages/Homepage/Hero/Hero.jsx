@@ -1,13 +1,13 @@
-import React from 'react';
-import { SiKnowledgebase } from 'react-icons/si';
-import { VscDebugStart } from 'react-icons/vsc';
-import MainButton from '../../../../Shared/MainButton';
-import heroImg from '../../../../../assets/hero.webp';
-import { Link } from 'react-router-dom';
-import useAuth from '../../../../Hooks/useAuth';
+import React from 'react'
+import { SiKnowledgebase } from 'react-icons/si'
+import { VscDebugStart } from 'react-icons/vsc'
+import MainButton from '../../../../Shared/MainButton'
+import heroImg from '../../../../../assets/hero.webp'
+import { Link } from 'react-router-dom'
+import useAuth from '../../../../Hooks/useAuth'
 
 const Hero = ({ scrollToBenefits }) => {
-  const { loggedInUser } = useAuth();
+  const { loggedInUser } = useAuth()
 
   return (
     <section className='pt-24 pb-32'>
@@ -34,21 +34,22 @@ const Hero = ({ scrollToBenefits }) => {
                   </Link>
                 )}
 
-                {/* Learn More Button */}
-                <button
-                  onClick={scrollToBenefits}
-                  className='relative inline-block p-px font-semibold leading-6 text-[#02101c] bg-[#30e4ba] shadow-lg cursor-pointer rounded-xl shadow-zinc-900 transition-transform duration-300 ease-in-out hover:scale-105 active:scale-95'
-                >
-                  <span className='absolute inset-0 rounded-xl bg-gradient-to-r from-[#02101c] via-[#023a6b] to-white p-[2px] opacity-0 transition-opacity duration-500 group-hover:opacity-100'></span>
-                  <span className='relative z-10 block px-6 py-3 rounded-xl bg-[#30e4ba] '>
-                    <div className='relative z-10 flex items-center space-x-2'>
-                      <span className='transition-all duration-500 group-hover:translate-x-1'>
-                        Learn More
-                      </span>
-                      <SiKnowledgebase className='w-6 h-6 transition-transform duration-500 group-hover:translate-x-1' />
-                    </div>
-                  </span>
-                </button>
+                <div className='relative group'>
+                  <button
+                    onClick={scrollToBenefits}
+                    className='relative inline-block p-px font-semibold leading-6 text-[#02101c] bg-[#30e4ba] shadow-lg cursor-pointer rounded-xl shadow-zinc-900 transition-transform duration-300 ease-in-out hover:scale-105 active:scale-95'
+                  >
+                    <span className='absolute inset-0 rounded-xl bg-gradient-to-r from-[#02101c] via-[#023a6b] to-white p-[2px] opacity-0 transition-opacity duration-500 group-hover:opacity-100'></span>
+                    <span className='relative z-10 block px-6 py-3 rounded-xl bg-[#30e4ba] '>
+                      <div className='relative z-10 flex items-center space-x-2'>
+                        <span className='transition-all duration-500 group-hover:translate-x-1'>
+                          Learn More
+                        </span>
+                        <SiKnowledgebase className='w-6 h-6 transition-transform duration-500 group-hover:translate-x-1' />
+                      </div>
+                    </span>
+                  </button>
+                </div>
               </div>
             </div>
           </div>
@@ -60,7 +61,7 @@ const Hero = ({ scrollToBenefits }) => {
         </div>
       </div>
     </section>
-  );
-};
+  )
+}
 
-export default Hero;
+export default Hero
