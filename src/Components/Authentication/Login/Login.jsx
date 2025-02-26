@@ -6,11 +6,11 @@ import useAuth from '../../Hooks/useAuth'
 import toast from 'react-hot-toast'
 import { Link, useNavigate } from 'react-router-dom'
 import SocialLogin from '../SocialLogin'
+import DemoUser from '../DemoUser/DemoUser'
 
 const Login = () => {
   let { signIn, googleLogin } = useAuth()
   let navigate = useNavigate()
-
 
   let handleLogin = e => {
     e.preventDefault()
@@ -35,13 +35,12 @@ const Login = () => {
       })
   }
 
-
   return (
     <div className='w-full h-screen flex'>
       <div className='loginDiv w-[530px] py-12 px-20'>
         <h3 className='font-bold text-[18px] text-[#30e4ba]'>Spend Smart</h3>
-        <h1 className='font-bold text-[32px] text-[#02101c] mt-3'>Sign In.</h1>
-        <form onSubmit={handleLogin} className='mt-6'>
+        <h1 className='font-bold text-[32px] text-[#02101c] mt-1'>Sign In.</h1>
+        <form onSubmit={handleLogin} className='mt-4'>
           <div>
             <label htmlFor='email' className='text-[#02101c] font-semibold'>
               Email
@@ -93,10 +92,22 @@ const Login = () => {
           </div>
         </div>
 
-       <SocialLogin></SocialLogin>
+        <SocialLogin></SocialLogin>
 
-        <div className='mt-8'>
-            <p className='text-[18px] text-center font-semibold text-[#02101c]'>Don't Have an Account? <Link className='font-bold text-[#30e4ba] hover:underline' to={"/register"}>Register</Link></p>
+        <div className='mt-6'>
+          <p className='text-[18px] text-center font-semibold text-[#02101c]'>
+            Don't Have an Account?{' '}
+            <Link
+              className='font-bold text-[#30e4ba] hover:underline'
+              to={'/register'}
+            >
+              Register
+            </Link>
+          </p>
+        </div>
+
+        <div className='mt-4'>
+          <DemoUser></DemoUser>
         </div>
       </div>
       <div className='imgDiv flex-1'>
