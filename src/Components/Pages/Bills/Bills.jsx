@@ -7,6 +7,7 @@ import { useQuery } from '@tanstack/react-query'
 import TotalBills from './TotalBills'
 import BillSummary from './BillSummary'
 import BillsTable from './BillsTable'
+import { InfinitySpin } from 'react-loader-spinner'
 
 const Bills = () => {
   const [isModalOpen, setIsModalOpen] = useState(false)
@@ -59,16 +60,51 @@ const Bills = () => {
       </div>
 
       <div className='middleDiv flex flex-col lg:flex-row justify-between items-center mt-6 gap-8'>
-        <div className='w-full lg:w-[50%]'>
-          <TotalBills allBills={allBills}></TotalBills>
-        </div>
-        <div className='w-full lg:w-[50%]'>
-          <BillSummary allBills={allBills}></BillSummary>
-        </div>
+        {isLoading ? (
+          <div className='w-full flex justify-center items-center'>
+            <InfinitySpin
+              visible={true}
+              width='200'
+              color='#30e4ba'
+              ariaLabel='infinity-spin-loading'
+            />
+          </div>
+        ) : allBills && allBills.length > 0 ? (
+          <>
+            <div className='w-full lg:w-[50%]'>
+              <TotalBills allBills={allBills} />
+            </div>
+            <div className='w-full lg:w-[50%]'>
+              <BillSummary allBills={allBills} />
+            </div>
+          </>
+        ) : (
+          <div className='w-full col-span-2 flex justify-center items-center'>
+            <p className='text-[20px] font-bold text-[#02101c]'>
+              No bills found. Start by adding a new bill!
+            </p>
+          </div>
+        )}
       </div>
 
       <div className='lowerDiv mt-10'>
-        <BillsTable refetch={refetch}></BillsTable>
+        {isLoading ? (
+          <div className='w-full flex justify-center items-center'>
+            <InfinitySpin
+              visible={true}
+              width='200'
+              color='#30e4ba'
+              ariaLabel='infinity-spin-loading'
+            />
+          </div>
+        ) : allBills && allBills.length > 0 ? (
+          <BillsTable refetch={refetch} />
+        ) : (
+          <div className='w-full flex justify-center items-center'>
+            <p className='text-[20px] font-bold text-[#02101c]'>
+            </p>
+          </div>
+        )}
       </div>
 
       {isModalOpen && (
