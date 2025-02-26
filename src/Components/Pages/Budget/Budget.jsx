@@ -7,6 +7,7 @@ import useAxiosInstance from '../../Hooks/useAxiosInstance'
 import useAuth from '../../Hooks/useAuth'
 import SpendingSummary from './SpendingSummary'
 import BudgetSummary from './BudgetSummary'
+import { InfinitySpin } from 'react-loader-spinner'
 
 const Budget = () => {
   const [isModalOpen, setIsModalOpen] = useState(false)
@@ -68,24 +69,43 @@ const Budget = () => {
       </div>
 
       <div className='summaryDiv flex flex-col lg:flex-row w-full justify-between gap-10 mt-10'>
-        <div className='spendingSummary w-full lg:w-[35%] h-fit pb-6 bg-[#cbfdf2] rounded-lg'>
-          <BudgetPieChart
-            transactionData={transactions}
-            budgetData={budgets}
-          ></BudgetPieChart>
-          <SpendingSummary
-            transactionData={transactions}
-            budgetData={budgets}
-          ></SpendingSummary>
-        </div>
+        {isLoading ? (
+          <div className='w-full flex justify-center items-center'>
+            <InfinitySpin
+              visible={true}
+              width='200'
+              color='#30e4ba'
+              ariaLabel='infinity-spin-loading'
+            />
+          </div>
+        ) : budgets && budgets.length > 0 ? (
+          <>
+            <div className='spendingSummary w-full lg:w-[35%] h-fit pb-6 bg-[#cbfdf2] rounded-lg'>
+              <BudgetPieChart
+                transactionData={transactions}
+                budgetData={budgets}
+              ></BudgetPieChart>
+              <SpendingSummary
+                transactionData={transactions}
+                budgetData={budgets}
+              ></SpendingSummary>
+            </div>
 
-        <div className='w-full lg:w-[65%]'>
-          <BudgetSummary
-            transactionData={transactions}
-            budgetData={budgets}
-            refetch={refetch}
-          ></BudgetSummary>
-        </div>
+            <div className='w-full lg:w-[65%]'>
+              <BudgetSummary
+                transactionData={transactions}
+                budgetData={budgets}
+                refetch={refetch}
+              ></BudgetSummary>
+            </div>
+          </>
+        ) : (
+          <div className='w-full flex justify-center items-center'>
+            <p className='text-[20px] font-bold text-[#02101c]'>
+              No budgets found. Start by adding a new budget!
+            </p>
+          </div>
+        )}
       </div>
       <BudgetModal
         isOpen={isModalOpen}
