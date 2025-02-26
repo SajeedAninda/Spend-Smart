@@ -101,38 +101,49 @@ const Transactions = () => {
         </div>
 
         {
-        allTransactions?
-        <div className='middleDiv w-full mt-10 grid grid-cols-1 lg:grid-cols-3 gap-6 items-center'>
-          <div className='bg-gradient-to-r from-[#30e4ba] to-[#1b4f80] py-6 px-10 rounded-lg'>
-            <h4 className='text-[16px] font-bold text-[#02101c]'>
-              Total Transactions
-            </h4>
-            <p className='text-[33px] font-bold text-[#02101c]'>
-              $ {totalTransactions}
-            </p>
-          </div>
+  isTotalLoading ? (
+    <TransactionInfoSkeleton />
+  ) : allTransactions && allTransactions.length > 0 ? (
+    // Transaction Summary Cards
+    <div className='middleDiv w-full mt-10 grid grid-cols-1 lg:grid-cols-3 gap-6 items-center'>
+      {/* Total Transactions Card */}
+      <div className='bg-gradient-to-r from-[#30e4ba] to-[#1b4f80] py-6 px-10 rounded-lg'>
+        <h4 className='text-[16px] font-bold text-[#02101c]'>
+          Total Transactions
+        </h4>
+        <p className='text-[33px] font-bold text-[#02101c]'>
+          $ {totalTransactions}
+        </p>
+      </div>
 
-          <div className='bg-gradient-to-r from-[#30e4ba] to-green-600 py-6 px-10 rounded-lg'>
-            <h4 className='text-[16px] font-bold text-[#02101c]'>
-              Total Earned
-            </h4>
-            <p className='text-[33px] font-bold text-[#02101c]'>
-              $ {totalEarned}
-            </p>
-          </div>
+      {/* Total Earned Card */}
+      <div className='bg-gradient-to-r from-[#30e4ba] to-green-600 py-6 px-10 rounded-lg'>
+        <h4 className='text-[16px] font-bold text-[#02101c]'>
+          Total Earned
+        </h4>
+        <p className='text-[33px] font-bold text-[#02101c]'>
+          $ {totalEarned}
+        </p>
+      </div>
 
-          <div className='bg-gradient-to-r from-[#30e4ba] to-red-600 py-6 px-10 rounded-lg'>
-            <h4 className='text-[16px] font-bold text-[#02101c]'>
-              Total Spent
-            </h4>
-            <p className='text-[33px] font-bold text-[#02101c]'>
-              $ {totalSpent}
-            </p>
-          </div>
-        </div>
-        :
-        <TransactionInfoSkeleton></TransactionInfoSkeleton>
-        }
+      {/* Total Spent Card */}
+      <div className='bg-gradient-to-r from-[#30e4ba] to-red-600 py-6 px-10 rounded-lg'>
+        <h4 className='text-[16px] font-bold text-[#02101c]'>
+          Total Spent
+        </h4>
+        <p className='text-[33px] font-bold text-[#02101c]'>
+          $ {totalSpent}
+        </p>
+      </div>
+    </div>
+  ) : (
+    <div className='middleDiv w-full mt-10 flex justify-center items-center'>
+      <p className='text-[20px] font-bold text-[#02101c]'>
+        No transactions found. Start by adding a new transaction!
+      </p>
+    </div>
+  )
+}
 
         <div className='lowerDiv bg-[#cbfdf2] rounded-lg w-full p-8 mt-10'>
           <div className='queryDiv flex flex-col lg:flex-row gap-6 lg:gap-0 justify-between items-center'>
