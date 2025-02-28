@@ -12,8 +12,8 @@ import useAxiosInstance from '../../Hooks/useAxiosInstance'
 import useAuth from '../../Hooks/useAuth'
 import toast from 'react-hot-toast'
 
-const BillModal = ({ isOpen, onClose,refetch }) => {
-    const [billNameText, setBillNameText] = useState('')
+const BillModal = ({ isOpen, onClose, refetch }) => {
+  const [billNameText, setBillNameText] = useState('')
   const [billingAmount, setBillingAmount] = useState('')
   const [billDueDay, setBillDueDay] = useState('')
 
@@ -59,6 +59,7 @@ const BillModal = ({ isOpen, onClose,refetch }) => {
       onClick={onClose}
     >
       <div
+        data-aos='fade-up'
         className='bg-white w-[90%] lg:w-[40%] p-6 rounded-lg shadow-lg relative'
         onClick={e => e.stopPropagation()}
       >

@@ -50,6 +50,7 @@ const WithdrawMoneyModal = ({ piggyBank, onClose, refetch }) => {
       onClick={onClose}
     >
       <div
+        data-aos='fade-up'
         className='bg-white w-[90%] lg:w-[40%] p-6 rounded-lg shadow-lg relative'
         onClick={e => e.stopPropagation()}
       >
