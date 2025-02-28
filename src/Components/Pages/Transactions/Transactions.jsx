@@ -77,15 +77,15 @@ const Transactions = () => {
     .toFixed(2)
 
   return (
-    <div>
+    <div className='dark:bg-[#02101c]'>
       <div className='w-[100%] lg:w-[1150px] px-8 lg:px-0 mx-auto py-8' data-aos="fade-up">
         <div className='upperDiv flex justify-between items-center gap-10 lg:gap-0'>
-          <h1 className='text-[20px] md:text-[26px] lg:text-[32px] font-bold text-[#02101c]'>
+          <h1 className='text-[20px] md:text-[26px] lg:text-[32px] font-bold text-[#02101c] dark:text-white'>
             Transactions
           </h1>
           <div className='relative group'>
             <button
-              className='relative inline-block p-px font-semibold leading-6 text-white bg-[#02101c] shadow-lg cursor-pointer rounded-xl shadow-zinc-900 transition-transform duration-300 ease-in-out hover:scale-105 active:scale-95'
+              className='relative inline-block p-px font-semibold leading-6 text-white bg-[#02101c] dark:bg-white shadow-lg cursor-pointer rounded-xl shadow-zinc-900 transition-transform duration-300 ease-in-out hover:scale-105 active:scale-95'
               onClick={() => setIsModalOpen(true)}
             >
               <span className='absolute inset-0 rounded-xl bg-gradient-to-r from-[#02101c] via-[#023a6b] to-white p-[2px] opacity-0 transition-opacity duration-500 group-hover:opacity-100'></span>
@@ -108,49 +108,49 @@ const Transactions = () => {
           // Transaction Summary Cards
           <div className='middleDiv w-full mt-10 grid grid-cols-1 lg:grid-cols-3 gap-6 items-center'>
             {/* Total Transactions Card */}
-            <div className='bg-gradient-to-r from-[#30e4ba] to-[#1b4f80] py-6 px-10 rounded-lg'>
-              <h4 className='text-[16px] font-bold text-[#02101c]'>
+            <div className='bg-gradient-to-r from-[#30e4ba] dark:from-[#237260] to-[#1b4f80] py-6 px-10 rounded-lg'>
+              <h4 className='text-[16px] font-bold text-[#02101c] dark:text-white'>
                 Total Transactions
               </h4>
-              <p className='text-[33px] font-bold text-[#02101c]'>
+              <p className='text-[33px] font-bold text-[#02101c] dark:text-white'>
                 $ {totalTransactions}
               </p>
             </div>
 
             {/* Total Earned Card */}
-            <div className='bg-gradient-to-r from-[#30e4ba] to-green-600 py-6 px-10 rounded-lg'>
-              <h4 className='text-[16px] font-bold text-[#02101c]'>
+            <div className='bg-gradient-to-r from-[#30e4ba] dark:from-[#237260] to-green-600 py-6 px-10 rounded-lg'>
+              <h4 className='text-[16px] font-bold text-[#02101c] dark:text-white'>
                 Total Earned
               </h4>
-              <p className='text-[33px] font-bold text-[#02101c]'>
+              <p className='text-[33px] font-bold text-[#02101c] dark:text-white'>
                 $ {totalEarned}
               </p>
             </div>
 
             {/* Total Spent Card */}
-            <div className='bg-gradient-to-r from-[#30e4ba] to-red-600 py-6 px-10 rounded-lg'>
-              <h4 className='text-[16px] font-bold text-[#02101c]'>
+            <div className='bg-gradient-to-r from-[#30e4ba] dark:from-[#237260] to-red-600 py-6 px-10 rounded-lg'>
+              <h4 className='text-[16px] font-bold text-[#02101c] dark:text-white'>
                 Total Spent
               </h4>
-              <p className='text-[33px] font-bold text-[#02101c]'>
+              <p className='text-[33px] font-bold text-[#02101c] dark:text-white'>
                 $ {totalSpent}
               </p>
             </div>
           </div>
         ) : (
           <div className='middleDiv w-full mt-10 flex justify-center items-center'>
-            <p className='text-[20px] font-bold text-[#02101c]'>
+            <p className='text-[20px] font-bold text-[#02101c] dark:text-white'>
               No transactions found. Start by adding a new transaction!
             </p>
           </div>
         )}
 
-        <div className='lowerDiv bg-[#cbfdf2] rounded-lg w-full p-8 mt-10'>
+        <div className='lowerDiv bg-[#cbfdf2] dark:bg-[#125042] rounded-lg w-full p-8 mt-10'>
           <div className='queryDiv flex flex-col lg:flex-row gap-6 lg:gap-0 justify-between items-center'>
             {/* Search Input */}
             <div className='searchField w-full lg:w-[40%]'>
               <input
-                className='w-full lg:w-[80%] py-3 px-4 rounded-lg border-2 placeholder:text-[14px] border-[#02101c]'
+                className='w-full lg:w-[80%] py-3 px-4 rounded-lg border-2 placeholder:text-[14px] border-[#02101c] dark:border-white dark:bg-slate-900 dark:placeholder:text-white'
                 placeholder='Search Transaction By Name'
                 type='text'
                 value={searchTerm}
@@ -165,7 +165,7 @@ const Transactions = () => {
             <div className='filterField w-full lg:w-[60%] flex flex-col lg:flex-row gap-4 justify-between items-center'>
               {/* Sort By */}
               <div className='sortingField w-full flex justify-between lg:justify-center items-center gap-4'>
-                <p className='text-[14px] font-semibold text-[#02101c]'>
+                <p className='text-[14px] font-semibold text-[#02101c] dark:text-white'>
                   Sort By
                 </p>
                 <Select
@@ -175,7 +175,7 @@ const Transactions = () => {
                     refetch()
                   }}
                 >
-                  <SelectTrigger className='w-[180px] border-2 border-[#02101c]'>
+                  <SelectTrigger className='w-[180px] border-2 border-[#02101c] dark:border-white dark:text-white'>
                     <SelectValue placeholder='Select an option' />
                   </SelectTrigger>
                   <SelectContent>
@@ -189,7 +189,7 @@ const Transactions = () => {
 
               {/* Filter By Category */}
               <div className='filterField flex items-center gap-4'>
-                <p className='text-[14px] font-semibold text-[#02101c]'>
+                <p className='text-[14px] font-semibold text-[#02101c] dark:text-white'>
                   Filter By Category
                 </p>
                 <Select
@@ -199,7 +199,7 @@ const Transactions = () => {
                     refetch()
                   }}
                 >
-                  <SelectTrigger className='w-[180px] border-2 border-[#02101c]'>
+                  <SelectTrigger className='w-[180px] border-2 border-[#02101c] dark:border-white dark:text-white'>
                     <SelectValue placeholder='Select an option' />
                   </SelectTrigger>
                   <SelectContent>

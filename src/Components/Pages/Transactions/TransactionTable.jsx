@@ -16,16 +16,16 @@ const TransactionTable = ({ transactions }) => {
       {transactions ? (
         <div className='w-full mt-10'>
           <div className='hidden md:grid grid-cols-12 items-center border-b border-gray-400'>
-            <div className='text-[#02101c] text-[16px] font-bold col-span-4 py-4 flex justify-center'>
+            <div className='text-[#02101c] dark:text-white text-[16px] font-bold col-span-4 py-4 flex justify-center'>
               Transaction Name
             </div>
-            <div className='text-[#02101c] text-[16px] font-bold col-span-2 flex justify-center'>
+            <div className='text-[#02101c] dark:text-white text-[16px] font-bold col-span-2 flex justify-center'>
               Category
             </div>
-            <div className='text-[#02101c] text-[16px] font-bold col-span-3 flex justify-center'>
+            <div className='text-[#02101c] dark:text-white text-[16px] font-bold col-span-3 flex justify-center'>
               Transaction Date
             </div>
-            <div className='text-[#02101c] text-[16px] font-bold col-span-2 flex justify-center'>
+            <div className='text-[#02101c] dark:text-white text-[16px] font-bold col-span-2 flex justify-center'>
               Amount
             </div>
           </div>
@@ -36,7 +36,7 @@ const TransactionTable = ({ transactions }) => {
             const formattedAmount = isSpent
               ? `- ${formatAmount(transaction?.amount)}`
               : `+ ${formatAmount(transaction?.amount)}`;
-            const amountClass = isSpent ? 'text-red-600' : 'text-green-600';
+            const amountClass = isSpent ? 'text-red-600 dark:text-red-500' : 'text-green-600 dark:text-green-500';
 
             return (
               <div
@@ -45,24 +45,24 @@ const TransactionTable = ({ transactions }) => {
               >
                 
                 <div className='md:hidden px-4'>
-                  <div className='text-[#02101c] text-[14px] font-bold'>
+                  <div className='text-[#02101c] dark:text-white text-[14px] font-bold'>
                     {transaction?.transactionName}
                   </div>
-                  <div className='text-[#02101c] text-[12px] font-semibold capitalize'>
+                  <div className='text-[#02101c] dark:text-white text-[12px] font-semibold capitalize'>
                     {transaction?.category}
                   </div>
                 </div>
 
-                <div className='hidden md:flex justify-center items-center text-[#02101c] text-[14px] font-bold col-span-4 py-4 pl-4'>
+                <div className='hidden md:flex justify-center items-center text-[#02101c] dark:text-white text-[14px] font-bold col-span-4 py-4 pl-4'>
                   {transaction?.transactionName}
                 </div>
 
-                <div className='hidden md:flex justify-center items-center text-[#02101c] text-[14px] font-semibold col-span-2 capitalize'>
+                <div className='hidden md:flex justify-center items-center text-[#02101c] dark:text-white text-[14px] font-semibold col-span-2 capitalize'>
                   {transaction?.category}
                 </div>
 
                 <div className='md:hidden px-4 mt-2'>
-                  <div className='text-[#02101c] text-[12px] font-semibold'>
+                  <div className='text-[#02101c] dark:text-white text-[12px] font-semibold'>
                     Date: {transactionDate}
                   </div>
                   <div className={`text-[12px] font-bold ${amountClass}`}>
@@ -70,7 +70,7 @@ const TransactionTable = ({ transactions }) => {
                   </div>
                 </div>
 
-                <div className='hidden md:flex justify-center items-center text-[#02101c] text-[14px] font-semibold col-span-3'>
+                <div className='hidden md:flex justify-center items-center text-[#02101c] dark:text-white text-[14px] font-semibold col-span-3'>
                   {transactionDate}
                 </div>
 
