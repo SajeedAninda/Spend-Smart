@@ -12,7 +12,7 @@ const TotalBills = ({ allBills }) => {
     }
 
   return (
-    <div className='bg-[#02101c] h-[200px] rounded-lg py-8 px-8 gap-8 lg:gap-0 lg:px-20 flex justify-between items-center'>
+    <div className='bg-[#02101c] dark:bg-[#125042] h-[200px] rounded-lg py-8 px-8 gap-8 lg:gap-0 lg:px-20 flex justify-between items-center'>
       <FaMoneyBillWheat className='text-white text-[120px]' />
       <div className='flex flex-col '>
         <p className='text-[18px] lg:text-[25px] font-semibold text-white'>Total Recurring Bills</p>

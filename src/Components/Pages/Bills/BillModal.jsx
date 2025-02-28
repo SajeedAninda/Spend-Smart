@@ -60,11 +60,11 @@ const BillModal = ({ isOpen, onClose, refetch }) => {
     >
       <div
         data-aos='fade-up'
-        className='bg-white w-[90%] lg:w-[40%] p-6 rounded-lg shadow-lg relative'
+        className='bg-white dark:bg-[#02101c] w-[90%] lg:w-[40%] p-6 rounded-lg shadow-lg relative'
         onClick={e => e.stopPropagation()}
       >
         <button
-          className='absolute top-3 right-3 text-gray-600 hover:text-black'
+          className='absolute top-3 right-3 text-gray-600 dark:text-white hover:text-black'
           onClick={onClose}
         >
           <IoClose size={24} />
@@ -72,18 +72,18 @@ const BillModal = ({ isOpen, onClose, refetch }) => {
 
         {/* Modal Content */}
         <div>
-          <h1 className='text-[20px] text-[#02101c] font-bold'>
+          <h1 className='text-[20px] text-[#02101c] dark:text-white font-bold'>
             Add New Recurring Bill
           </h1>
           <form className='mt-4' onSubmit={handleSubmit}>
             {/* Bill Name */}
             <div>
-              <label className='text-[14px]' htmlFor='billName'>
+              <label className='text-[14px] dark:text-white' htmlFor='billName'>
                 Bill Name
               </label>
               <input
                 onChange={e => setBillNameText(e.target.value)}
-                className='w-full py-3 px-4 rounded-lg border mt-2 placeholder:text-[14px] placeholder:text-gray-500 border-[#02101c]'
+                className='w-full dark:bg-slate-900 dark:placeholder:text-white py-3 px-4 rounded-lg border mt-2 placeholder:text-[14px] dark:text-white placeholder:text-gray-500 border-[#02101c]'
                 placeholder='e.g: Monthly Internet Bill'
                 type='text'
                 name='billName'
@@ -91,18 +91,18 @@ const BillModal = ({ isOpen, onClose, refetch }) => {
                 maxLength={30}
                 required
               />
-              <p className='mt-2 text-[14px] text-right'>
+              <p className='mt-2 text-[14px] dark:text-white text-right'>
                 {30 - billNameText?.length} characters left
               </p>
             </div>
 
             {/* Bill Due Date */}
             <div className='mt-1'>
-              <label className='text-[14px]' htmlFor='billDueDate'>
+              <label className='text-[14px] dark:text-white' htmlFor='billDueDate'>
                 Bill Due Date
               </label>
               <Select onValueChange={setBillDueDay}>
-                <SelectTrigger className='w-full mt-3 border border-[#02101c] h-[40px]'>
+                <SelectTrigger className='w-full mt-3 border border-[#02101c] h-[40px] dark:text-white dark:border-white'>
                   <SelectValue placeholder='Select a day of the month' />
                 </SelectTrigger>
                 <SelectContent className='max-h-[250px] overflow-y-auto'>
@@ -110,7 +110,7 @@ const BillModal = ({ isOpen, onClose, refetch }) => {
                     <SelectItem
                       key={i + 1}
                       value={`${i + 1}`}
-                      className='py-2 text-[14px]'
+                      className='py-2 text-[14px] dark:text-white'
                     >
                       {`${i + 1}${
                         i + 1 === 1
@@ -129,11 +129,11 @@ const BillModal = ({ isOpen, onClose, refetch }) => {
 
             {/* Bill Amount */}
             <div className='mt-3'>
-              <label className='text-[14px]' htmlFor='billAmount'>
+              <label className='text-[14px] dark:text-white' htmlFor='billAmount'>
                 Bill Amount
               </label>
               <input
-                className='w-full py-3 px-4 rounded-lg border mt-2 placeholder:text-[14px] placeholder:text-gray-500 border-[#02101c]'
+                className='w-full dark:bg-slate-900 dark:placeholder:text-white py-3 px-4 rounded-lg border mt-2 placeholder:text-[14px] dark:text-white placeholder:text-gray-500 border-[#02101c]'
                 placeholder='e.g: $180'
                 type='number'
                 name='billAmount'
@@ -147,7 +147,7 @@ const BillModal = ({ isOpen, onClose, refetch }) => {
             {/* Submit Button */}
             <button
               type='submit'
-              className='relative mt-4 w-full flex justify-center p-px font-semibold leading-6 text-white bg-[#02101c] shadow-lg cursor-pointer rounded-xl shadow-zinc-900 transition-transform duration-300 ease-in-out hover:scale-105 active:scale-95'
+              className='relative mt-4 w-full flex justify-center p-px font-semibold leading-6 text-white bg-[#02101c] shadow-lg cursor-pointer rounded-xl shadow-zinc-900 transition-transform duration-300 ease-in-out hover:scale-105 active:scale-95 dark:border-2 dark:border-white'
             >
               <span className='relative z-10 block px-6 py-3 rounded-xl bg-[#02101c] '>
                 <div className='relative z-10 flex items-center space-x-2'>

@@ -112,7 +112,7 @@ const BillsTable = ({ refetch }) => {
         {/* Search Input */}
         <div className='searchField w-full lg:w-[60%]'>
           <input
-            className='w-full lg:w-[80%] py-3 px-4 rounded-lg border-2 placeholder:text-[14px] border-[#02101c]'
+            className='w-full dark:bg-slate-800 dark:placeholder:text-white lg:w-[80%] py-3 px-4 rounded-lg border-2 placeholder:text-[14px] border-[#02101c]'
             placeholder='Search Bills By Name'
             type='text'
             value={searchTerm}
@@ -126,7 +126,7 @@ const BillsTable = ({ refetch }) => {
         {/* Sort Options */}
         <div className='filterField w-full lg:w-[40%] flex gap-4 justify-center items-center'>
           <div className='sortingField flex items-center gap-4'>
-            <p className='text-[14px] font-semibold text-[#02101c]'>Sort By</p>
+            <p className='text-[14px] font-semibold text-[#02101c] dark:text-white'>Sort By</p>
             <Select
               value={selectedFilterValue}
               onValueChange={value => {
@@ -134,7 +134,7 @@ const BillsTable = ({ refetch }) => {
                 dataRefetch()
               }}
             >
-              <SelectTrigger className='w-[180px] border-2 border-[#02101c]'>
+              <SelectTrigger className='w-[180px] border-2 border-[#02101c] dark:border-white dark:text-white'>
                 <SelectValue placeholder='Select an option' />
               </SelectTrigger>
               <SelectContent>
@@ -151,22 +151,22 @@ const BillsTable = ({ refetch }) => {
       {/* Bills Table */}
       <div className='w-full py-12'>
         <div className='hidden md:grid grid-cols-12 items-center border-b border-gray-400 py-3'>
-          <div className='text-[#02101c] text-[16px] font-bold col-span-3'>
+          <div className='text-[#02101c] dark:text-white text-[16px] font-bold col-span-3'>
             Bill Name
           </div>
-          <div className='text-[#02101c] text-[16px] font-bold col-span-2'>
+          <div className='text-[#02101c] dark:text-white text-[16px] font-bold col-span-2'>
             Bill Status
           </div>
-          <div className='text-[#02101c] text-[16px] font-bold col-span-2'>
+          <div className='text-[#02101c] dark:text-white text-[16px] font-bold col-span-2'>
             Due Date
           </div>
-          <div className='text-[#02101c] text-[16px] font-bold col-span-2'>
+          <div className='text-[#02101c] dark:text-white text-[16px] font-bold col-span-2'>
             Billing Amount
           </div>
-          <div className='text-[#02101c] text-[16px] font-bold col-span-2'>
+          <div className='text-[#02101c] dark:text-white text-[16px] font-bold col-span-2'>
             Change Status
           </div>
-          <div className='text-[#02101c] text-[16px] font-bold col-span-1'>
+          <div className='text-[#02101c] dark:text-white text-[16px] font-bold col-span-1'>
             Delete Bill
           </div>
         </div>
@@ -181,7 +181,7 @@ const BillsTable = ({ refetch }) => {
               className='grid grid-cols-1 md:grid-cols-12 items-center border-b border-gray-300 py-3'
             >
               <div className='md:hidden px-4 space-y-2'>
-                <div className='text-[#02101c] text-[14px] font-bold'>
+                <div className='text-[#02101c] dark:text-white text-[14px] font-bold'>
                   {bill.billNameText}
                 </div>
                 <div
@@ -191,16 +191,16 @@ const BillsTable = ({ refetch }) => {
                 </div>
               </div>
 
-              <div className='hidden md:block text-[#02101c] text-[14px] font-bold col-span-3 py-4 pl-4'>
+              <div className='hidden md:block text-[#02101c] dark:text-white text-[14px] font-bold col-span-3 py-4 pl-4'>
                 {bill.billNameText}
               </div>
 
-              <div className='hidden md:block text-[14px] font-bold col-span-2 capitalize'>
+              <div className='hidden md:block text-[14px] dark:text-white font-bold col-span-2 capitalize'>
                 {bill.billStatus}
               </div>
 
               <div className='md:hidden px-4 mt-2 space-y-2'>
-                <div className='text-[#02101c] text-[12px] font-semibold'>
+                <div className='text-[#02101c] dark:text-white text-[12px] font-semibold'>
                   Due Date: {bill.billDueDay}th of this Month
                 </div>
                 <div className={`text-[12px] font-bold ${amountClass}`}>
@@ -208,7 +208,7 @@ const BillsTable = ({ refetch }) => {
                 </div>
               </div>
 
-              <div className='hidden md:block text-[#02101c] text-[14px] font-semibold col-span-2'>
+              <div className='hidden md:block text-[#02101c] dark:text-white text-[14px] font-semibold col-span-2'>
                 {bill.billDueDay}th of this Month
               </div>
 
