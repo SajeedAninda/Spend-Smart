@@ -51,18 +51,18 @@ const WithdrawMoneyModal = ({ piggyBank, onClose, refetch }) => {
     >
       <div
         data-aos='fade-up'
-        className='bg-white w-[90%] lg:w-[40%] p-6 rounded-lg shadow-lg relative'
+        className='bg-white dark:bg-[#02101c] w-[90%] lg:w-[40%] p-6 rounded-lg shadow-lg relative'
         onClick={e => e.stopPropagation()}
       >
         <button
-          className='absolute top-3 right-3 text-gray-600 hover:text-black'
+          className='absolute top-3 right-3 text-gray-600 dark:text-white hover:text-black'
           onClick={onClose}
         >
           <IoClose size={24} />
         </button>
 
         <div>
-          <h1 className='text-[20px] text-[#02101c] font-bold'>
+          <h1 className='text-[20px] text-[#02101c] dark:text-white font-bold'>
             Withdraw Money From <span>"{piggyBank?.piggyBankName}"</span>
           </h1>
 
@@ -73,7 +73,7 @@ const WithdrawMoneyModal = ({ piggyBank, onClose, refetch }) => {
 
           <div>
             <div className='flex justify-between items-center'>
-              <p className='text-[#02101c] text-sm '>Total Remaining</p>
+              <p className='text-[#02101c] dark:text-white text-sm '>Total Remaining</p>
               <h2
                 style={{ color: piggyBank?.colorTheme }}
                 className='text-3xl font-bold '
@@ -95,7 +95,7 @@ const WithdrawMoneyModal = ({ piggyBank, onClose, refetch }) => {
               />
             </div>
 
-            <div className='flex justify-between text-[14px] font-bold text-[#02101c] my-2'>
+            <div className='flex justify-between text-[14px] font-bold text-[#02101c] dark:text-white my-2'>
               <span>{progress.toFixed(2)}%</span>
               <span>Available Balance: ${availableBalance.toFixed(2)}</span>
             </div>
@@ -104,11 +104,11 @@ const WithdrawMoneyModal = ({ piggyBank, onClose, refetch }) => {
           <form onSubmit={handleWithdrawAmount} className='mt-4'>
             {/* Amount Input */}
             <div>
-              <label className='text-[14px]' htmlFor='withdraw_amount'>
+              <label className='text-[14px] dark:text-white' htmlFor='withdraw_amount'>
                 Amount to Withdraw
               </label>
               <input
-                className='w-full py-3 px-4 rounded-lg border mt-2 placeholder:text-[14px] placeholder:text-gray-500 border-[#02101c]'
+                className='w-full py-3 px-4 dark:bg-slate-900 dark:placeholder:text-white dark:text-white  rounded-lg border mt-2 placeholder:text-[14px] placeholder:text-gray-500 border-[#02101c]'
                 placeholder={`Max: $${availableBalance.toFixed(2)}`}
                 type='number'
                 name='withdraw_amount'
@@ -120,7 +120,7 @@ const WithdrawMoneyModal = ({ piggyBank, onClose, refetch }) => {
 
             <button
               type='submit'
-              className='relative mt-4 w-full flex justify-center p-px font-semibold leading-6 text-white bg-[#02101c] shadow-lg cursor-pointer rounded-xl shadow-zinc-900 transition-transform duration-300 ease-in-out hover:scale-105 active:scale-95'
+              className='relative dark:border-2 dark:border-white mt-4 w-full flex justify-center p-px font-semibold leading-6 text-white bg-[#02101c] shadow-lg cursor-pointer rounded-xl shadow-zinc-900 transition-transform duration-300 ease-in-out hover:scale-105 active:scale-95'
             >
               <span className='relative z-10 block px-6 py-3 rounded-xl bg-[#02101c] '>
                 <div className='relative z-10 flex items-center space-x-2'>

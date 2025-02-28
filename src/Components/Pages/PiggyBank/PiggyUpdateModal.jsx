@@ -63,11 +63,11 @@ const PiggyUpdateModal = ({ piggyBank, onClose, refetch }) => {
     >
       <div
         data-aos='fade-up'
-        className='bg-white w-[90%] lg:w-[40%] p-6 rounded-lg shadow-lg relative'
+        className='bg-white dark:bg-[#02101c] w-[90%] lg:w-[40%] p-6 rounded-lg shadow-lg relative'
         onClick={e => e.stopPropagation()}
       >
         <button
-          className='absolute top-3 right-3 text-gray-600 hover:text-black'
+          className='absolute top-3 right-3 text-gray-600 dark:text-white  hover:text-black'
           onClick={onClose}
         >
           <IoClose size={24} />
@@ -75,18 +75,18 @@ const PiggyUpdateModal = ({ piggyBank, onClose, refetch }) => {
 
         {/* Modal Content */}
         <div>
-          <h1 className='text-[20px] text-[#02101c] font-bold'>
+          <h1 className='text-[20px] text-[#02101c] dark:text-white font-bold'>
             Update Piggy Bank
           </h1>
 
-          <h3 className='text-[14px] mt-2 text-[#5b5d5f] font-semibold'>
+          <h3 className='text-[14px] mt-2 text-[#5b5d5f] dark:text-white font-semibold'>
             Update the piggy bank that you created and make changes that you
             might require
           </h3>
           <form className='mt-4' onSubmit={handleUpdatePiggyBank}>
             {/* PIGGY BANK NAME  */}
             <div>
-              <label className='text-[14px]' htmlFor='transactionName'>
+              <label className='text-[14px] dark:text-white' htmlFor='transactionName'>
                 Piggy Bank Name
               </label>
               <input
@@ -96,24 +96,24 @@ const PiggyUpdateModal = ({ piggyBank, onClose, refetch }) => {
                 onChange={e => {
                   setPiggyBankName(e.target.value)
                 }}
-                className='w-full py-3 px-4 rounded-lg border mt-2 placeholder:text-[14px] placeholder:text-gray-500 border-[#02101c]'
+                className='w-full dark:bg-slate-900 dark:placeholder:text-white py-3 px-4 rounded-lg border mt-2 placeholder:text-[14px] dark:text-white placeholder:text-gray-500 border-[#02101c]'
                 type='text'
                 name='transactionName'
                 id='transactionName'
                 required
               />
-              <p className='mt-2 text-[14px] text-right'>
+              <p className='mt-2 text-[14px] dark:text-white text-right'>
                 {30 - piggyBankName?.length} characters left
               </p>
             </div>
 
             {/* Target Amount  */}
             <div className=''>
-              <label className='text-[14px]' htmlFor='max_spend'>
+              <label className='text-[14px] dark:text-white' htmlFor='max_spend'>
                 Target Amount
               </label>
               <input
-                className='w-full py-3 px-4 rounded-lg border mt-2 placeholder:text-[14px] placeholder:text-gray-500 border-[#02101c]'
+                className='w-full dark:bg-slate-900 dark:placeholder:text-white py-3 px-4 rounded-lg border mt-2 placeholder:text-[14px] dark:text-white placeholder:text-gray-500 border-[#02101c]'
                 placeholder='e.g: $2000'
                 type='number'
                 name='max_spend'
@@ -126,12 +126,12 @@ const PiggyUpdateModal = ({ piggyBank, onClose, refetch }) => {
 
             {/* COLORS  */}
             <div className='mt-3'>
-              <label className='text-[14px]' htmlFor='colors'>
+              <label className='text-[14px] dark:text-white' htmlFor='colors'>
                 Choose a Color Theme
               </label>
               <div className='colors mt-2'>
                 <Select value={colors} onValueChange={setColors}>
-                  <SelectTrigger className='w-full h-[40px] border text-center flex justify-center gap-2 border-[#02101c]'>
+                  <SelectTrigger className='w-full h-[40px] border text-center flex justify-center gap-2 border-[#02101c] dark:border-white dark:text-white'>
                     <SelectValue placeholder='Select a color' />
                   </SelectTrigger>
                   <SelectContent>
@@ -153,7 +153,7 @@ const PiggyUpdateModal = ({ piggyBank, onClose, refetch }) => {
 
             <button
               type='submit'
-              className='relative mt-4 w-full flex justify-center p-px font-semibold leading-6 text-white bg-[#02101c] shadow-lg cursor-pointer rounded-xl shadow-zinc-900 transition-transform duration-300 ease-in-out hover:scale-105 active:scale-95'
+              className='relative mt-4 w-full flex justify-center p-px font-semibold leading-6 text-white bg-[#02101c] shadow-lg cursor-pointer rounded-xl shadow-zinc-900 transition-transform duration-300 ease-in-out hover:scale-105 active:scale-95 dark:border-2 dark:border-white'
             >
               <span className='absolute inset-0 rounded-xl bg-gradient-to-r from-[#02101c] via-[#023a6b] to-white p-[2px] opacity-0 transition-opacity duration-500 group-hover:opacity-100'></span>
 

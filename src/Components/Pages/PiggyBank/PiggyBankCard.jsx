@@ -66,7 +66,7 @@ const PiggyBankCard = ({ piggyBankData, refetch }) => {
           return (
             <div
               key={bank._id}
-              className='space-y-4 px-8 py-7 bg-[#cbfdf2] rounded-xl shadow-md '
+              className='space-y-4 px-8 py-7 bg-[#cbfdf2] dark:bg-[#208069] rounded-xl shadow-md '
             >
               <div className='flex justify-between items-center pb-3'>
                 <div className='flex items-center gap-2'>
@@ -74,7 +74,7 @@ const PiggyBankCard = ({ piggyBankData, refetch }) => {
                     className='w-4 h-4 rounded-full'
                     style={{ backgroundColor: bank.colorTheme }}
                   ></span>
-                  <h3 className='text-lg font-bold [#02101c]'>
+                  <h3 className='text-lg font-bold [#02101c] dark:text-white'>
                     {bank.piggyBankName}
                   </h3>
                 </div>
@@ -85,7 +85,7 @@ const PiggyBankCard = ({ piggyBankData, refetch }) => {
                       handlePiggyBankUpdate(bank)
                     }}
                   >
-                    <MdEditSquare className='text-[26px] cursor-pointer hover:opacity-50 transition duration-150 font-bold text-[#02101c]' />
+                    <MdEditSquare className='text-[26px] cursor-pointer hover:opacity-50 transition duration-150 font-bold text-[#02101c] dark:text-white' />
                   </div>
                   <div
                     onClick={() => {
@@ -99,7 +99,7 @@ const PiggyBankCard = ({ piggyBankData, refetch }) => {
 
               <div>
                 <div className='flex justify-between items-center'>
-                  <p className='text-[#02101c] text-sm '>Total Saved</p>
+                  <p className='text-[#02101c] dark:text-white text-sm '>Total Saved</p>
                   <h2
                     style={{
                       color: bank.colorTheme
@@ -110,13 +110,13 @@ const PiggyBankCard = ({ piggyBankData, refetch }) => {
                   </h2>
                 </div>
                 <div
-                  className='relative h-2 w-full my-6 rounded-lg overflow-hidden'
+                  className='relative h-2 w-full my-6 rounded-lg overflow-hidden '
                   style={{
                     backgroundColor: `${bank?.colorTheme}70`
                   }}
                 >
                   <div
-                    className='h-full rounded-lg'
+                    className='h-full rounded-lg '
                     style={{
                       width: `${progress}%`,
                       backgroundColor: bank.colorTheme
@@ -124,7 +124,7 @@ const PiggyBankCard = ({ piggyBankData, refetch }) => {
                   />
                 </div>
 
-                <div className='flex justify-between text-[14px] font-bold text-[#02101c] my-2'>
+                <div className='flex justify-between text-[14px] font-bold text-[#02101c] dark:text-white my-2'>
                   <span>{progress.toFixed(2)}%</span>
                   <span>Target of ${bank.targetSpend}</span>
                 </div>
