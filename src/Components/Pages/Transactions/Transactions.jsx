@@ -78,9 +78,11 @@ const Transactions = () => {
 
   return (
     <div>
-      <div className='w-[100%] lg:w-[1150px] px-8 lg:px-0 mx-auto py-8'>
+      <div className='w-[100%] lg:w-[1150px] px-8 lg:px-0 mx-auto py-8' data-aos="fade-up">
         <div className='upperDiv flex justify-between items-center gap-10 lg:gap-0'>
-          <h1 className='text-[20px] md:text-[26px] lg:text-[32px] font-bold text-[#02101c]'>Transactions</h1>
+          <h1 className='text-[20px] md:text-[26px] lg:text-[32px] font-bold text-[#02101c]'>
+            Transactions
+          </h1>
           <div className='relative group'>
             <button
               className='relative inline-block p-px font-semibold leading-6 text-white bg-[#02101c] shadow-lg cursor-pointer rounded-xl shadow-zinc-900 transition-transform duration-300 ease-in-out hover:scale-105 active:scale-95'
@@ -100,50 +102,48 @@ const Transactions = () => {
           </div>
         </div>
 
-        {
-  isTotalLoading ? (
-    <TransactionInfoSkeleton />
-  ) : allTransactions && allTransactions.length > 0 ? (
-    // Transaction Summary Cards
-    <div className='middleDiv w-full mt-10 grid grid-cols-1 lg:grid-cols-3 gap-6 items-center'>
-      {/* Total Transactions Card */}
-      <div className='bg-gradient-to-r from-[#30e4ba] to-[#1b4f80] py-6 px-10 rounded-lg'>
-        <h4 className='text-[16px] font-bold text-[#02101c]'>
-          Total Transactions
-        </h4>
-        <p className='text-[33px] font-bold text-[#02101c]'>
-          $ {totalTransactions}
-        </p>
-      </div>
+        {isTotalLoading ? (
+          <TransactionInfoSkeleton />
+        ) : allTransactions && allTransactions.length > 0 ? (
+          // Transaction Summary Cards
+          <div className='middleDiv w-full mt-10 grid grid-cols-1 lg:grid-cols-3 gap-6 items-center'>
+            {/* Total Transactions Card */}
+            <div className='bg-gradient-to-r from-[#30e4ba] to-[#1b4f80] py-6 px-10 rounded-lg'>
+              <h4 className='text-[16px] font-bold text-[#02101c]'>
+                Total Transactions
+              </h4>
+              <p className='text-[33px] font-bold text-[#02101c]'>
+                $ {totalTransactions}
+              </p>
+            </div>
 
-      {/* Total Earned Card */}
-      <div className='bg-gradient-to-r from-[#30e4ba] to-green-600 py-6 px-10 rounded-lg'>
-        <h4 className='text-[16px] font-bold text-[#02101c]'>
-          Total Earned
-        </h4>
-        <p className='text-[33px] font-bold text-[#02101c]'>
-          $ {totalEarned}
-        </p>
-      </div>
+            {/* Total Earned Card */}
+            <div className='bg-gradient-to-r from-[#30e4ba] to-green-600 py-6 px-10 rounded-lg'>
+              <h4 className='text-[16px] font-bold text-[#02101c]'>
+                Total Earned
+              </h4>
+              <p className='text-[33px] font-bold text-[#02101c]'>
+                $ {totalEarned}
+              </p>
+            </div>
 
-      {/* Total Spent Card */}
-      <div className='bg-gradient-to-r from-[#30e4ba] to-red-600 py-6 px-10 rounded-lg'>
-        <h4 className='text-[16px] font-bold text-[#02101c]'>
-          Total Spent
-        </h4>
-        <p className='text-[33px] font-bold text-[#02101c]'>
-          $ {totalSpent}
-        </p>
-      </div>
-    </div>
-  ) : (
-    <div className='middleDiv w-full mt-10 flex justify-center items-center'>
-      <p className='text-[20px] font-bold text-[#02101c]'>
-        No transactions found. Start by adding a new transaction!
-      </p>
-    </div>
-  )
-}
+            {/* Total Spent Card */}
+            <div className='bg-gradient-to-r from-[#30e4ba] to-red-600 py-6 px-10 rounded-lg'>
+              <h4 className='text-[16px] font-bold text-[#02101c]'>
+                Total Spent
+              </h4>
+              <p className='text-[33px] font-bold text-[#02101c]'>
+                $ {totalSpent}
+              </p>
+            </div>
+          </div>
+        ) : (
+          <div className='middleDiv w-full mt-10 flex justify-center items-center'>
+            <p className='text-[20px] font-bold text-[#02101c]'>
+              No transactions found. Start by adding a new transaction!
+            </p>
+          </div>
+        )}
 
         <div className='lowerDiv bg-[#cbfdf2] rounded-lg w-full p-8 mt-10'>
           <div className='queryDiv flex flex-col lg:flex-row gap-6 lg:gap-0 justify-between items-center'>
