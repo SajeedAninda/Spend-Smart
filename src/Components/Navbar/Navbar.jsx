@@ -50,7 +50,7 @@ const Navbar = () => {
   }
 
   return (
-    <div className='w-full px-6 lg:px-0 h-[14vh] bg-gradient-to-r from-[#30e4ba] via-white to-[#30e4ba] flex items-center'>
+    <div className='w-full px-6 lg:px-0 h-[14vh] bg-gradient-to-r dark:bg-gradient-to-r from-[#30e4ba] dark:from-[#02101c] via-white dark:via-white to-[#30e4ba] dark:to-[#02101c] flex items-center'>
       <div className='w-[1150px] mx-auto flex justify-between items-center'>
         {/* Brand Name + Tagline or Links */}
         <div className='w-[33%]'>
@@ -66,10 +66,10 @@ const Navbar = () => {
                   key={path}
                   to={path}
                   className={({ isActive }) =>
-                    `font-bold text-[16px] list-none transition-all duration-150 cursor-pointer ${
+                    `font-bold text-[16px] list-none dark:border-b dark:border-white transition-all duration-150 cursor-pointer ${
                       isActive
-                        ? 'text-[#02101c] underline'
-                        : 'text-[#02101c] hover:opacity-50 hover:underline'
+                        ? 'text-[#02101c] underline dark:no-underline'
+                        : 'text-[#02101c] hover:opacity-50 hover:underline dark:no-underline'
                     }`
                   }
                 >
@@ -122,7 +122,7 @@ const Navbar = () => {
                 </label>
 
                 <img
-                  className='w-[50px] h-[50px] rounded-full border-2 object-cover border-[#02101c]'
+                  className='w-[50px] h-[50px] rounded-full border-2 object-cover border-[#02101c] dark:border-white'
                   src={userData?.imageUrl}
                   alt=''
                 />
