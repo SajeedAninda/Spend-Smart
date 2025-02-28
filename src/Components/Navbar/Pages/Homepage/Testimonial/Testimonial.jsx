@@ -70,7 +70,7 @@ const Testimonial = () => {
   return (
     <section className='pb-32 w-[100%] lg:w-[1000px] px-8 lg:px-0 mx-auto'>
       <div className=''>
-        <div className='mb-12 w-[80%] mx-auto'>
+        <div className='mb-12 w-[80%] mx-auto' data-aos="fade-up">
           <h2 className='mb-4 text-center text-3xl font-semibold lg:text-5xl'>
             Discover Why People Love Spend Smart
           </h2>
@@ -81,7 +81,7 @@ const Testimonial = () => {
         </div>
 
         <div className='py-4 mx-auto'>
-          <main className='relative z-20 w-full mt-8 md:flex md:items-center xl:mt-12'>
+          <main className='relative z-20 w-full mt-8 md:flex md:items-center xl:mt-12' data-aos="fade-up-right">
             <div className='absolute w-full bg-[#30e4ba] -z-10 md:h-96 rounded-2xl'></div>
 
             <div

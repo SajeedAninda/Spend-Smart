@@ -81,7 +81,7 @@ const Benefits = forwardRef((props, ref) => {
 
   return (
     <section ref={ref} className='pb-32 w-[100%] lg:w-[1000px] px-8 lg:px-0 mx-auto'> 
-      <div className='mx-auto flex max-w-screen-md flex-col items-center gap-6'>
+      <div className='mx-auto flex max-w-screen-md flex-col items-center gap-6' data-aos="fade-up">
         <h2 className='mb-4 text-center text-3xl font-semibold lg:text-5xl'>
           Benefits of Spend Smart
         </h2>
@@ -92,7 +92,7 @@ const Benefits = forwardRef((props, ref) => {
       </div>
 
       {/* Tab Buttons */}
-      <div className='mt-12 flex justify-center'>
+      <div className='mt-12 flex justify-center' data-aos="fade-down">
         <div className='flex justify-center flex-wrap gap-2 rounded-lg lg:border-2 lg:border-[#87f5db] p-2'>
           {tabs.map(tab => (
             <button
@@ -118,7 +118,7 @@ const Benefits = forwardRef((props, ref) => {
       </div>
 
       {/* Benefits Content */}
-      <div className='mt-12 max-w-screen-lg mx-auto flex flex-col lg:flex-row justify-between items-center'>
+      <div className='mt-12 max-w-screen-lg mx-auto flex flex-col lg:flex-row justify-between items-center' data-aos="fade-right">
         <div className='w-full lg:w-[50%]'>
           <h3 className='mb-8 text-2xl font-semibold md:text-4xl'>
             {benefits[activeTab].title}

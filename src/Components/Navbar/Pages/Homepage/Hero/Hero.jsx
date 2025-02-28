@@ -15,10 +15,16 @@ const Hero = ({ scrollToBenefits }) => {
         <div className='w-[100%] lg:w-[1000px] px-8 lg:px-0 mx-auto'>
           <div className='flex-col items-center'>
             <div className='z-10 items-center text-center'>
-              <h1 className='mb-8 text-[#02101c] text-pretty text-4xl font-semibold lg:text-7xl'>
+              <h1
+                className='mb-8 text-[#02101c] text-pretty text-4xl font-semibold lg:text-7xl'
+                data-aos='fade-right'
+              >
                 Track, Save, and Grow with SpendSmart
               </h1>
-              <p className='mx-auto max-w-screen-md text-zinc-600 lg:text-xl'>
+              <p
+                className='mx-auto max-w-screen-md text-zinc-600 lg:text-xl'
+                data-aos='fade-left'
+              >
                 Take control of your finances with an easy-to-use tracker that
                 helps you monitor expenses, set budgets, and plan for a secure
                 future—all in one powerful platform
@@ -54,6 +60,7 @@ const Hero = ({ scrollToBenefits }) => {
             </div>
           </div>
           <img
+            data-aos='fade-up'
             src={heroImg}
             alt='Hero Image'
             className='mx-auto mt-24 max-h-[700px] w-full max-w-7xl rounded-t-lg object-cover shadow-lg'
