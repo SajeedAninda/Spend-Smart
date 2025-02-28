@@ -78,7 +78,7 @@ const BudgetModal = ({ isOpen, onClose, refetch }) => {
     >
       <div
         data-aos='fade-up'
-        className='bg-white w-[95%] lg:w-[40%] p-6 rounded-lg shadow-lg relative'
+        className='bg-white dark:bg-[#02101c] w-[95%] lg:w-[40%] p-6 rounded-lg shadow-lg relative'
         onClick={e => e.stopPropagation()}
       >
         <button
@@ -90,18 +90,18 @@ const BudgetModal = ({ isOpen, onClose, refetch }) => {
 
         {/* Modal Content */}
         <div>
-          <h1 className='text-[20px] text-[#02101c] font-bold'>
+          <h1 className='text-[20px] text-[#02101c] dark:text-white font-bold'>
             Add New Budget
           </h1>
 
-          <h3 className='text-[14px] mt-2 text-[#5b5d5f] font-semibold'>
+          <h3 className='text-[14px] dark:text-white mt-2 text-[#5b5d5f] font-semibold'>
             Choose a category to set a spending budget. These categories can
             help you monitor spending.
           </h3>
           <form className='mt-4' onSubmit={handleSubmit}>
             {/* CATEGORY  */}
             <div className='mt-3'>
-              <label className='text-[14px]' htmlFor='category'>
+              <label className='text-[14px] dark:text-white' htmlFor='category'>
                 Category
               </label>
               <div className='category mt-2'>
@@ -109,7 +109,7 @@ const BudgetModal = ({ isOpen, onClose, refetch }) => {
                   value={selectedCategoryValue}
                   onValueChange={setSelectedCategoryValue}
                 >
-                  <SelectTrigger className='w-full h-[40px] border text-center flex justify-center gap-2 border-[#02101c]'>
+                  <SelectTrigger className='w-full h-[40px] dark:border-white dark:text-white border text-center flex justify-center gap-2 border-[#02101c]'>
                     <SelectValue placeholder='Select an option' />
                   </SelectTrigger>
                   <SelectContent>
@@ -129,11 +129,11 @@ const BudgetModal = ({ isOpen, onClose, refetch }) => {
 
             {/* MAXIMUM SPEND  */}
             <div className=' mt-3'>
-              <label className='text-[14px]' htmlFor='max_spend'>
+              <label className='text-[14px] dark:text-white' htmlFor='max_spend'>
                 Maximum Spend
               </label>
               <input
-                className='w-full py-3 px-4 rounded-lg border mt-2 placeholder:text-[14px] placeholder:text-gray-500 border-[#02101c]'
+                className='w-full py-3 px-4 rounded-lg dark:bg-slate-900 dark:placeholder:text-white border mt-2 placeholder:text-[14px] dark:text-white placeholder:text-gray-500 border-[#02101c]'
                 placeholder='e.g: $180'
                 type='number'
                 name='max_spend'
@@ -146,12 +146,12 @@ const BudgetModal = ({ isOpen, onClose, refetch }) => {
 
             {/* COLORS  */}
             <div className='mt-3'>
-              <label className='text-[14px]' htmlFor='colors'>
+              <label className='text-[14px] dark:text-white' htmlFor='colors'>
                 Choose a Color Theme
               </label>
               <div className='colors mt-2'>
                 <Select value={colors} onValueChange={setColors}>
-                  <SelectTrigger className='w-full h-[40px] border text-center flex justify-center gap-2 border-[#02101c]'>
+                  <SelectTrigger className='w-full h-[40px] dark:border-white dark:text-white border text-center flex justify-center gap-2 border-[#02101c]'>
                     <SelectValue placeholder='Select a color' />
                   </SelectTrigger>
                   <SelectContent>
@@ -173,7 +173,7 @@ const BudgetModal = ({ isOpen, onClose, refetch }) => {
 
             <button
               type='submit'
-              className='relative mt-4 w-full flex justify-center p-px font-semibold leading-6 text-white bg-[#02101c] shadow-lg cursor-pointer rounded-xl shadow-zinc-900 transition-transform duration-300 ease-in-out hover:scale-105 active:scale-95'
+              className='relative dark:border-2 dark:border-white mt-4 w-full flex justify-center p-px font-semibold leading-6 text-white bg-[#02101c] shadow-lg cursor-pointer rounded-xl shadow-zinc-900 transition-transform duration-300 ease-in-out hover:scale-105 active:scale-95'
             >
               <span className='absolute inset-0 rounded-xl bg-gradient-to-r from-[#02101c] via-[#023a6b] to-white p-[2px] opacity-0 transition-opacity duration-500 group-hover:opacity-100'></span>
 

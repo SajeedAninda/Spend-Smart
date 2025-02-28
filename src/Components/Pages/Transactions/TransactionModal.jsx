@@ -78,12 +78,12 @@ const TransactionModal = ({ isOpen, onClose, refetch }) => {
       onClick={onClose}
     >
       <div
-      data-aos="fade-up"
-        className='bg-white w-[90%] lg:w-[40%] p-6 rounded-lg shadow-lg relative'
+        data-aos='fade-up'
+        className='bg-white dark:bg-[#02101c] w-[90%] lg:w-[40%] p-6 rounded-lg shadow-lg relative'
         onClick={e => e.stopPropagation()}
       >
         <button
-          className='absolute top-3 right-3 text-gray-600 hover:text-black'
+          className='absolute top-3 right-3 text-gray-600 dark:text-white hover:text-black'
           onClick={onClose}
         >
           <IoClose size={24} />
@@ -91,20 +91,23 @@ const TransactionModal = ({ isOpen, onClose, refetch }) => {
 
         {/* Modal Content */}
         <div>
-          <h1 className='text-[20px] text-[#02101c] font-bold'>
+          <h1 className='text-[20px] text-[#02101c] dark:text-white font-bold'>
             Add New Transaction
           </h1>
           <form className='mt-4' onSubmit={handleSubmit}>
             {/* TRANSACTION TEXT  */}
             <div>
-              <label className='text-[14px]' htmlFor='transactionName'>
+              <label
+                className='text-[14px] dark:text-white'
+                htmlFor='transactionName'
+              >
                 Transaction Name
               </label>
               <input
                 onChange={e => {
                   setTransactionNameText(e.target.value.length)
                 }}
-                className='w-full py-3 px-4 rounded-lg border mt-2 placeholder:text-[14px] placeholder:text-gray-500 border-[#02101c]'
+                className='w-full py-3 px-4 dark:bg-slate-900 dark:placeholder:text-white rounded-lg border mt-2 placeholder:text-[14px] placeholder:text-gray-500 border-[#02101c]'
                 placeholder='e.g: Paid for Cat Food'
                 type='text'
                 name='transactionName'
@@ -112,14 +115,17 @@ const TransactionModal = ({ isOpen, onClose, refetch }) => {
                 maxLength={30}
                 required
               />
-              <p className='mt-2 text-[14px] text-right'>
+              <p className='mt-2 text-[14px] dark:text-white text-right'>
                 {30 - transactionNameText} characters left
               </p>
             </div>
 
             {/* TRANSACTION DATE  */}
             <div>
-              <label className='text-[14px]' htmlFor='transactionDate'>
+              <label
+                className='text-[14px] dark:text-white'
+                htmlFor='transactionDate'
+              >
                 Transaction Date
               </label>
               <br />
@@ -128,7 +134,7 @@ const TransactionModal = ({ isOpen, onClose, refetch }) => {
                   <Button
                     variant={'outline'}
                     className={cn(
-                      'w-full mt-3 border border-[#02101c] hover:bg-[#cbfdf2] h-[40px] justify-center text-center py-3 font-normal',
+                      'w-full mt-3 border border-[#02101c] dark:border-white dark:bg-slate-900 hover:bg-[#cbfdf2] h-[40px] justify-center text-center py-3 font-normal dark:text-white',
                       !date && 'text-muted-foreground'
                     )}
                   >
@@ -168,7 +174,7 @@ const TransactionModal = ({ isOpen, onClose, refetch }) => {
 
             {/* CATEGORY  */}
             <div className='mt-3'>
-              <label className='text-[14px]' htmlFor='category'>
+              <label className='text-[14px] dark:text-white' htmlFor='category'>
                 Category
               </label>
               <div className='category mt-2'>
@@ -176,7 +182,7 @@ const TransactionModal = ({ isOpen, onClose, refetch }) => {
                   value={selectedCategoryValue}
                   onValueChange={setSelectedCategoryValue}
                 >
-                  <SelectTrigger className='w-full h-[40px] border text-center flex justify-center gap-2 border-[#02101c]'>
+                  <SelectTrigger className='w-full h-[40px] border text-center flex justify-center gap-2 border-[#02101c] dark:border-white dark:text-white'>
                     <SelectValue placeholder='Select an option' />
                   </SelectTrigger>
                   <SelectContent>
@@ -196,11 +202,11 @@ const TransactionModal = ({ isOpen, onClose, refetch }) => {
 
             {/* AMOUNT  */}
             <div className=' mt-3'>
-              <label className='text-[14px]' htmlFor='amount'>
+              <label className='text-[14px] dark:text-white' htmlFor='amount'>
                 Amount
               </label>
               <input
-                className='w-full py-3 px-4 rounded-lg border mt-2 placeholder:text-[14px] placeholder:text-gray-500 border-[#02101c]'
+                className='w-full py-3 px-4 rounded-lg dark:bg-slate-900 dark:placeholder:text-white border mt-2 placeholder:text-[14px] dark:placeholder:dark:text-white placeholder:text-gray-500 border-[#02101c]'
                 placeholder='e.g: $180'
                 type='number'
                 name='amount'
@@ -213,7 +219,10 @@ const TransactionModal = ({ isOpen, onClose, refetch }) => {
 
             {/* SPEND / EARNED  */}
             <div className='mt-3'>
-              <label className='text-[14px]' htmlFor='spentOrEarned'>
+              <label
+                className='text-[14px] dark:text-white'
+                htmlFor='spentOrEarned'
+              >
                 SPENT / EARNED
               </label>
               <div
@@ -242,7 +251,7 @@ const TransactionModal = ({ isOpen, onClose, refetch }) => {
 
             <button
               type='submit'
-              className='relative mt-4 w-full flex justify-center p-px font-semibold leading-6 text-white bg-[#02101c] shadow-lg cursor-pointer rounded-xl shadow-zinc-900 transition-transform duration-300 ease-in-out hover:scale-105 active:scale-95'
+              className='relative mt-4 w-full flex justify-center p-px font-semibold leading-6 text-white bg-[#02101c] shadow-lg cursor-pointer rounded-xl shadow-zinc-900 transition-transform duration-300 ease-in-out dark:border-2 dark:border-white hover:scale-105 active:scale-95'
             >
               <span className='absolute inset-0 rounded-xl bg-gradient-to-r from-[#02101c] via-[#023a6b] to-white p-[2px] opacity-0 transition-opacity duration-500 group-hover:opacity-100'></span>
 

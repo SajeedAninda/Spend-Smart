@@ -24,8 +24,8 @@ const BudgetPieChart = ({ transactionData, budgetData }) => {
 
   return (
     <Card className='flex flex-col bg-transparent border-none shadow-none'>
-      <CardHeader className='items-center pb-0'></CardHeader>
-      <CardContent className='flex-1 pb-0'>
+      <CardHeader className='items-center pb-0 dark:bg-[#125042]'></CardHeader>
+      <CardContent className='flex-1 pb-0 dark:bg-[#125042]'>
         <ChartContainer
           config={{}}
           className='mx-auto aspect-square max-h-[250px]'

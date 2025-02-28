@@ -52,7 +52,7 @@ const BudgetSummary = ({ transactionData, budgetData, refetch }) => {
   }
 
   return (
-    <div className='w-full bg-[#cbfdf2] rounded-lg p-8'>
+    <div className='w-full bg-[#cbfdf2] dark:bg-[#125042] rounded-lg p-8'>
       {budgetData?.map(budget => {
           const totalSpent = transactionData
             ?.filter(transaction => 
@@ -74,11 +74,11 @@ const BudgetSummary = ({ transactionData, budgetData, refetch }) => {
                     className='w-5 h-5 rounded-full'
                     style={{ backgroundColor: budget?.colorTheme }}
                   ></div>
-                  <h3 className='text-[#02101c] font-bold text-[20px] capitalize'>
+                  <h3 className='text-[#02101c] dark:text-white font-bold text-[20px] capitalize'>
                     {budget?.category || 'Unknown'}
                   </h3>
                 </div>
-                <p className='mt-3 text-[#02101c] font-semibold'>
+                <p className='mt-3 text-[#02101c] dark:text-white font-semibold'>
                   Maximum of ${budget?.maxSpendAmount || 0}
                 </p>
               </div>
@@ -89,7 +89,7 @@ const BudgetSummary = ({ transactionData, budgetData, refetch }) => {
                     handleBudgetUpdate(budget)
                   }}
                 >
-                  <MdEditSquare className='text-[26px] cursor-pointer hover:opacity-50 transition duration-150 font-bold text-[#02101c]' />
+                  <MdEditSquare className='text-[26px] cursor-pointer hover:opacity-50 transition duration-150 font-bold text-[#02101c] dark:text-white' />
                 </div>
                 <div
                   onClick={() => {
@@ -108,10 +108,10 @@ const BudgetSummary = ({ transactionData, budgetData, refetch }) => {
                   style={{ backgroundColor: budget?.colorTheme }}
                 ></div>
                 <div className='pl-4'>
-                  <p className='text-[#02101c] font-semibold text-[14px] capitalize'>
+                  <p className='text-[#02101c] dark:text-white font-semibold text-[14px] capitalize'>
                     Total Budget
                   </p>
-                  <p className='text-[#02101c] font-semibold text-[14px] capitalize'>
+                  <p className='text-[#02101c] dark:text-white font-semibold text-[14px] capitalize'>
                     ${budget?.maxSpendAmount || 0}
                   </p>
                 </div>
@@ -119,27 +119,27 @@ const BudgetSummary = ({ transactionData, budgetData, refetch }) => {
               <div className='flex flex-1 items-center'>
                 <div className='w-1 h-9 rounded-lg bg-white'></div>
                 <div className='pl-4'>
-                  <p className='text-[#02101c] font-semibold text-[14px] capitalize'>
+                  <p className='text-[#02101c] dark:text-white font-semibold text-[14px] capitalize'>
                     Total Spent
                   </p>
-                  <p className='text-[#02101c] font-semibold text-[14px] capitalize'>
+                  <p className='text-[#02101c] dark:text-white font-semibold text-[14px] capitalize'>
                     ${totalSpent}
                   </p>
                 </div>
               </div>
             </div>
 
-            <div className='latestSpending bg-white p-6 rounded-lg mt-4'>
+            <div className='latestSpending bg-white dark:bg-[#102e27] p-6 rounded-lg mt-4'>
               <div className='flex justify-between items-center'>
-                <h3 className='text-[#02101c] font-semibold text-[18px]'>
+                <h3 className='text-[#02101c] dark:text-white font-semibold text-[18px]'>
                   Latest Spending
                 </h3>
                 <Link
                   to={'/transactions'}
-                  className='flex gap-1 items-center hover:underline text-[15px]'
+                  className='flex gap-1 items-center hover:underline text-[15px] dark:text-white'
                 >
                   All Transactions{' '}
-                  <IoIosArrowRoundForward className='text-[#02101c] font-bold text-[25px]' />
+                  <IoIosArrowRoundForward className='text-[#02101c] dark:text-white font-bold text-[25px]' />
                 </Link>
               </div>
 
@@ -150,7 +150,7 @@ const BudgetSummary = ({ transactionData, budgetData, refetch }) => {
                     to={'/transactions'}
                     className='flex p-2 rounded-lg cursor-pointer mt-5 justify-between items-center hover:bg-slate-200'
                   >
-                    <p className='text-[#02101c] font-semibold text-[16px]'>
+                    <p className='text-[#02101c] dark:text-white font-semibold text-[16px]'>
                       {transaction?.transactionName || 'Unnamed Transaction'}
                     </p>
                     <div className='flex flex-col items-center'>
@@ -164,7 +164,7 @@ const BudgetSummary = ({ transactionData, budgetData, refetch }) => {
                         {transaction?.transactionType === 'spent' ? '-' : '+'}$
                         {transaction?.amount || 0}
                       </p>
-                      <p className='text-gray font-semibold text-[12px]'>
+                      <p className='text-gray font-semibold text-[12px] dark:text-white'>
                         {formatDate(transaction?.transactionDate)}
                       </p>
                     </div>
