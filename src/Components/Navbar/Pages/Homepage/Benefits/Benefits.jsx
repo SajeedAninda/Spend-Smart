@@ -1,26 +1,26 @@
-import React, { useState, useEffect, forwardRef } from 'react';
-import trackerLottie from '../../../../../assets/trackerLottie.json';
-import piggyLottie from '../../../../../assets/piggieLottie.json';
-import budgetLottie from '../../../../../assets/budgetLottie.json';
-import billsLottie from '../../../../../assets/billsLottie.json';
-import Lottie from 'lottie-react';
+import React, { useState, useEffect, forwardRef } from 'react'
+import trackerLottie from '../../../../../assets/trackerLottie.json'
+import piggyLottie from '../../../../../assets/piggieLottie.json'
+import budgetLottie from '../../../../../assets/budgetLottie.json'
+import billsLottie from '../../../../../assets/billsLottie.json'
+import Lottie from 'lottie-react'
 
 const Benefits = forwardRef((props, ref) => {
-  const [activeTab, setActiveTab] = useState('transactions');
+  const [activeTab, setActiveTab] = useState('transactions')
 
   const tabs = [
     { id: 'transactions', label: 'Transaction Tracking' },
     { id: 'budgeting', label: 'Smart Budgeting' },
     { id: 'piggy-bank', label: 'Piggy Bank & Savings' },
     { id: 'recurring-bills', label: 'Recurring Bills Management' }
-  ];
+  ]
 
   const lottieFiles = {
     transactions: trackerLottie,
     budgeting: budgetLottie,
     'piggy-bank': piggyLottie,
     'recurring-bills': billsLottie
-  };
+  }
 
   const benefits = {
     transactions: {
@@ -67,96 +67,107 @@ const Benefits = forwardRef((props, ref) => {
         'Bill payment history and reports'
       ]
     }
-  };
+  }
 
   useEffect(() => {
     const intervalId = setInterval(() => {
-      const currentIndex = tabs.findIndex(tab => tab.id === activeTab);
-      const nextTabIndex = (currentIndex + 1) % tabs.length;
-      setActiveTab(tabs[nextTabIndex].id);
-    }, 4000);
+      const currentIndex = tabs.findIndex(tab => tab.id === activeTab)
+      const nextTabIndex = (currentIndex + 1) % tabs.length
+      setActiveTab(tabs[nextTabIndex].id)
+    }, 4000)
 
-    return () => clearInterval(intervalId);
-  }, [activeTab, tabs]);
+    return () => clearInterval(intervalId)
+  }, [activeTab, tabs])
 
   return (
-    <section ref={ref} className='pb-32 w-[100%] lg:w-[1000px] px-8 lg:px-0 mx-auto'> 
-      <div className='mx-auto flex max-w-screen-md flex-col items-center gap-6' data-aos="fade-up">
-        <h2 className='mb-4 text-center text-3xl font-semibold lg:text-5xl'>
-          Benefits of Spend Smart
-        </h2>
-        <p className='text-center text-zinc-600 lg:text-2xl'>
-          Discover How Smarter Spending Can Help You Save More, Budget Better,
-          and Achieve Financial Freedom
-        </p>
-      </div>
-
-      {/* Tab Buttons */}
-      <div className='mt-12 flex justify-center' data-aos="fade-down">
-        <div className='flex justify-center flex-wrap gap-2 rounded-lg lg:border-2 lg:border-[#87f5db] p-2'>
-          {tabs.map(tab => (
-            <button
-              key={tab.id}
-              className={`relative inline-block p-px font-semibold leading-6 text-white bg-[#02101c] shadow-md cursor-pointer rounded-xl shadow-zinc-900 transition-transform duration-300 ease-in-out hover:scale-105 active:scale-95 ${
-                activeTab === tab.id
-                  ? 'bg-white text-foreground shadow-2xl'
-                  : 'text-zinc-600 hover:bg-white'
-              }`}
-              onClick={() => setActiveTab(tab.id)}
-            >
-              <span className='absolute inset-0 rounded-xl bg-gradient-to-r from-teal-400 via-blue-500 to-white p-[2px] opacity-0 transition-opacity duration-500 group-hover:opacity-100'></span>
-              <span className='relative z-10 block px-6 py-3 rounded-xl bg-[#02101c]'>
-                <div className='relative z-10 flex items-center space-x-2'>
-                  <span className='transition-all duration-500 group-hover:translate-x-1'>
-                    {tab.label}
-                  </span>
-                </div>
-              </span>
-            </button>
-          ))}
-        </div>
-      </div>
-
-      {/* Benefits Content */}
-      <div className='mt-12 max-w-screen-lg mx-auto flex flex-col lg:flex-row justify-between items-center' data-aos="fade-right">
-        <div className='w-full lg:w-[50%]'>
-          <h3 className='mb-8 text-2xl font-semibold md:text-4xl'>
-            {benefits[activeTab].title}
-          </h3>
-          <p className='text-xl text-zinc-600'>
-            {benefits[activeTab].description}
+    <div className='dark:bg-[#02101c]'>
+      <section
+        ref={ref}
+        className='pb-32 w-[100%] lg:w-[1000px] px-8 lg:px-0 mx-auto'
+      >
+        <div
+          className='mx-auto flex max-w-screen-md flex-col items-center gap-6'
+          data-aos='fade-up'
+        >
+          <h2 className='mb-4 text-center text-3xl dark:text-white font-semibold lg:text-5xl'>
+            Benefits of Spend Smart
+          </h2>
+          <p className='text-center text-zinc-600 dark:text-white lg:text-2xl'>
+            Discover How Smarter Spending Can Help You Save More, Budget Better,
+            and Achieve Financial Freedom
           </p>
-          <ul className='mt-8 grid grid-cols-1 gap-2 lg:grid-cols-2'>
-            {benefits[activeTab].points.map((point, index) => (
-              <li key={index} className='flex items-center gap-2'>
-                <svg
-                  xmlns='http://www.w3.org/2000/svg'
-                  width='24'
-                  height='24'
-                  viewBox='0 0 24 24'
-                  fill='none'
-                  stroke='currentColor'
-                  strokeWidth='2'
-                  strokeLinecap='round'
-                  strokeLinejoin='round'
-                  className='lucide lucide-circle-check w-4'
-                >
-                  <circle cx='12' cy='12' r='10'></circle>
-                  <path d='m9 12 2 2 4-4'></path>
-                </svg>
-                <span className='font-medium'>{point}</span>
-              </li>
+        </div>
+
+        {/* Tab Buttons */}
+        <div className='mt-12 flex justify-center' data-aos='fade-down'>
+          <div className='flex justify-center flex-wrap gap-2 rounded-lg lg:border-2 lg:border-[#87f5db] p-2'>
+            {tabs.map(tab => (
+              <button
+                key={tab.id}
+                className={`relative inline-block p-px font-semibold leading-6 text-white bg-[#02101c] shadow-md cursor-pointer rounded-xl shadow-zinc-900 transition-transform duration-300 ease-in-out hover:scale-105 active:scale-95 ${
+                  activeTab === tab.id
+                    ? 'bg-white text-foreground shadow-2xl'
+                    : 'text-zinc-600 hover:bg-white'
+                }`}
+                onClick={() => setActiveTab(tab.id)}
+              >
+                <span className='absolute inset-0 rounded-xl bg-gradient-to-r from-teal-400 via-blue-500 to-white p-[2px] opacity-0 transition-opacity duration-500 group-hover:opacity-100'></span>
+                <span className='relative z-10 block px-6 py-3 rounded-xl bg-[#02101c]'>
+                  <div className='relative z-10 flex items-center space-x-2'>
+                    <span className='transition-all duration-500 group-hover:translate-x-1'>
+                      {tab.label}
+                    </span>
+                  </div>
+                </span>
+              </button>
             ))}
-          </ul>
+          </div>
         </div>
 
-        {/* Lottie Animation */}
-        <div className='w-full lg:w-[50%]'>
-          <Lottie animationData={lottieFiles[activeTab]} loop={true} />
-        </div>
-      </div>
-    </section>
-  );
-});
+        {/* Benefits Content */}
+        <div
+          className='mt-12 max-w-screen-lg mx-auto flex flex-col lg:flex-row justify-between items-center'
+          data-aos='fade-right'
+        >
+          <div className='w-full lg:w-[50%]'>
+            <h3 className='mb-8 text-2xl font-semibold md:text-4xl dark:text-white'>
+              {benefits[activeTab].title}
+            </h3>
+            <p className='text-xl text-zinc-600 dark:text-white'>
+              {benefits[activeTab].description}
+            </p>
+            <ul className='mt-8 grid grid-cols-1 gap-2 lg:grid-cols-2 dark:text-white'>
+              {benefits[activeTab].points.map((point, index) => (
+                <li key={index} className='flex items-center gap-2'>
+                  <svg
+                    xmlns='http://www.w3.org/2000/svg'
+                    width='24'
+                    height='24'
+                    viewBox='0 0 24 24'
+                    fill='none'
+                    stroke='currentColor'
+                    strokeWidth='2'
+                    strokeLinecap='round'
+                    strokeLinejoin='round'
+                    className='lucide lucide-circle-check w-4'
+                  >
+                    <circle cx='12' cy='12' r='10'></circle>
+                    <path d='m9 12 2 2 4-4'></path>
+                  </svg>
+                  <span className='font-medium'>{point}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
 
-export default Benefits;
+          {/* Lottie Animation */}
+          <div className='w-full lg:w-[50%]'>
+            <Lottie animationData={lottieFiles[activeTab]} loop={true} />
+          </div>
+        </div>
+      </section>
+    </div>
+  )
+})
+
+export default Benefits

@@ -10,19 +10,19 @@ const Hero = ({ scrollToBenefits }) => {
   const { loggedInUser } = useAuth()
 
   return (
-    <section className='pt-24 pb-32'>
+    <section className='pt-24 pb-32 dark:bg-[#02101c]'>
       <div className='overflow-hidden'>
         <div className='w-[100%] lg:w-[1000px] px-8 lg:px-0 mx-auto'>
           <div className='flex-col items-center'>
             <div className='z-10 items-center text-center'>
               <h1
-                className='mb-8 text-[#02101c] text-pretty text-4xl font-semibold lg:text-7xl'
+                className='mb-8 text-[#02101c] dark:text-white text-pretty text-4xl font-semibold lg:text-7xl'
                 data-aos='fade-right'
               >
                 Track, Save, and Grow with SpendSmart
               </h1>
               <p
-                className='mx-auto max-w-screen-md text-zinc-600 lg:text-xl'
+                className='mx-auto max-w-screen-md text-zinc-600 dark:text-white lg:text-xl'
                 data-aos='fade-left'
               >
                 Take control of your finances with an easy-to-use tracker that

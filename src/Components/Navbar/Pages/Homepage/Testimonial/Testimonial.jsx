@@ -68,100 +68,106 @@ const Testimonial = () => {
   }
 
   return (
-    <section className='pb-32 w-[100%] lg:w-[1000px] px-8 lg:px-0 mx-auto'>
-      <div className=''>
-        <div className='mb-12 w-[80%] mx-auto' data-aos="fade-up">
-          <h2 className='mb-4 text-center text-3xl font-semibold lg:text-5xl'>
-            Discover Why People Love Spend Smart
-          </h2>
-          <p className='text-center text-zinc-600 lg:text-2xl'>
-            From saving for a rainy day to planning for big life milestones,
-            Spend Smart has helped over 100,000 users achieve financial freedom.
-          </p>
-        </div>
+    <div className='dark:bg-[#02101c]'>
+      <section className='pb-32 w-[100%] lg:w-[1000px] px-8 lg:px-0 mx-auto'>
+        <div className=''>
+          <div className='mb-12 w-[80%] mx-auto' data-aos='fade-up'>
+            <h2 className='mb-4 text-center text-3xl font-semibold lg:text-5xl dark:text-white'>
+              Discover Why People Love Spend Smart
+            </h2>
+            <p className='text-center text-zinc-600 lg:text-2xl dark:text-white'>
+              From saving for a rainy day to planning for big life milestones,
+              Spend Smart has helped over 100,000 users achieve financial
+              freedom.
+            </p>
+          </div>
 
-        <div className='py-4 mx-auto'>
-          <main className='relative z-20 w-full mt-8 md:flex md:items-center xl:mt-12' data-aos="fade-up-right">
-            <div className='absolute w-full bg-[#30e4ba] -z-10 md:h-96 rounded-2xl'></div>
-
-            <div
-              className={`w-full p-6 bg-[#30e4ba] md:flex md:items-center rounded-2xl md:bg-transparent md:p-0 lg:px-12 md:justify-evenly transition-transform duration-300 ${
-                transitionDirection === 'slide-left'
-                  ? 'transform translate-x-full'
-                  : transitionDirection === 'slide-right'
-                  ? 'transform -translate-x-full'
-                  : ''
-              }`}
+          <div className='py-4 mx-auto'>
+            <main
+              className='relative z-20 w-full mt-8 md:flex md:items-center xl:mt-12'
+              data-aos='fade-up-right'
             >
-              <img
-                className='h-24 w-24 md:mx-6 rounded-full object-cover shadow-md md:h-[32rem] md:w-80 lg:h-[36rem] lg:w-[26rem] md:rounded-2xl'
-                src={testimonials[currentIndex].image}
-                alt={testimonials[currentIndex].name}
-              />
+              <div className='absolute w-full bg-[#30e4ba] dark:bg-[#175e4d] -z-10 md:h-96 rounded-2xl'></div>
 
-              <div className='mt-2 md:mx-6'>
-                <div>
-                  <p className='text-xl tracking-tight text-[#02101c] font-semibold '>
-                    {testimonials[currentIndex].name}
+              <div
+                className={`w-full p-6 bg-[#30e4ba] md:flex md:items-center rounded-2xl md:bg-transparent md:p-0 lg:px-12 md:justify-evenly transition-transform duration-300 ${
+                  transitionDirection === 'slide-left'
+                    ? 'transform translate-x-full'
+                    : transitionDirection === 'slide-right'
+                    ? 'transform -translate-x-full'
+                    : ''
+                }`}
+              >
+                <img
+                  className='h-24 w-24 md:mx-6 rounded-full object-cover shadow-md md:h-[32rem] md:w-80 lg:h-[36rem] lg:w-[26rem] md:rounded-2xl'
+                  src={testimonials[currentIndex].image}
+                  alt={testimonials[currentIndex].name}
+                />
+
+                <div className='mt-2 md:mx-6'>
+                  <div>
+                    <p className='text-xl tracking-tight text-[#02101c] font-semibold '>
+                      {testimonials[currentIndex].name}
+                    </p>
+                    <p className='text-white font-semibold '>
+                      {testimonials[currentIndex].role}
+                    </p>
+                  </div>
+
+                  <p className='mt-4 text-lg leading-relaxed text-[#02101c] font-semibold  md:text-xl'>
+                    {testimonials[currentIndex].text}
                   </p>
-                  <p className='text-white font-semibold '>
-                    {testimonials[currentIndex].role}
-                  </p>
-                </div>
 
-                <p className='mt-4 text-lg leading-relaxed text-[#02101c] font-semibold  md:text-xl'>
-                  {testimonials[currentIndex].text}
-                </p>
-
-                <div className='flex items-center justify-between mt-6 md:justify-start'>
-                  <button
-                    title='left arrow'
-                    className='p-2 text-white font-semibold  transition-colors duration-300 border rounded-full rtl:-scale-x-100 hover:bg-[#28b997]'
-                    onClick={prevTestimonial}
-                  >
-                    <svg
-                      xmlns='http://www.w3.org/2000/svg'
-                      className='w-6 h-6'
-                      fill='none'
-                      viewBox='0 0 24 24'
-                      stroke='currentColor'
-                      strokeWidth='2'
+                  <div className='flex items-center justify-between mt-6 md:justify-start'>
+                    <button
+                      title='left arrow'
+                      className='p-2 text-white font-semibold  transition-colors duration-300 border rounded-full rtl:-scale-x-100 hover:bg-[#28b997]'
+                      onClick={prevTestimonial}
                     >
-                      <path
-                        strokeLinecap='round'
-                        strokeLinejoin='round'
-                        d='M15 19l-7-7 7-7'
-                      />
-                    </svg>
-                  </button>
+                      <svg
+                        xmlns='http://www.w3.org/2000/svg'
+                        className='w-6 h-6'
+                        fill='none'
+                        viewBox='0 0 24 24'
+                        stroke='currentColor'
+                        strokeWidth='2'
+                      >
+                        <path
+                          strokeLinecap='round'
+                          strokeLinejoin='round'
+                          d='M15 19l-7-7 7-7'
+                        />
+                      </svg>
+                    </button>
 
-                  <button
-                    title='right arrow'
-                    className='p-2 text-white font-semibold  transition-colors duration-300 border rounded-full rtl:-scale-x-100 md:mx-6 hover:bg-[#28b997]'
-                    onClick={nextTestimonial}
-                  >
-                    <svg
-                      xmlns='http://www.w3.org/2000/svg'
-                      className='w-6 h-6'
-                      fill='none'
-                      viewBox='0 0 24 24'
-                      stroke='currentColor'
-                      strokeWidth='2'
+                    <button
+                      title='right arrow'
+                      className='p-2 text-white font-semibold  transition-colors duration-300 border rounded-full rtl:-scale-x-100 md:mx-6 hover:bg-[#28b997]'
+                      onClick={nextTestimonial}
                     >
-                      <path
-                        strokeLinecap='round'
-                        strokeLinejoin='round'
-                        d='M9 5l7 7-7 7'
-                      />
-                    </svg>
-                  </button>
+                      <svg
+                        xmlns='http://www.w3.org/2000/svg'
+                        className='w-6 h-6'
+                        fill='none'
+                        viewBox='0 0 24 24'
+                        stroke='currentColor'
+                        strokeWidth='2'
+                      >
+                        <path
+                          strokeLinecap='round'
+                          strokeLinejoin='round'
+                          d='M9 5l7 7-7 7'
+                        />
+                      </svg>
+                    </button>
+                  </div>
                 </div>
               </div>
-            </div>
-          </main>
+            </main>
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </div>
   )
 }
 

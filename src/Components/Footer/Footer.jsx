@@ -7,7 +7,7 @@ const Footer = () => {
   let { userData, isUserLoading } = useCurrentUserData();
 
   return (
-    <footer className="p-4 bg-gradient-to-br from-[#f2fbf6] to-[#30e4ba] md:p-8 lg:p-10">
+    <footer className="p-4 bg-gradient-to-r dark:bg-gradient-to-r from-[#30e4ba] dark:from-[#02101c] via-white dark:via-white to-[#30e4ba] dark:to-[#02101c] md:p-8 lg:p-10">
       <div>
         <div className="flex justify-center">
           <Link to={'/'}>
