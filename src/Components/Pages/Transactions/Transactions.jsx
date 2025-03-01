@@ -157,7 +157,7 @@ const Transactions = () => {
             {/* Search Input */}
             <div className='searchField w-full lg:w-[40%]'>
               <input
-                className='w-full lg:w-[80%] py-3 px-4 rounded-lg border-2 placeholder:text-[14px] border-[#02101c] dark:border-white dark:bg-slate-900 dark:placeholder:text-white'
+                className='w-full lg:w-[80%] dark:text-white py-3 px-4 rounded-lg border-2 placeholder:text-[14px] border-[#02101c] dark:border-white dark:bg-slate-900 dark:placeholder:text-white'
                 placeholder='Search Transaction By Name'
                 type='text'
                 value={searchTerm}

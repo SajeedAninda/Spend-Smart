@@ -107,7 +107,7 @@ const TransactionModal = ({ isOpen, onClose, refetch }) => {
                 onChange={e => {
                   setTransactionNameText(e.target.value.length)
                 }}
-                className='w-full py-3 px-4 dark:bg-slate-900 dark:placeholder:text-white rounded-lg border mt-2 placeholder:text-[14px] placeholder:text-gray-500 border-[#02101c]'
+                className='w-full py-3 px-4 dark:text-white dark:bg-slate-900 dark:placeholder:text-white rounded-lg border mt-2 placeholder:text-[14px] placeholder:text-gray-500 border-[#02101c]'
                 placeholder='e.g: Paid for Cat Food'
                 type='text'
                 name='transactionName'
