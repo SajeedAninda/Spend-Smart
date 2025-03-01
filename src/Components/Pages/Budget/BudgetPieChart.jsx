@@ -6,21 +6,24 @@ import BudgetChartSkeleton from '../../LoadingSkeletons/BudgetChartSkeleton'
 
 const BudgetPieChart = ({ transactionData, budgetData }) => {
   if (!transactionData || !budgetData) {
-    return <BudgetChartSkeleton/>
+    return <BudgetChartSkeleton />;
   }
 
-  let totalBudget = budgetData.reduce((acc, curr) => acc + parseFloat(curr.maxSpendAmount), 0)
-  const budgetCategories = new Set(budgetData?.map(budget => budget.category))
+  let totalBudget = budgetData.reduce((acc, curr) => acc + parseFloat(curr.maxSpendAmount), 0);
+
+  const budgetCategories = new Set(budgetData?.map(budget => budget.category));
 
   let totalSpent = transactionData
-    .filter(transaction => budgetCategories.has(transaction.category))
-    .reduce((acc, transaction) => acc + parseFloat(transaction.amount), 0)
+    .filter(transaction => 
+      budgetCategories.has(transaction.category) && transaction.transactionType === "spent"
+    )
+    .reduce((acc, transaction) => acc + parseFloat(transaction.amount), 0);
 
   const chartData = budgetData?.map(budget => ({
     category: budget.category,
     amount: parseFloat(budget.maxSpendAmount),
-    fill: budget.colorTheme
-  }))
+    fill: budget.colorTheme,
+  }));
 
   return (
     <Card className='flex flex-col bg-transparent border-none shadow-none'>
@@ -45,7 +48,7 @@ const BudgetPieChart = ({ transactionData, budgetData }) => {
               <Label
                 content={({ viewBox }) => {
                   if (!viewBox || !('cx' in viewBox) || !('cy' in viewBox)) {
-                    return null
+                    return null;
                   }
 
                   return (
@@ -60,17 +63,17 @@ const BudgetPieChart = ({ transactionData, budgetData }) => {
                         y={viewBox.cy}
                         className='fill-foreground text-3xl font-bold'
                       >
-                       ${totalSpent}
+                        ${totalSpent}
                       </tspan>
                       <tspan
                         x={viewBox.cx}
                         y={viewBox.cy + 24}
                         className='fill-muted-foreground text-gray-500'
                       >
-                       of ${totalBudget} limit
+                        of ${totalBudget} limit
                       </tspan>
                     </text>
-                  )
+                  );
                 }}
               />
             </Pie>
@@ -78,8 +81,9 @@ const BudgetPieChart = ({ transactionData, budgetData }) => {
         </ChartContainer>
       </CardContent>
     </Card>
-  )
-}
+  );
+};
 
-export default BudgetPieChart
+export default BudgetPieChart;
+
 

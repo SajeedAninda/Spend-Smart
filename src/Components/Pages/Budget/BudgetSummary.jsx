@@ -132,7 +132,7 @@ const BudgetSummary = ({ transactionData, budgetData, refetch }) => {
             <div className='latestSpending bg-white dark:bg-[#102e27] p-6 rounded-lg mt-4'>
               <div className='flex justify-between items-center'>
                 <h3 className='text-[#02101c] dark:text-white font-semibold text-[18px]'>
-                  Latest Spending
+                  Latest Transactions
                 </h3>
                 <Link
                   to={'/transactions'}
