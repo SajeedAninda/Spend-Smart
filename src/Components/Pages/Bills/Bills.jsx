@@ -8,6 +8,7 @@ import TotalBills from './TotalBills'
 import BillSummary from './BillSummary'
 import BillsTable from './BillsTable'
 import { InfinitySpin } from 'react-loader-spinner'
+import { Helmet } from 'react-helmet-async'
 
 const Bills = () => {
   const [isModalOpen, setIsModalOpen] = useState(false)
@@ -35,6 +36,9 @@ const Bills = () => {
 
   return (
     <div className='dark:bg-[#02101c]'>
+      <Helmet>
+        <title>Spend Smart - Bills</title>
+      </Helmet>
       <div
         className='w-[100%] lg:w-[1150px] px-8 lg:px-0 mx-auto py-8'
         data-aos='fade-up'

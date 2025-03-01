@@ -14,6 +14,7 @@ import Budget from './Components/Pages/Budget/Budget'
 import PiggyBank from './Components/Pages/PiggyBank/PiggyBank'
 import Bills from './Components/Pages/Bills/Bills'
 import PrivateRoute from './Components/Authentication/PrivateRoute/PrivateRoute'
+import { HelmetProvider } from 'react-helmet-async'
 
 const queryClient = new QueryClient()
 
@@ -73,10 +74,12 @@ const router = createBrowserRouter([
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <Toaster />
-    <QueryClientProvider client={queryClient}>
-      <AuthProvider>
-        <RouterProvider router={router} />
-      </AuthProvider>
-    </QueryClientProvider>
+    <HelmetProvider>
+      <QueryClientProvider client={queryClient}>
+        <AuthProvider>
+          <RouterProvider router={router} />
+        </AuthProvider>
+      </QueryClientProvider>
+    </HelmetProvider>
   </StrictMode>
 )

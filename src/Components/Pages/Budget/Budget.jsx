@@ -8,6 +8,7 @@ import useAuth from '../../Hooks/useAuth'
 import SpendingSummary from './SpendingSummary'
 import BudgetSummary from './BudgetSummary'
 import { InfinitySpin } from 'react-loader-spinner'
+import { Helmet } from 'react-helmet-async'
 
 const Budget = () => {
   const [isModalOpen, setIsModalOpen] = useState(false)
@@ -47,12 +48,17 @@ const Budget = () => {
 
   return (
     <div className='dark:bg-[#02101c]'>
+      <Helmet>
+        <title>Spend Smart - Budgets</title>
+      </Helmet>
       <div
         className='w-[100%] lg:w-[1150px] px-8 lg:px-0 mx-auto py-8'
         data-aos='fade-up'
       >
         <div className='upperDiv flex justify-between items-center'>
-          <h1 className='text-[32px] font-bold text-[#02101c] dark:text-white'>Budgets</h1>
+          <h1 className='text-[32px] font-bold text-[#02101c] dark:text-white'>
+            Budgets
+          </h1>
           <div className='relative group'>
             <button
               className='relative inline-block p-px font-semibold leading-6 text-white bg-[#02101c] dark:bg-white shadow-lg cursor-pointer rounded-xl shadow-zinc-900 transition-transform duration-300 ease-in-out hover:scale-105 active:scale-95'

@@ -14,6 +14,7 @@ import TransactionModal from './TransactionModal'
 import useAxiosInstance from '../../Hooks/useAxiosInstance'
 import { InfinitySpin } from 'react-loader-spinner'
 import TransactionInfoSkeleton from '../../LoadingSkeletons/TransactionInfoSkeleton'
+import { Helmet } from 'react-helmet-async'
 
 const Transactions = () => {
   const { loggedInUser } = useAuth()
@@ -78,7 +79,13 @@ const Transactions = () => {
 
   return (
     <div className='dark:bg-[#02101c]'>
-      <div className='w-[100%] lg:w-[1150px] px-8 lg:px-0 mx-auto py-8' data-aos="fade-up">
+      <Helmet>
+        <title>Spend Smart - Transactions</title>
+      </Helmet>
+      <div
+        className='w-[100%] lg:w-[1150px] px-8 lg:px-0 mx-auto py-8'
+        data-aos='fade-up'
+      >
         <div className='upperDiv flex justify-between items-center gap-10 lg:gap-0'>
           <h1 className='text-[20px] md:text-[26px] lg:text-[32px] font-bold text-[#02101c] dark:text-white'>
             Transactions
