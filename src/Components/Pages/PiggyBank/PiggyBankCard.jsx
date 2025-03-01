@@ -176,7 +176,7 @@ const PiggyBankCard = ({ piggyBankData, refetch }) => {
         })
       ) : (
         <div className='w-full col-span-2 flex justify-center items-center'>
-          <p className='text-[20px] font-bold text-[#02101c]'>
+          <p className='text-[20px] font-bold text-[#02101c] dark:text-white'>
             No piggy banks found. Start by creating a new one!
           </p>
         </div>
