@@ -11,11 +11,14 @@ import {
 import useAxiosInstance from '../../Hooks/useAxiosInstance'
 import useAuth from '../../Hooks/useAuth'
 import toast from 'react-hot-toast'
+import { useQueryClient } from '@tanstack/react-query'
 
 const BillModal = ({ isOpen, onClose, refetch }) => {
   const [billNameText, setBillNameText] = useState('')
   const [billingAmount, setBillingAmount] = useState('')
   const [billDueDay, setBillDueDay] = useState('')
+
+  const queryClient = useQueryClient();
 
   let axiosInstance = useAxiosInstance()
   let { loggedInUser } = useAuth()
@@ -46,6 +49,7 @@ const BillModal = ({ isOpen, onClose, refetch }) => {
         e.target.reset()
         toast.dismiss(loadingToast)
         refetch()
+        queryClient.invalidateQueries({ queryKey: ['filteredBills'] })
         onClose()
       }
     } catch (error) {

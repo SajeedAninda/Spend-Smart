@@ -116,8 +116,13 @@ const Navbar = () => {
                 onClick={toggleSidebar}
               />
               <div className='hidden md:flex items-center space-x-4'>
-                <label  class='relative inline-flex items-center cursor-pointer'>
-                  <input onChange={() => setDarkMode(!darkMode)} class='sr-only peer' value='' type='checkbox' />
+                <label class='relative inline-flex items-center cursor-pointer'>
+                  <input
+                    onChange={() => setDarkMode(!darkMode)}
+                    class='sr-only peer'
+                    value=''
+                    type='checkbox'
+                  />
                   <div class="darkModeToggler w-20 h-8 rounded-full ring-0 peer duration-500 outline-none bg-[#24aa8b] overflow-hidden before:flex before:items-center before:justify-center after:flex after:items-center after:justify-center before:content-['☀️'] before:absolute before:h-7 before:w-10 before:top-1/2 before:bg-white before:rounded-full before:left-1 before:-translate-y-1/2 before:transition-all before:duration-700 peer-checked:before:opacity-0 peer-checked:before:rotate-90 peer-checked:before:-translate-y-full shadow-lg shadow-gray-400 peer-checked:shadow-lg peer-checked:shadow-gray-700 peer-checked:bg-[#383838] after:content-['🌑'] after:absolute after:bg-[#02101c] after:rounded-full after:top-[4px] after:right-1 after:translate-y-full after:w-10 after:h-7 after:opacity-0 after:transition-all after:duration-700 peer-checked:after:opacity-100 peer-checked:after:rotate-180 peer-checked:after:-translate-y-0.5"></div>
                 </label>
 
@@ -136,7 +141,12 @@ const Navbar = () => {
           ) : (
             <div className='flex items-center space-x-4'>
               <label class='relative inline-flex items-center cursor-pointer'>
-                <input onChange={() => setDarkMode(!darkMode)} class='sr-only peer' value='' type='checkbox' />
+                <input
+                  onChange={() => setDarkMode(!darkMode)}
+                  class='sr-only peer'
+                  value=''
+                  type='checkbox'
+                />
                 <div class="darkModeToggler w-20 h-8 rounded-full ring-0 peer duration-500 outline-none bg-[#24aa8b] overflow-hidden before:flex before:items-center before:justify-center after:flex after:items-center after:justify-center before:content-['☀️'] before:absolute before:h-7 before:w-10 before:top-1/2 before:bg-white before:rounded-full before:left-1 before:-translate-y-1/2 before:transition-all before:duration-700 peer-checked:before:opacity-0 peer-checked:before:rotate-90 peer-checked:before:-translate-y-full shadow-lg shadow-gray-400 peer-checked:shadow-lg peer-checked:shadow-gray-700 peer-checked:bg-[#383838] after:content-['🌑'] after:absolute after:bg-[#1d1d1d] after:rounded-full after:top-[4px] after:right-1 after:translate-y-full after:w-10 after:h-7 after:opacity-0 after:transition-all after:duration-700 peer-checked:after:opacity-100 peer-checked:after:rotate-180 peer-checked:after:translate-y-0"></div>
               </label>
               <Link to={'/login'}>
@@ -154,7 +164,7 @@ const Navbar = () => {
       {/* Sidebar for Mobile */}
       {userData && (
         <div
-          className={`fixed top-0 left-0 h-full w-64 bg-white shadow-lg transform transition-transform duration-300 ease-in-out z-50 ${
+          className={`fixed top-0 left-0 h-full w-64 bg-white dark:bg-[#02101c] shadow-lg transform transition-transform duration-300 ease-in-out z-50 ${
             isSidebarOpen ? 'translate-x-0' : '-translate-x-full'
           }`}
         >
@@ -171,8 +181,8 @@ const Navbar = () => {
                 className={({ isActive }) =>
                   `font-bold text-[16px] list-none transition-all duration-150 cursor-pointer ${
                     isActive
-                      ? 'text-[#02101c] underline'
-                      : 'text-[#02101c] hover:opacity-50 hover:underline'
+                      ? 'text-[#02101c] dark:text-white underline'
+                      : 'text-[#02101c] dark:text-white hover:opacity-50 hover:underline'
                   }`
                 }
                 onClick={toggleSidebar}
@@ -192,6 +202,16 @@ const Navbar = () => {
                 alt=''
               />
             </div>
+
+            <label class='relative w-full inline-flex items-center cursor-pointer'>
+              <input
+                onChange={() => setDarkMode(!darkMode)}
+                class='sr-only peer'
+                value=''
+                type='checkbox'
+              />
+              <div class="darkModeToggler w-full h-8 rounded-full ring-0 peer duration-500 outline-none bg-[#24aa8b] overflow-hidden before:flex before:items-center before:justify-center after:flex after:items-center after:justify-center before:content-['☀️'] before:absolute before:h-7 before:w-1/2 before:top-1/2 before:bg-white before:rounded-full before:left-1 before:-translate-y-1/2 before:transition-all before:duration-700 peer-checked:before:opacity-0 peer-checked:before:rotate-90 peer-checked:before:-translate-y-full shadow-lg shadow-gray-400 peer-checked:shadow-lg peer-checked:shadow-gray-700 peer-checked:bg-[#383838] after:content-['🌑'] after:absolute after:bg-[#02101c] after:rounded-full after:top-[4px] after:right-1 after:translate-y-full after:w-1/2 after:h-7 after:opacity-0 after:transition-all after:duration-700 peer-checked:after:opacity-100 peer-checked:after:rotate-180 peer-checked:after:-translate-y-0.5"></div>
+            </label>
           </div>
         </div>
       )}
