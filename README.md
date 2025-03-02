@@ -34,17 +34,23 @@ This repository contains the **client-side code** of the **Spend Smart** project
 ## 🎨 Frontend
 ### 🛠 Technologies Used
 
-- **React** – Modern frontend framework for building dynamic user interfaces.
-- **React Router DOM** – Handles client-side navigation.
-- **Firebase** – Used for authentication and real-time data management.
+- **React** – Modern frontend library for building dynamic user interfaces.
+- **Tailwind CSS** – Utility-first CSS framework for styling.
+- **React Router DOM** – Enables client-side navigation and routing.
+- **Firebase** – Used for authentication and real-time data storage.
 - **Axios** – Handles API requests efficiently.
-- **TanStack Query** – Manages and caches server state.
-- **ShadCN/UI** – Provides customizable UI components.
-- **React Chart.js 2** – Visualizes financial data through charts.
-- **React Hot Toast** – Displays toast notifications.
-- **React Icons** – Offers a wide range of icons for UI elements.
-- **React Intersection Observer** – Detects elements entering/exiting the viewport.
-- **Tailwind CSS** – Ensures a clean and modern UI design.
+- **TanStack React Query** – Manages and caches server state for better performance.
+- **ShadCN/UI** – Provides pre-built and customizable UI components.
+- **Recharts** – A powerful charting library for visualizing financial data.
+- **React Helmet Async** – Manages document metadata dynamically.
+- **React Hot Toast** – Displays toast notifications for user feedback.
+- **React Icons** – Collection of icons for various UI elements.
+- **React Loader Spinner** – Displays loading indicators.
+- **React Type Animation** – Provides smooth typewriting animation effects.
+- **AOS (Animate On Scroll)** – Adds scroll animations to enhance UX.
+- **SweetAlert2** – Displays interactive alert modals for confirmations.
+- **Lottie React** – Enables Lottie animations for better UI experience.
+
 
 ---
 
